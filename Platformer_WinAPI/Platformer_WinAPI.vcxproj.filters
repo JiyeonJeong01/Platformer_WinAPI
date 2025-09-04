@@ -1,0 +1,220 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="소스 파일">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="헤더 파일">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="리소스 파일">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="00. MainGame">
+      <UniqueIdentifier>{951e8e3e-8afa-45a6-b54a-17ee040fbe05}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01. Object">
+      <UniqueIdentifier>{5588a664-b785-4376-ba20-1f3bbe87690d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02. Manager">
+      <UniqueIdentifier>{14a862c6-9f8e-48c6-b073-6d00a37367ed}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03. Design">
+      <UniqueIdentifier>{3de4490d-8436-420b-bff6-0769f9978f22}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="04. Utils">
+      <UniqueIdentifier>{92071ca6-55d4-4824-a8da-d8d607f12fb5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01. Object\00. Object">
+      <UniqueIdentifier>{1fa2703c-9b38-434b-a212-0454a256786c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01. Object\01. Player">
+      <UniqueIdentifier>{1f9ea313-66dd-4620-bd5c-fd0587dc607b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01. Object\02. Monster">
+      <UniqueIdentifier>{f1625f71-4512-4207-971a-42689bbf7d3c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01. Object\03. Bullet">
+      <UniqueIdentifier>{1477e493-a902-41f4-89db-311d7d30077d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01. Object\04. Mouse">
+      <UniqueIdentifier>{cb2d1e50-2f5a-41ec-93ef-d149a9c23174}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02. Manager\00. ObjectManager">
+      <UniqueIdentifier>{aae9c50f-108a-464c-b3c0-d959e37cf634}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02. Manager\01. StageManager">
+      <UniqueIdentifier>{5673e98d-45c9-474d-aa71-fd5cc8285800}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02. Manager\02. CollisionManager">
+      <UniqueIdentifier>{331ece6f-5c62-41a9-8c77-2845b63c1158}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02. Manager\03. UIManager">
+      <UniqueIdentifier>{d23109e7-20d6-47f1-be17-ebc61261148b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02. Manager\04. InputManager">
+      <UniqueIdentifier>{18b50630-fd69-4c27-b418-b65d5817d59c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03. Design\AbstractFactory">
+      <UniqueIdentifier>{00697a44-5310-4e52-854c-c2ddd3975b6f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="04. Utils\00. Vector">
+      <UniqueIdentifier>{348cfd21-b1eb-49f7-acf3-3bf247f0d6bb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01. Object\02. Monster\00. Monster">
+      <UniqueIdentifier>{fe1cf3c4-0ff8-4279-983e-a06ce6bc227d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01. Object\02. Monster\01. Boss01">
+      <UniqueIdentifier>{31365d25-31f5-4937-af4d-0a9f2d834436}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01. Object\02. Monster\02. Boss02">
+      <UniqueIdentifier>{613ccd76-fa21-4188-83a8-74c0da39c690}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01. Object\02. Monster\03. Boss03">
+      <UniqueIdentifier>{d84b8971-7ce5-47fa-a18a-51817f32324f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01. Object\02. Monster\04. Boss04">
+      <UniqueIdentifier>{f098b939-a86f-49d9-bd02-789c89181188}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01. Object\02. Monster\05. Mob">
+      <UniqueIdentifier>{caf3e1a6-0cca-48a5-9b0a-8a0fa7fe895e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="04. Utils\01. Timer">
+      <UniqueIdentifier>{5266af39-61b4-41b3-8f72-29354954c6f2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="05. Stage">
+      <UniqueIdentifier>{84eda937-6c29-499c-8f4f-71766c77b7cd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="05. Stage\00. Stage">
+      <UniqueIdentifier>{59bc070a-1450-4b19-8f20-5c745e83287c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="05. Stage\01. Stage01">
+      <UniqueIdentifier>{c174eb41-d427-4739-9dc1-7159c6a0de28}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="05. Stage\02. Stage02">
+      <UniqueIdentifier>{c624a861-b3cd-45f2-b34f-afaac8a15817}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="05. Stage\03. Stage03">
+      <UniqueIdentifier>{4578a111-645d-4c97-9d80-16da1de494e0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="05. Stage\04. Stage04">
+      <UniqueIdentifier>{0f22d343-c99a-4fc7-b82f-f544039b4715}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="framework.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="targetver.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Resource.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Platformer_WinAPI.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="pch.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Define.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="CMainGame.h">
+      <Filter>00. MainGame</Filter>
+    </ClInclude>
+    <ClInclude Include="Vector2.h">
+      <Filter>04. Utils\00. Vector</Filter>
+    </ClInclude>
+    <ClInclude Include="CObject.h">
+      <Filter>01. Object\00. Object</Filter>
+    </ClInclude>
+    <ClInclude Include="CPlayer.h">
+      <Filter>01. Object\01. Player</Filter>
+    </ClInclude>
+    <ClInclude Include="CInputManager.h">
+      <Filter>02. Manager\04. InputManager</Filter>
+    </ClInclude>
+    <ClInclude Include="InputKeyInfo.h">
+      <Filter>02. Manager\04. InputManager</Filter>
+    </ClInclude>
+    <ClInclude Include="CAbstractFactory.h">
+      <Filter>03. Design\AbstractFactory</Filter>
+    </ClInclude>
+    <ClInclude Include="CObjectManager.h">
+      <Filter>02. Manager\00. ObjectManager</Filter>
+    </ClInclude>
+    <ClInclude Include="CMonster.h">
+      <Filter>01. Object\02. Monster\00. Monster</Filter>
+    </ClInclude>
+    <ClInclude Include="CStageManager.h">
+      <Filter>02. Manager\01. StageManager</Filter>
+    </ClInclude>
+    <ClInclude Include="CStage.h">
+      <Filter>05. Stage\00. Stage</Filter>
+    </ClInclude>
+    <ClInclude Include="CStage01.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="CCollisionManager.h">
+      <Filter>02. Manager\02. CollisionManager</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Platformer_WinAPI.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="CMainGame.cpp">
+      <Filter>00. MainGame</Filter>
+    </ClCompile>
+    <ClCompile Include="Vector2.cpp">
+      <Filter>04. Utils\00. Vector</Filter>
+    </ClCompile>
+    <ClCompile Include="CObject.cpp">
+      <Filter>01. Object\00. Object</Filter>
+    </ClCompile>
+    <ClCompile Include="CPlayer.cpp">
+      <Filter>01. Object\01. Player</Filter>
+    </ClCompile>
+    <ClCompile Include="CInputManager.cpp">
+      <Filter>02. Manager\04. InputManager</Filter>
+    </ClCompile>
+    <ClCompile Include="CObjectManager.cpp">
+      <Filter>02. Manager\00. ObjectManager</Filter>
+    </ClCompile>
+    <ClCompile Include="CMonster.cpp">
+      <Filter>01. Object\02. Monster\00. Monster</Filter>
+    </ClCompile>
+    <ClCompile Include="CStageManager.cpp">
+      <Filter>02. Manager\01. StageManager</Filter>
+    </ClCompile>
+    <ClCompile Include="pch.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="CStage.cpp">
+      <Filter>05. Stage\00. Stage</Filter>
+    </ClCompile>
+    <ClCompile Include="CStage01.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="CCollisionManager.cpp">
+      <Filter>02. Manager\02. CollisionManager</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Platformer_WinAPI.rc">
+      <Filter>리소스 파일</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="small.ico">
+      <Filter>리소스 파일</Filter>
+    </Image>
+    <Image Include="Platformer_WinAPI.ico">
+      <Filter>리소스 파일</Filter>
+    </Image>
+  </ItemGroup>
+</Project>
