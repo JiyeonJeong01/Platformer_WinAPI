@@ -1,7 +1,8 @@
-#include "pch.h"
+﻿#include "pch.h"
 #include "CObject.h"
 
-CObject::CObject() : m_fSpeedX(0.f), m_fSpeedY(0.f), m_bDead(false), m_tRect({0, 0, 0, 0}) { }
+CObject::CObject() 
+	: m_fSpeedX(0.f), m_fSpeedY(0.f), m_bDead(false), m_tRect({0, 0, 0, 0}), m_objID(OBJ_END) { }
 
 CObject::~CObject() { }
 

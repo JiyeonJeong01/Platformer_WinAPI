@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 #include "CObject.h"
 class CMonster : public CObject
 {
@@ -14,15 +14,18 @@ public:
 	void Release() override;
 
 public :
-	virtual void Do_Attack() {}; // -> Target
-	virtual void Take_Damage(float _fDamage) {};
+	virtual void On_Collision(CObject* pObj);	
+
+public :
+	virtual void Do_Attack() {};									// Target을 공격하는 함수, pTarget을 설정해둬야 한다
+	virtual void Take_Damage(float _fDamage) {};	// 플레이어가 주는 데미지를 받는 함수
 
 public :
 	void Set_Target(CObject* pObj) { pTarget = pObj; }
 	CObject* Get_Target() { return pTarget;  }
 
 private :
-	CObject* pTarget;
+	CObject* pTarget; 
 
 	// Monster's stat components 
 	int m_iHP;

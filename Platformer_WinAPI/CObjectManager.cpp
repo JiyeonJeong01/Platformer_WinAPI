@@ -1,4 +1,4 @@
-#include "pch.h"
+﻿#include "pch.h"
 #include "CObjectManager.h"
 
 CObjectManager* CObjectManager::m_pInstance = nullptr;

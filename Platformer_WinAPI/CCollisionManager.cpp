@@ -1,4 +1,4 @@
-#include "pch.h"
+ï»¿#include "pch.h"
 #include "CCollisionManager.h"
 
 
@@ -59,25 +59,25 @@ void CCollisionManager::Collision_RectEx(list<CObject*> _Dst, list<CObject*> _Sr
 		{
 			if (Check_Rect(Dst, Src, &fX, &fY))
 			{
-				if (fX > fY)	// »óÇÏ Ãæµ¹
+				if (fX > fY)	// ìƒí•˜ ì¶©ëŒ
 				{
-					if (Dst->Get_Position().y < Src->Get_Position().y) // »ó Ãæµ¹
+					if (Dst->Get_Position().y < Src->Get_Position().y) // ìƒ ì¶©ëŒ
 					{
 						Dst->Set_PosY(-fY);
 					}
-					else  // ÇÏÃæµ¹
+					else  // í•˜ì¶©ëŒ
 					{
 						Dst->Set_PosY(fY);
 					}
 
 				}
-				else			// ÁÂ¿ì Ãæµ¹
+				else			// ì¢Œìš° ì¶©ëŒ
 				{
-					if (Dst->Get_Position().x < Src->Get_Position().x) // ÁÂ Ãæµ¹
+					if (Dst->Get_Position().x < Src->Get_Position().x) // ì¢Œ ì¶©ëŒ
 					{
 						Dst->Set_PosX(-fX);
 					}
-					else  // ¿ì Ãæµ¹
+					else  // ìš° ì¶©ëŒ
 					{
 						Dst->Set_PosX(fX);
 					}
