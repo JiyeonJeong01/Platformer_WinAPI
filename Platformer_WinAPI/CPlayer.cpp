@@ -7,9 +7,10 @@
 #include "CObjectManager.h"
 
 CPlayer::CPlayer()
+	: bLeftPressed(false), bRightPressed(false), bJumpPressed(false), bLeftMouseClicked(false)
 {
-    ZeroMemory(&m_vPosinPosition, sizeof(Vector2));
-    ZeroMemory(&m_mouseDir, sizeof(Vector2));
+	ZeroMemory(&m_vPosinPosition, sizeof(Vector2));
+	ZeroMemory(&m_mouseDir, sizeof(Vector2));
 }
 
 CPlayer::~CPlayer()
@@ -55,8 +56,8 @@ int CPlayer::Update()
 
 void CPlayer::Late_Update()
 {
-    m_vPosinPosition.x = LONG(m_vPosition.x + (50 * Vector2::Nomalize(m_mouseDir).x));
-    m_vPosinPosition.y = LONG(m_vPosition.y + (50 * Vector2::Nomalize(m_mouseDir).y));
+    m_vPosinPosition.x = static_cast<LONG>(m_vPosition.x + (50 * Vector2::Nomalize(m_mouseDir).x));
+    m_vPosinPosition.y = static_cast<LONG>(m_vPosition.y + (50 * Vector2::Nomalize(m_mouseDir).y));
 }
 
 void CPlayer::Render(HDC hDC)
@@ -64,10 +65,8 @@ void CPlayer::Render(HDC hDC)
     Rectangle(hDC, m_tRect.left, m_tRect.top, m_tRect.right, m_tRect.bottom);
 
     // Posin
-    MoveToEx(hDC, (int)m_vPosition.x, (int)m_vPosition.y, nullptr);
-    LineTo(hDC, m_vPosinPosition.x, m_vPosinPosition.y);
-
-   
+    MoveToEx(hDC, static_cast<int>(m_vPosition.x), static_cast<int>(m_vPosition.y), nullptr);
+    LineTo(hDC, static_cast<int>(m_vPosinPosition.x), static_cast<int>(m_vPosinPosition.y));
 }
 
 void CPlayer::Release()

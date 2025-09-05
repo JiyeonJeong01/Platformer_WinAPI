@@ -20,7 +20,7 @@ public :
 	const Vector2& Get_Direction() const { return m_vDirection; }
 	const Vector2& Get_Size() const { return m_vSize; }
 
-	const RECT* Get_Rect() { return &m_tRect;  }
+	const RECT* Get_Rect() { return &m_tRect; }
 
 	void Set_PosX(float _fX) { m_vPosition.x = _fX; }
 	void Set_PosY(float _fY) { m_vPosition.y = _fY; }
@@ -29,10 +29,14 @@ public :
 	void Set_SizeX(float _fX) { m_vSize.x = _fX; }
 	void Set_SizeY(float _fY) { m_vSize.y = _fY; }
 
-	OBJID Get_ObjectID() { return m_objID; }
-	virtual void		On_Collision(CObject* pObj) {}; 	// 충돌 시 CollisionManager에서 호출된다
-																				// 충돌 로직 구현은 각 객체에게 위임한다
-	
+	OBJID        Get_ObjectID() { return m_objID; }
+
+	/**
+	* \brief On_Collision : Automatically invoked by the CollisionManager on collision
+	* \note : Each object is responsible for implementing its own collision logic
+	*/
+	virtual void On_Collision(CObject* pObj) {}		// 충돌 시 CollisionManager에서 호출된다
+													// 충돌 로직 구현은 각 객체에게 위임한다
 protected:
 	// Core components
 	Vector2 m_vPosition;		// 객체의 위치, 중점

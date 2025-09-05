@@ -12,7 +12,7 @@
 #include "CStageManager.h"
 #pragma endregion
 
-CMainGame::CMainGame() : m_dwTime(GetTickCount()), m_iFPS(0)
+CMainGame::CMainGame() : m_hDC(nullptr), m_dwTime(GetTickCount()), m_iFPS(0)
 {
 	ZeroMemory(m_szFPS, sizeof(m_szFPS));
 }
