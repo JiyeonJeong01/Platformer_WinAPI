@@ -5,15 +5,17 @@
 
 CStage::CStage()
 {
+
 }
 
 CStage::~CStage()
 {
+
 }
 
 void CStage::Initialize()
 {
-	
+
 
 }
 

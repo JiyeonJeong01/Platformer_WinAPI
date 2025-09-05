@@ -1,10 +1,8 @@
-﻿  CMainGame.cpp
-  CStage.cpp
+﻿  CStage.cpp
   CStage01.cpp
   CStage02.cpp
   CStage03.cpp
   CStage04.cpp
   CStageManager.cpp
-  Platformer_WinAPI.cpp
   코드를 생성하고 있습니다...
   Platformer_WinAPI.vcxproj -> D:\GitDesktop\Jusin\Platformer_WinAPI\Platformer_WinAPI\x64\Debug\Platformer_WinAPI.exe
