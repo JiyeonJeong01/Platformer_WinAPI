@@ -18,13 +18,13 @@ public :
 
 public :
 	virtual void Do_Attack() {};					// Target을 공격하는 함수, pTarget을 설정해둬야 한다
-	virtual void Take_Damage(float _fDamage) {};	// 플레이어가 주는 데미지를 받는 함수
-
+	virtual void Take_Damage(float _fDamage) { m_iHP -= _fDamage; };	// 플레이어가 주는 데미지를 받는 함수
+	
 public :
 	void Set_Target(CObject* pObj) { pTarget = pObj; }
 	CObject* Get_Target() { return pTarget;  }
 
-private :
+protected :
 	CObject* pTarget; 
 
 	// Monster's stat components 
