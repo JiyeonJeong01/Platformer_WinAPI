@@ -1,30 +1,21 @@
-#pragma once
+﻿#pragma once
 #include "Define.h"
 
 class CObj;
 class CPlayer;
 
-
-class CStage
+class CStage abstract
 {
 public:
 	CStage();
 	virtual ~CStage();
 
 public:
-	virtual void Initialize();
-	virtual void Update();
-	virtual void LateUpdate();
-	virtual void Render(HDC hdc);
-	virtual void Release();
-
-public:
-	void Random_ItemSpawn();
-
-protected:
-	list<CObj*>	m_ObjList[OBJ_END];
+	virtual void Initialize() PURE;
+	virtual void Update() PURE;
+	virtual void LateUpdate() PURE;
+	virtual void Render(HDC hdc) PURE;
+	virtual void Release() PURE;
 
 private:
-	ULONGLONG m_lastSpawnMS = 0;
-	ULONGLONG m_spawnInterval = 1500;
 };

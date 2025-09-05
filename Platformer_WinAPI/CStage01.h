@@ -1,5 +1,7 @@
-#pragma once
+﻿#pragma once
+
 #include "CStage.h"
+
 class CStage01 : public CStage
 {
 public:
@@ -10,9 +12,9 @@ public:
 	void Initialize() override;
 	void Update() override;
 	void LateUpdate() override;
-	void Render(HDC hdc) override;
+	void Render(HDC hDC) override;
 	void Release() override;
 
 private:
-	int	m_iKillCount = 0;
+
 };

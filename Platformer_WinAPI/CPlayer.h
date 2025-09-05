@@ -1,4 +1,4 @@
-#pragma once
+ï»¿#pragma once
 #include "CObject.h"
 
 class CPlayer : public CObject
@@ -9,7 +9,7 @@ public:
 
 public:
 	void Initialize() override;
-	int Update() override;
+	int  Update() override;
 	void Late_Update() override;
 	void Render(HDC hDC) override;
 	void Release() override;
@@ -19,19 +19,21 @@ private:
 	void		Update_Components();
 
 public:
-	virtual void Do_Attack() {}; 
+	virtual void Do_Attack(); 
 	virtual void Take_Damage(float _fDamage) {};
 
-private:
+protected:
 	Vector2		m_vPosinPosition;
 
-	float		m_fMousePosX = 0;
-	float		m_fMousePosY = 0;
+	float		m_fMousePosX = 0;	// ë§ˆìš°ìŠ¤ì˜ x ì¢Œí‘œ
+	float		m_fMousePosY = 0;	// ë§ˆìš°ìŠ¤ì˜  yì¢Œí‘œ
 
-private :
-	bool bLeftPressed;
-	bool bRightPressed;
-	bool bJumpPressed;
-	bool bLeftMouseClicked;
+	Vector2		m_mouseDir;
+
+protected:
+	bool		bLeftPressed;
+	bool		bRightPressed;
+	bool		bJumpPressed;
+	bool		bLeftMouseClicked;
+
 };
-// todo : ¸ó½ºÅÍ ÇÃ·¹ÀÌ¾î hp Ãß°¡ÇÏ±â 

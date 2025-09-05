@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 #include "InputKeyInfo.h"
 
@@ -18,7 +18,6 @@ public:
 	bool GetKeyDown(int iKey);
 	bool GetKey(int iKey);
 	bool GetKeyUp(int iKey);
-
 
 private:
 	vector<int> m_vKeys{ VK_SPACE, 'A', 'D', VK_LBUTTON };

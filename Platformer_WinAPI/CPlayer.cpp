@@ -1,9 +1,15 @@
-#include "pch.h"
+﻿#include "pch.h"
 #include "CPlayer.h"
+
+#include "CAbstractFactory.h"
+#include "CBullet.h"
 #include "CInputManager.h"
+#include "CObjectManager.h"
 
 CPlayer::CPlayer()
 {
+    ZeroMemory(&m_vPosinPosition, sizeof(Vector2));
+    ZeroMemory(&m_mouseDir, sizeof(Vector2));
 }
 
 CPlayer::~CPlayer()
@@ -33,32 +39,40 @@ int CPlayer::Update()
 {
     if (m_bDead) return OBJ_DEAD;
 
+    __super::Update_Rect();
+
     // Process client's inputs
     Handle_KeyInput();
 
     // Apply inputs to player's state 
     Update_Components();
 
+    if (CInputManager::Get_Instance()->GetKeyDown(VK_LBUTTON))
+        Do_Attack();
+
     return OBJ_NOEVENT;
 }
 
 void CPlayer::Late_Update()
 {
+    m_vPosinPosition.x = LONG(m_vPosition.x + (50 * Vector2::Nomalize(m_mouseDir).x));
+    m_vPosinPosition.y = LONG(m_vPosition.y + (50 * Vector2::Nomalize(m_mouseDir).y));
 }
 
 void CPlayer::Render(HDC hDC)
 {
     Rectangle(hDC, m_tRect.left, m_tRect.top, m_tRect.right, m_tRect.bottom);
 
-    // for test
-    if (bLeftMouseClicked)
-    {
-        Rectangle(hDC, m_fMousePosX - 10, m_fMousePosY - 10, m_fMousePosX +10, m_fMousePosY + 10);
-    }
+    // Posin
+    MoveToEx(hDC, (int)m_vPosition.x, (int)m_vPosition.y, nullptr);
+    LineTo(hDC, m_vPosinPosition.x, m_vPosinPosition.y);
+
+   
 }
 
 void CPlayer::Release()
 {
+
 }
 
 void CPlayer::Handle_KeyInput()
@@ -68,7 +82,7 @@ void CPlayer::Handle_KeyInput()
     bRightPressed = CInputManager::Get_Instance()->GetKey('D');
     bJumpPressed = CInputManager::Get_Instance()->GetKey(VK_SPACE);
 
-   bLeftMouseClicked = CInputManager::Get_Instance()->GetKey(VK_LBUTTON);
+    bLeftMouseClicked = CInputManager::Get_Instance()->GetKey(VK_LBUTTON);
     m_fMousePosX = CInputManager::Get_Instance()->Get_CursorPosition().x;
     m_fMousePosY = CInputManager::Get_Instance()->Get_CursorPosition().y;
 }
@@ -90,3 +104,17 @@ void CPlayer::Update_Components()
     // Update player's renderer rect
     __super::Update_Rect();
 }
+
+void CPlayer::Do_Attack()
+{
+    m_mouseDir.x = m_fMousePosX - m_vPosition.x;
+    m_mouseDir.y = m_fMousePosY - m_vPosition.y;
+
+    float distance = sqrtf(m_mouseDir.x * m_mouseDir.x + m_mouseDir.y * m_mouseDir.y);
+
+    Vector2 dir = Vector2::Nomalize(m_mouseDir);
+    Vector2 barrel = m_vPosition + dir * 100.f;
+
+    CObjectManager::Get_Instance()->Add_Object(BULLET, CAbstractFactory<CBullet>::Create(barrel, dir));
+}
+	
