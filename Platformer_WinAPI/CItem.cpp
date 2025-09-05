@@ -14,12 +14,9 @@ int CItem::Update()
 	if (m_bDead)
 		return OBJ_DEAD;
 
-	return OBJ_NOEVENT;
-}
+	__super::Update_Rect();
 
-void CItem::Render(HDC _hDC)
-{
-	Ellipse(_hDC, m_tRect.left, m_tRect.top, m_tRect.right, m_tRect.bottom);
+	return OBJ_NOEVENT;
 }
 
 void CItem::On_Collision(CObject* pObj)

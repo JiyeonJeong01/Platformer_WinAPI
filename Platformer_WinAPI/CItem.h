@@ -1,6 +1,6 @@
 ﻿#pragma once
 #include "CObject.h"
-class CItem abstract :  public CObject
+class CItem :  public CObject
 {
 public :
 	CItem() {}
@@ -9,7 +9,8 @@ public :
 public :
 	void Initialize() override;
 	int Update() override;
-	void Render(HDC _hDC) override;
+	void Late_Update() override {};
+	void Release() override {};
 
 public :
 	void On_Collision(CObject* pObj) override;
