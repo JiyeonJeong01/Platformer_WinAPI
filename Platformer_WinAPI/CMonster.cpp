@@ -33,3 +33,10 @@ void CMonster::Render(HDC hDC)
 void CMonster::Release()
 {
 }
+
+void CMonster::On_Collision(CObject* pObj)
+{
+	CObject::On_Collision(pObj);
+
+
+}

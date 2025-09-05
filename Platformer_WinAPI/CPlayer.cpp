@@ -48,8 +48,10 @@ int CPlayer::Update()
 
 void CPlayer::Late_Update()
 {
-    m_vPosinPosition.x = LONG(m_vPosition.x + (100 * cosf(m_fAngle)));
-    m_vPosinPosition.y = LONG(m_vPosition.y - (100 * sinf(m_fAngle)));
+    Vector2 dir = Vector2::Nomalize(m_mouseDir);
+
+    m_vPosinPosition.x = LONG(m_vPosition.x + (100 * dir.x));
+    m_vPosinPosition.y = LONG(m_vPosition.y + (100 * dir.y));
 }
 
 void CPlayer::Render(HDC hDC)
@@ -61,10 +63,10 @@ void CPlayer::Render(HDC hDC)
     LineTo(hDC, m_vPosinPosition.x, m_vPosinPosition.y);
 
     // for test
-    if (bLeftMouseClicked)
+    if (CInputManager::Get_Instance()->GetKeyDown(VK_LBUTTON))
     {
         Do_Attack();
-        Rectangle(hDC, m_fMousePosX - 10, m_fMousePosY - 10, m_fMousePosX +10, m_fMousePosY + 10);
+        //Rectangle(hDC, m_fMousePosX - 10, m_fMousePosY - 10, m_fMousePosX +10, m_fMousePosY + 10);
     }
 }
 
@@ -105,17 +107,13 @@ void CPlayer::Update_Components()
 
 void CPlayer::Do_Attack()
 {
-    Vector2 mouseDir = { };
+    m_mouseDir.x = m_fMousePosX - m_vPosition.x;
+    m_mouseDir.y = m_fMousePosY - m_vPosition.y;
 
-    mouseDir.x = m_fMousePosX - m_vPosition.x;
-    mouseDir.y = m_fMousePosY - m_vPosition.y;
+    float distance = sqrtf(m_mouseDir.x * m_mouseDir.x + m_mouseDir.y * m_mouseDir.y);
 
-    float distance = sqrtf(mouseDir.x * mouseDir.x + mouseDir.y * mouseDir.y);
+    Vector2 dir = Vector2::Nomalize(m_mouseDir);
 
-    Vector2 dir = Vector2::Nomalize(mouseDir);
-
-    // TODO : Create Bullet and Fire, m_vPosition -> m_vPosinPosition
     CObjectManager::Get_Instance()->Add_Object(BULLET, CAbstractFactory<CBullet>::Create(m_vPosition, dir));
-    
 }
 	

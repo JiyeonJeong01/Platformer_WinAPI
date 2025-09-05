@@ -28,11 +28,12 @@ protected:
 	float		m_fMousePosX = 0;	// 마우스의 x 좌표
 	float		m_fMousePosY = 0;	// 마우스의  y좌표
 
+	Vector2		m_mouseDir = { };
+
 protected:
 	bool		bLeftPressed;
 	bool		bRightPressed;
 	bool		bJumpPressed;
 	bool		bLeftMouseClicked;
 
-	float		m_fAngle = 0.f;
 };

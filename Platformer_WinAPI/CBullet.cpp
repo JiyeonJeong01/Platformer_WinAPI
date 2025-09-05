@@ -13,8 +13,10 @@ CBullet::~CBullet()
 
 void CBullet::Initialize()
 {
-	m_vSize = Vector2(40, 40);
+	m_vSize = Vector2(20, 20);
 
+	m_fSpeedX = 5.f;
+	m_fSpeedY = 5.f;
 }
 
 int CBullet::Update()
@@ -22,19 +24,19 @@ int CBullet::Update()
 	if (m_bDead)
 		return OBJ_DEAD;
 
-
+	__super::Update_Rect();
 
 	return OBJ_NOEVENT;
 }
 
 void CBullet::Late_Update()
 {
-
+	m_vPosition += m_vDirection * m_fSpeedX;
 }
 
 void CBullet::Render(HDC hDC)
 {
-
+	Ellipse(hDC, m_tRect.left, m_tRect.top, m_tRect.right, m_tRect.bottom);
 }
 
 void CBullet::Release()
