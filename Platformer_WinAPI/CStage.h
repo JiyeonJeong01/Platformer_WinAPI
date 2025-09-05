@@ -4,7 +4,6 @@
 class CObj;
 class CPlayer;
 
-
 class CStage abstract
 {
 public:

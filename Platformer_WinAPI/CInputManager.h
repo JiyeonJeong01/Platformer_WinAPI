@@ -19,7 +19,6 @@ public:
 	bool GetKey(int iKey);
 	bool GetKeyUp(int iKey);
 
-
 private:
 	vector<int> m_vKeys{ VK_SPACE, 'A', 'D', VK_LBUTTON };
 	map<int, InputKeyInfo*> m_KeyInfos;
