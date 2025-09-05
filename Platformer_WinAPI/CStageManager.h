@@ -9,14 +9,6 @@ public:
 	CStageManager();
 	~CStageManager();
 
-public:
-	static CStageManager* GetInstance()
-	{
-		static CStageManager s_Instance;
-
-		return &s_Instance;
-	}
-
 	CObject* Get_Player() { return m_pPlayer; }
 	STAGEID	 Get_CurrentStageID() { return m_currentStageID; }
 	CStage* Get_CurrentStage() { return m_currentStage; }
@@ -29,7 +21,7 @@ public:
 	void Release();
 
 public:
-	int  ChangeStage( STAGEID _id);
+	void  ChangeStage(STAGEID _id);
 	void Render_StageClear();
 
 
@@ -39,9 +31,8 @@ private:
 
 	CObject* m_pPlayer;
 
-
-// singleton
-public :
+#pragma region Singleton
+public:
 	static CStageManager* Get_Instance()
 	{
 		if (m_pInstance == nullptr)
@@ -58,7 +49,7 @@ public :
 		}
 	}
 
-
-private :
+private:
 	static CStageManager* m_pInstance;
+#pragma endregion
 };

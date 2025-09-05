@@ -1,9 +1,14 @@
+C:\Users\delay\Unity\Platformer_WinAPI\Platformer_WinAPI\CBullet.cpp;C:\Users\delay\Unity\Platformer_WinAPI\Platformer_WinAPI\Platform.3ac3d037\x64\Debug\CBullet.obj
+C:\Users\delay\Unity\Platformer_WinAPI\Platformer_WinAPI\CCollisionManager.cpp;C:\Users\delay\Unity\Platformer_WinAPI\Platformer_WinAPI\Platform.3ac3d037\x64\Debug\CCollisionManager.obj
 C:\Users\delay\Unity\Platformer_WinAPI\Platformer_WinAPI\CMainGame.cpp;C:\Users\delay\Unity\Platformer_WinAPI\Platformer_WinAPI\Platform.3ac3d037\x64\Debug\CMainGame.obj
 C:\Users\delay\Unity\Platformer_WinAPI\Platformer_WinAPI\CMonster.cpp;C:\Users\delay\Unity\Platformer_WinAPI\Platformer_WinAPI\Platform.3ac3d037\x64\Debug\CMonster.obj
 C:\Users\delay\Unity\Platformer_WinAPI\Platformer_WinAPI\CObject.cpp;C:\Users\delay\Unity\Platformer_WinAPI\Platformer_WinAPI\Platform.3ac3d037\x64\Debug\CObject.obj
 C:\Users\delay\Unity\Platformer_WinAPI\Platformer_WinAPI\CObjectManager.cpp;C:\Users\delay\Unity\Platformer_WinAPI\Platformer_WinAPI\Platform.3ac3d037\x64\Debug\CObjectManager.obj
 C:\Users\delay\Unity\Platformer_WinAPI\Platformer_WinAPI\CPlayer.cpp;C:\Users\delay\Unity\Platformer_WinAPI\Platformer_WinAPI\Platform.3ac3d037\x64\Debug\CPlayer.obj
 C:\Users\delay\Unity\Platformer_WinAPI\Platformer_WinAPI\CInputManager.cpp;C:\Users\delay\Unity\Platformer_WinAPI\Platformer_WinAPI\Platform.3ac3d037\x64\Debug\CInputManager.obj
+C:\Users\delay\Unity\Platformer_WinAPI\Platformer_WinAPI\CStage.cpp;C:\Users\delay\Unity\Platformer_WinAPI\Platformer_WinAPI\Platform.3ac3d037\x64\Debug\CStage.obj
+C:\Users\delay\Unity\Platformer_WinAPI\Platformer_WinAPI\CStage01.cpp;C:\Users\delay\Unity\Platformer_WinAPI\Platformer_WinAPI\Platform.3ac3d037\x64\Debug\CStage01.obj
+C:\Users\delay\Unity\Platformer_WinAPI\Platformer_WinAPI\CStageManager.cpp;C:\Users\delay\Unity\Platformer_WinAPI\Platformer_WinAPI\Platform.3ac3d037\x64\Debug\CStageManager.obj
 C:\Users\delay\Unity\Platformer_WinAPI\Platformer_WinAPI\pch.cpp;C:\Users\delay\Unity\Platformer_WinAPI\Platformer_WinAPI\Platform.3ac3d037\x64\Debug\pch.obj
 C:\Users\delay\Unity\Platformer_WinAPI\Platformer_WinAPI\Platformer_WinAPI.cpp;C:\Users\delay\Unity\Platformer_WinAPI\Platformer_WinAPI\Platform.3ac3d037\x64\Debug\Platformer_WinAPI.obj
 C:\Users\delay\Unity\Platformer_WinAPI\Platformer_WinAPI\Vector2.cpp;C:\Users\delay\Unity\Platformer_WinAPI\Platformer_WinAPI\Platform.3ac3d037\x64\Debug\Vector2.obj

@@ -22,7 +22,7 @@ public:
 private:
 	list<CObject*>	m_ObjList[OBJ_END];
 
-// singleton
+#pragma region Singleton
 public:
 	static CObjectManager* Get_Instance()
 	{
@@ -43,5 +43,5 @@ public:
 
 private:
 	static CObjectManager* m_pInstance;
-
+#pragma endregion
 };

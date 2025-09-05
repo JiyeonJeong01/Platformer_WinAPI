@@ -24,6 +24,8 @@ void CPlayer::Initialize()
     bRightPressed = false;
     bJumpPressed = false;
 
+    bLeftMouseClicked = false;
+
     m_objID = PLAYER;
 }
 
@@ -47,6 +49,12 @@ void CPlayer::Late_Update()
 void CPlayer::Render(HDC hDC)
 {
     Rectangle(hDC, m_tRect.left, m_tRect.top, m_tRect.right, m_tRect.bottom);
+
+    // for test
+    if (bLeftMouseClicked)
+    {
+        Rectangle(hDC, m_fMousePosX - 10, m_fMousePosY - 10, m_fMousePosX +10, m_fMousePosY + 10);
+    }
 }
 
 void CPlayer::Release()
@@ -55,9 +63,14 @@ void CPlayer::Release()
 
 void CPlayer::Handle_KeyInput()
 {
-    bLeftPressed = CInputManager::Get_Instance()->GetKey('A') ? true : false;
-    bRightPressed = CInputManager::Get_Instance()->GetKey('D') ? true : false;
-    bJumpPressed = CInputManager::Get_Instance()->GetKey(VK_SPACE) ? true : false;
+    // Apply client's input to variables
+    bLeftPressed = CInputManager::Get_Instance()->GetKey('A');
+    bRightPressed = CInputManager::Get_Instance()->GetKey('D');
+    bJumpPressed = CInputManager::Get_Instance()->GetKey(VK_SPACE);
+
+   bLeftMouseClicked = CInputManager::Get_Instance()->GetKey(VK_LBUTTON);
+    m_fMousePosX = CInputManager::Get_Instance()->Get_CursorPosition().x;
+    m_fMousePosY = CInputManager::Get_Instance()->Get_CursorPosition().y;
 }
 
 void CPlayer::Update_Components()

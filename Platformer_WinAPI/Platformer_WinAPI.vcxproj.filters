@@ -156,11 +156,14 @@
     <ClInclude Include="CStage.h">
       <Filter>05. Stage\00. Stage</Filter>
     </ClInclude>
-    <ClInclude Include="CStage01.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
     <ClInclude Include="CCollisionManager.h">
       <Filter>02. Manager\02. CollisionManager</Filter>
+    </ClInclude>
+    <ClInclude Include="CBullet.h">
+      <Filter>01. Object\03. Bullet</Filter>
+    </ClInclude>
+    <ClInclude Include="CStage01.h">
+      <Filter>05. Stage\01. Stage01</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -197,11 +200,14 @@
     <ClCompile Include="CStage.cpp">
       <Filter>05. Stage\00. Stage</Filter>
     </ClCompile>
-    <ClCompile Include="CStage01.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
     <ClCompile Include="CCollisionManager.cpp">
       <Filter>02. Manager\02. CollisionManager</Filter>
+    </ClCompile>
+    <ClCompile Include="CBullet.cpp">
+      <Filter>01. Object\03. Bullet</Filter>
+    </ClCompile>
+    <ClCompile Include="CStage01.cpp">
+      <Filter>05. Stage\01. Stage01</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

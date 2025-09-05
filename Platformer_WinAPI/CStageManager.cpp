@@ -15,11 +15,14 @@ void CStageManager::LateUpdate()
 {
 }
 
-int CStageManager::ChangeStage(STAGEID _id)
+void CStageManager::ChangeStage(STAGEID _id)
 {
-	return 0;
 }
 
 void CStageManager::Render_StageClear()
+{
+}
+
+void CStageManager::Release()
 {
 }

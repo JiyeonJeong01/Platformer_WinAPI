@@ -5,48 +5,59 @@ CInputManager* CInputManager::m_pInstance = nullptr;
 
 void CInputManager::Initialize()
 {
-	for (vector<int>::iterator it = vKeys.begin(); it != vKeys.end(); it++)
+	for (vector<int>::iterator it = m_vKeys.begin(); it != m_vKeys.end(); it++)
 	{
-		mKeyInfos.insert({ *it, new InputKeyInfo() });
+		m_KeyInfos.insert({ *it, new InputKeyInfo() });
 	}
 }
 
 void CInputManager::Update()
 {
-	CheckKeyInput();
+	Check_KeyInput();
+	Check_MouseInput();
 }
 
 void CInputManager::Release()
 {
-	for_each(mKeyInfos.begin(), mKeyInfos.end(), [](pair<int, InputKeyInfo*> value) { Safe_Delete(value.second); });
+	for_each(m_KeyInfos.begin(), m_KeyInfos.end(), [](pair<int, InputKeyInfo*> value) { Safe_Delete(value.second); });
 }
 
 bool CInputManager::GetKeyDown(int iKey)
 {
-	return mKeyInfos[iKey]->GetKeyDown();
+	return m_KeyInfos[iKey]->GetKeyDown();
 }
 
 bool CInputManager::GetKey(int iKey)
 {
-	return mKeyInfos[iKey]->GetKey();
+	return m_KeyInfos[iKey]->GetKey();
 }
 
 bool CInputManager::GetKeyUp(int iKey)
 {
-	return mKeyInfos[iKey]->GetKeyUp();
+	return m_KeyInfos[iKey]->GetKeyUp();
 }
 
-void CInputManager::CheckKeyInput()
+void CInputManager::Check_KeyInput()
 {
-	for_each(vKeys.begin(), vKeys.end(), [&](int iKey) {
+	for_each(m_vKeys.begin(), m_vKeys.end(), [&](int iKey) {
 		if (GetAsyncKeyState(iKey))
 		{
-			mKeyInfos[iKey]->Set_PrevPressed(mKeyInfos[iKey]->Get_CurrentPressed());
-			mKeyInfos[iKey]->Set_CurrentPressed(true);
+			m_KeyInfos[iKey]->Set_PrevPressed(m_KeyInfos[iKey]->Get_CurrentPressed());
+			m_KeyInfos[iKey]->Set_CurrentPressed(true);
 		}
 		else
 		{
-			mKeyInfos[iKey]->Set_CurrentPressed(false);
+			m_KeyInfos[iKey]->Set_CurrentPressed(false);
 		}
 		});
+}
+
+void CInputManager::Check_MouseInput()
+{
+	POINT tPoint;
+	GetCursorPos(&tPoint);
+	ScreenToClient(g_hWnd, &tPoint);
+
+	m_vCursorPosition.x = tPoint.x;
+	m_vCursorPosition.y = tPoint.y;
 }

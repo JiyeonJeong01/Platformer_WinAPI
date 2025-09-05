@@ -9,19 +9,25 @@ public:
 	void Update();
 	void Release();
 
+public :
+	void Check_KeyInput();
+	void Check_MouseInput();
+	Vector2 Get_CursorPosition() { return m_vCursorPosition;  }
+
 public:
 	bool GetKeyDown(int iKey);
 	bool GetKey(int iKey);
 	bool GetKeyUp(int iKey);
 
-	void CheckKeyInput();
 
 private:
-	vector<int> vKeys{ VK_SPACE, 'A', 'D' };
-	map<int, InputKeyInfo*> mKeyInfos;
+	vector<int> m_vKeys{ VK_SPACE, 'A', 'D', VK_LBUTTON };
+	map<int, InputKeyInfo*> m_KeyInfos;
 
-// singleton
-public :
+	Vector2 m_vCursorPosition;
+
+#pragma region Singleton
+public:
 	static CInputManager* Get_Instance()
 	{
 		if (m_pInstance == nullptr)
@@ -40,4 +46,5 @@ public :
 
 private:
 	static CInputManager* m_pInstance;
+#pragma endregion
 };

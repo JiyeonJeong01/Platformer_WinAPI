@@ -14,8 +14,8 @@ public:
 	void Release() override;
 
 public :
-	virtual void Do_Attack(); // -> Target
-	virtual void Take_Damage(float _fDamage);
+	virtual void Do_Attack() {}; // -> Target
+	virtual void Take_Damage(float _fDamage) {};
 
 public :
 	void Set_Target(CObject* pObj) { pTarget = pObj; }

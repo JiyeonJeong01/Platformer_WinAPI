@@ -1,2 +1,16 @@
-﻿  CPlayer.cpp
+﻿  CBullet.cpp
+  CPlayer.cpp
+  코드를 생성하고 있습니다...
+C:\Users\delay\Unity\Platformer_WinAPI\Platformer_WinAPI\CPlayer.cpp(56,93): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  (소스 파일 '/CPlayer.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\delay\Unity\Platformer_WinAPI\Platformer_WinAPI\CPlayer.cpp(56,75): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  (소스 파일 '/CPlayer.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\delay\Unity\Platformer_WinAPI\Platformer_WinAPI\CPlayer.cpp(56,56): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  (소스 파일 '/CPlayer.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\delay\Unity\Platformer_WinAPI\Platformer_WinAPI\CPlayer.cpp(56,37): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  (소스 파일 '/CPlayer.cpp'을(를) 컴파일하는 중)
+  
   Platformer_WinAPI.vcxproj -> C:\Users\delay\Unity\Platformer_WinAPI\Platformer_WinAPI\x64\Debug\Platformer_WinAPI.exe
