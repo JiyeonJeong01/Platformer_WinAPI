@@ -103,6 +103,9 @@
     <Filter Include="05. Stage\04. Stage04">
       <UniqueIdentifier>{0f22d343-c99a-4fc7-b82f-f544039b4715}</UniqueIdentifier>
     </Filter>
+    <Filter Include="01. Object\05. Item">
+      <UniqueIdentifier>{7c405f8f-bbd5-49ab-8b8a-d1e612793f8b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -174,6 +177,9 @@
     <ClInclude Include="CStage04.h">
       <Filter>05. Stage\04. Stage04</Filter>
     </ClInclude>
+    <ClInclude Include="CItem.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Platformer_WinAPI.cpp">
@@ -226,6 +232,9 @@
     </ClCompile>
     <ClCompile Include="CStage04.cpp">
       <Filter>05. Stage\04. Stage04</Filter>
+    </ClCompile>
+    <ClCompile Include="CItem.cpp">
+      <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
