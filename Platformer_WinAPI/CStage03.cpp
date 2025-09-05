@@ -1,17 +1,25 @@
 ﻿#include "pch.h"
 #include "CStage03.h"
 
+#include "CAbstractFactory.h"
+#include "CObjectManager.h"
+#include "CPlayer03.h"
+
 CStage03::CStage03()
 {
+
 }
 
 CStage03::~CStage03()
 {
+
 }
 
 void CStage03::Initialize()
 {
 	CStage::Initialize();
+
+	CObjectManager::Get_Instance()->Add_Object(PLAYER, CAbstractFactory<CPlayer03>::Create());
 }
 
 void CStage03::Update()

@@ -15,14 +15,14 @@ void CPlayer03::Initialize()
 {
 	CPlayer::Initialize();
 
-	
+
 }
+
 
 int CPlayer03::Update()
 {
 	if (m_bDead)
 		return OBJ_DEAD;
-
 
 
 	return CPlayer::Update();

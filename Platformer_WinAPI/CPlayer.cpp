@@ -66,7 +66,6 @@ void CPlayer::Render(HDC hDC)
     // Posin
     MoveToEx(hDC, (int)m_vPosition.x, (int)m_vPosition.y, nullptr);
     LineTo(hDC, m_vPosinPosition.x, m_vPosinPosition.y);
-
    
 }
 
@@ -82,7 +81,7 @@ void CPlayer::Handle_KeyInput()
     bRightPressed = CInputManager::Get_Instance()->GetKey('D');
     bJumpPressed = CInputManager::Get_Instance()->GetKey(VK_SPACE);
 
-    bLeftMouseClicked = CInputManager::Get_Instance()->GetKey(VK_LBUTTON);
+    bLeftMouseClicked = CInputManager::Get_Instance()->GetKeyDown(VK_LBUTTON);
     m_fMousePosX = CInputManager::Get_Instance()->Get_CursorPosition().x;
     m_fMousePosY = CInputManager::Get_Instance()->Get_CursorPosition().y;
 }
@@ -113,7 +112,7 @@ void CPlayer::Do_Attack()
     float distance = sqrtf(m_mouseDir.x * m_mouseDir.x + m_mouseDir.y * m_mouseDir.y);
 
     Vector2 dir = Vector2::Nomalize(m_mouseDir);
-    Vector2 barrel = m_vPosition + dir * 100.f;
+    Vector2 barrel = m_vPosition + dir * 50.f;
 
     CObjectManager::Get_Instance()->Add_Object(BULLET, CAbstractFactory<CBullet>::Create(barrel, dir));
 }
