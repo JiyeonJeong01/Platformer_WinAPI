@@ -9,6 +9,7 @@
 
 #include "CObject.h"
 #include "CPlayer.h"
+#include "CStageManager.h"
 #pragma endregion
 
 CMainGame::CMainGame() : m_dwTime(GetTickCount()), m_iFPS(0)
@@ -26,29 +27,59 @@ void CMainGame::Initialize()
 	// Initialize window resources
 	m_hDC = GetDC(g_hWnd);
 
+	// Dubble buffering
+	{
+		GetClientRect(g_hWnd, &m_rect);
+
+		m_hDC_back = CreateCompatibleDC(m_hDC);
+		m_bmpBack = CreateCompatibleBitmap(m_hDC, m_rect.right, m_rect.bottom);
+		HBITMAP prev = (HBITMAP)::SelectObject(m_hDC_back, m_bmpBack);
+		DeleteObject(prev);
+	}
+
 	// Initialize managers
 	CInputManager::Get_Instance()->Initialize();
 
 	// Initialize objects
 	CObjectManager::Get_Instance()->Add_Object(PLAYER, CAbstractFactory<CPlayer>::Create());
 
-	
+	// Start Stage
+	CStageManager::Get_Instance()->ChangeStage(STAGE1);
 }
 
 void CMainGame::Update()
 {
 	CInputManager::Get_Instance()->Update();
 	CObjectManager::Get_Instance()->Update();
+	CStageManager::Get_Instance()->Update();
+
 }
 
 void CMainGame::Late_Update()
 {
 	CObjectManager::Get_Instance()->Late_Update();
+	CStageManager::Get_Instance()->Late_Update();
 }
 
 void CMainGame::Render()
 {
-	CObjectManager::Get_Instance()->Render(m_hDC);
+	// Dubble buffering
+	{
+		BitBlt(m_hDC, 0, 0, m_rect.right, m_rect.bottom, m_hDC_back, 0, 0, SRCCOPY);
+		PatBlt(m_hDC_back, 0, 0, m_rect.right, m_rect.bottom, WHITENESS);
+	}
+
+	CObjectManager::Get_Instance()->Render(m_hDC_back);
+	CStageManager::Get_Instance()->Render(m_hDC_back);
+
+	// Print Stage
+	{
+		TCHAR szStage[32];
+		int stage = CStageManager::Get_Instance()->Get_StageNumber();
+		swprintf_s(szStage, L"Stage : %d", stage);
+		TextOut(m_hDC, 40, 50, szStage, lstrlen(szStage));
+	}
+
 }
 
 void CMainGame::Release()
@@ -57,7 +88,8 @@ void CMainGame::Release()
 	ReleaseDC(g_hWnd, m_hDC);
 
 	// Release managers
-	CInputManager::Get_Instance()->Destroy_Instance();
-	CObjectManager::Get_Instance()->Destroy_Instance();
+	CInputManager::Destroy_Instance();
+	CObjectManager::Destroy_Instance();
+	CStageManager::Destroy_Instance();
 }
 
