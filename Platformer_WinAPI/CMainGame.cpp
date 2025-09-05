@@ -88,8 +88,12 @@ void CMainGame::Release()
 	ReleaseDC(g_hWnd, m_hDC);
 
 	// Release managers
+	CInputManager::Get_Instance()->Release();
 	CInputManager::Destroy_Instance();
+
 	CObjectManager::Destroy_Instance();
+
+	CStageManager::Get_Instance()->Release();
 	CStageManager::Destroy_Instance();
 }
 

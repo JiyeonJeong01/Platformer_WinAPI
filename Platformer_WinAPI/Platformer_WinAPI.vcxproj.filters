@@ -180,8 +180,8 @@
     <ClInclude Include="CItem.h">
       <Filter>01. Object\05. Item</Filter>
     </ClInclude>
-    <ClInclude Include="CPlayer03.h">
-      <Filter>01. Object\01. Player</Filter>
+    <ClInclude Include="CLifeItem.h">
+      <Filter>01. Object\05. Item</Filter>
     </ClInclude>
     <ClInclude Include="CPlayer02.h">
       <Filter>01. Object\01. Player</Filter>
@@ -245,8 +245,8 @@
     <ClCompile Include="CItem.cpp">
       <Filter>01. Object\05. Item</Filter>
     </ClCompile>
-    <ClCompile Include="CPlayer03.cpp">
-      <Filter>01. Object\01. Player</Filter>
+    <ClCompile Include="CLifeItem.cpp">
+      <Filter>01. Object\05. Item</Filter>
     </ClCompile>
     <ClCompile Include="CPlayer02.cpp">
       <Filter>01. Object\01. Player</Filter>
