@@ -1,4 +1,4 @@
-#include "pch.h"
+ï»¿#include "pch.h"
 #include "CStageManager.h"
 #include "CStage.h"
 #include "CStage01.h"
@@ -70,10 +70,10 @@ void CStageManager::ChangeStage(STAGEID _id)
 		break;
 	}
 
-	// ±âÁ¸ ½ºÅ×ÀÌÁö ÇÒ´ç ÇØÁ¦
+	// ê¸°ì¡´ ìŠ¤í…Œì´ì§€ í• ë‹¹ í•´ì œ
 	Safe_Delete(m_currentStage);
 
-	// »õ·Î¿î ½ºÅ¸ÀÌÁö ÇÒ´ç
+	// ìƒˆë¡œìš´ ìŠ¤íƒ€ì´ì§€ í• ë‹¹
 	m_currentStage = newStage;
 	m_currentStageID = _id;
 

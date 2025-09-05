@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 class CObject
 {
 public:
@@ -30,21 +30,22 @@ public :
 	void Set_SizeY(float _fY) { m_vSize.y = _fY; }
 
 	OBJID Get_ObjectID() { return m_objID; }
-	virtual void		On_Collision(CObject* pObj) {};
+	virtual void		On_Collision(CObject* pObj) {}; 	// 충돌 시 CollisionManager에서 호출된다
+																				// 충돌 로직 구현은 각 객체에게 위임한다
 	
 protected:
 	// Core components
-	Vector2 m_vPosition;
-	Vector2 m_vDirection;
-	Vector2 m_vSize;
+	Vector2 m_vPosition;		// 객체의 위치, 중점
+	Vector2 m_vDirection;		// 객체의 방향
+	Vector2 m_vSize;				// 객체의 크기
 
 	// Renderer
-	RECT		m_tRect;
+	RECT		m_tRect;			// 객체의 렌더 범위
 
-	float		m_fSpeedX;
-	float		m_fSpeedY;
-	bool		m_bDead;
+	float		m_fSpeedX;			// 수평 방향 속도
+	float		m_fSpeedY;			// 수직 방향 속도
+	bool		m_bDead;			
 
-	OBJID m_objID;
+	OBJID m_objID;				// 객체를 구분하는 enum
 };
 

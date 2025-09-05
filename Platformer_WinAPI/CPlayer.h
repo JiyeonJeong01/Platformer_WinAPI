@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 #include "CObject.h"
 
 class CPlayer : public CObject
@@ -25,13 +25,13 @@ public:
 private:
 	Vector2		m_vPosinPosition;
 
-	float		m_fMousePosX = 0;
-	float		m_fMousePosY = 0;
+	float		m_fMousePosX = 0;	// 마우스의 x 좌표
+	float		m_fMousePosY = 0;	// 마우스의  y좌표
 
 private :
-	bool bLeftPressed;
-	bool bRightPressed;
-	bool bJumpPressed;
-	bool bLeftMouseClicked;
+	bool bLeftPressed;					// 'A'키 눌렸는지 여부
+	bool bRightPressed;				// 'D'키 눌렸는지 여부
+	bool bJumpPressed;				// 스페이스 키 눌렸는지 여부
+	bool bLeftMouseClicked;		// 마우스 좌클릭 여부
 };
-// todo : ���� �÷��̾� hp �߰��ϱ� 
+// todo : 몬스터 플레이어 hp 추가하기 
