@@ -165,6 +165,15 @@
     <ClInclude Include="CStage01.h">
       <Filter>05. Stage\01. Stage01</Filter>
     </ClInclude>
+    <ClInclude Include="CStage02.h">
+      <Filter>05. Stage\02. Stage02</Filter>
+    </ClInclude>
+    <ClInclude Include="CStage03.h">
+      <Filter>05. Stage\03. Stage03</Filter>
+    </ClInclude>
+    <ClInclude Include="CStage04.h">
+      <Filter>05. Stage\04. Stage04</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Platformer_WinAPI.cpp">
@@ -208,6 +217,15 @@
     </ClCompile>
     <ClCompile Include="CStage01.cpp">
       <Filter>05. Stage\01. Stage01</Filter>
+    </ClCompile>
+    <ClCompile Include="CStage02.cpp">
+      <Filter>05. Stage\02. Stage02</Filter>
+    </ClCompile>
+    <ClCompile Include="CStage03.cpp">
+      <Filter>05. Stage\03. Stage03</Filter>
+    </ClCompile>
+    <ClCompile Include="CStage04.cpp">
+      <Filter>05. Stage\04. Stage04</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

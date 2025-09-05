@@ -5,31 +5,30 @@ class CObject;
 
 class CStageManager
 {
-public:
+private:
 	CStageManager();
 	~CStageManager();
 
-	CObject* Get_Player() { return m_pPlayer; }
-	STAGEID	 Get_CurrentStageID() { return m_currentStageID; }
-	CStage* Get_CurrentStage() { return m_currentStage; }
+public:
+	STAGEID	 Get_CurrentStageID() const { return m_currentStageID; }
+	CStage*  Get_CurrentStage()   const { return m_currentStage; }
+	int		 Get_StageNumber()    const { return m_StageNumber; }
 
 public:
 	void Initialize();
 	void Update();
-	void LateUpdate();
-	void Render(HDC hdc);
-	void Release();
+	void Late_Update();
+	void Render(HDC hDC);
 
 public:
-	void  ChangeStage(STAGEID _id);
-	void Render_StageClear();
+	void ChangeStage(STAGEID _id);
 
 
 private:
 	CStage* m_currentStage;
 	STAGEID m_currentStageID;
 
-	CObject* m_pPlayer;
+	int		m_StageNumber = 0;
 
 #pragma region Singleton
 public:
@@ -37,6 +36,7 @@ public:
 	{
 		if (m_pInstance == nullptr)
 			m_pInstance = new CStageManager;
+
 		return m_pInstance;
 	}
 

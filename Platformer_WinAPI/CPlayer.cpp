@@ -68,7 +68,7 @@ void CPlayer::Handle_KeyInput()
     bRightPressed = CInputManager::Get_Instance()->GetKey('D');
     bJumpPressed = CInputManager::Get_Instance()->GetKey(VK_SPACE);
 
-   bLeftMouseClicked = CInputManager::Get_Instance()->GetKey(VK_LBUTTON);
+    bLeftMouseClicked = CInputManager::Get_Instance()->GetKey(VK_LBUTTON);
     m_fMousePosX = CInputManager::Get_Instance()->Get_CursorPosition().x;
     m_fMousePosY = CInputManager::Get_Instance()->Get_CursorPosition().y;
 }
