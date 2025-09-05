@@ -1,12 +1,12 @@
 #pragma once
 
-#include "CObject.h"
+#include "CPlayer.h"
 
-class CBullet :  public CObject
+class CPlayer03 : public CPlayer
 {
 public:
-	CBullet();
-	virtual ~CBullet();
+	CPlayer03();
+	virtual ~CPlayer03();
 
 public:
 	void Initialize() override;
@@ -17,6 +17,9 @@ public:
 
 public:
 	void On_Collision(CObject* pObj) override;
+
+	void Do_Attack() override;
+	void Take_Damage(float _fDamage) override;
 
 
 };

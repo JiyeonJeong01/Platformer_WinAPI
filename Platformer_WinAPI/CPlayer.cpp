@@ -1,6 +1,10 @@
-#include "pch.h"
+﻿#include "pch.h"
 #include "CPlayer.h"
+
+#include "CAbstractFactory.h"
+#include "CBullet.h"
 #include "CInputManager.h"
+#include "CObjectManager.h"
 
 CPlayer::CPlayer()
 {
@@ -44,21 +48,29 @@ int CPlayer::Update()
 
 void CPlayer::Late_Update()
 {
+    m_vPosinPosition.x = LONG(m_vPosition.x + (100 * cosf(m_fAngle)));
+    m_vPosinPosition.y = LONG(m_vPosition.y - (100 * sinf(m_fAngle)));
 }
 
 void CPlayer::Render(HDC hDC)
 {
     Rectangle(hDC, m_tRect.left, m_tRect.top, m_tRect.right, m_tRect.bottom);
 
+    // Posin
+    MoveToEx(hDC, (int)m_vPosition.x, (int)m_vPosition.y, nullptr);
+    LineTo(hDC, m_vPosinPosition.x, m_vPosinPosition.y);
+
     // for test
     if (bLeftMouseClicked)
     {
+        Do_Attack();
         Rectangle(hDC, m_fMousePosX - 10, m_fMousePosY - 10, m_fMousePosX +10, m_fMousePosY + 10);
     }
 }
 
 void CPlayer::Release()
 {
+
 }
 
 void CPlayer::Handle_KeyInput()
@@ -90,3 +102,20 @@ void CPlayer::Update_Components()
     // Update player's renderer rect
     __super::Update_Rect();
 }
+
+void CPlayer::Do_Attack()
+{
+    Vector2 mouseDir = { };
+
+    mouseDir.x = m_fMousePosX - m_vPosition.x;
+    mouseDir.y = m_fMousePosY - m_vPosition.y;
+
+    float distance = sqrtf(mouseDir.x * mouseDir.x + mouseDir.y * mouseDir.y);
+
+    Vector2 dir = Vector2::Nomalize(mouseDir);
+
+    // TODO : Create Bullet and Fire, m_vPosition -> m_vPosinPosition
+    CObjectManager::Get_Instance()->Add_Object(BULLET, CAbstractFactory<CBullet>::Create(m_vPosition, dir));
+    
+}
+	
