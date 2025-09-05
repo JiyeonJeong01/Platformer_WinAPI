@@ -19,6 +19,7 @@ public:
 	void Update();
 	void Late_Update();
 	void Render(HDC hDC);
+	void Release();
 
 public:
 	void ChangeStage(STAGEID _id);

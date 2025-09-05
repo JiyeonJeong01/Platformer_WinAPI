@@ -1,5 +1,6 @@
 ﻿#include "pch.h"
 #include "CObjectManager.h"
+#include "CCollisionManager.h"
 
 CObjectManager* CObjectManager::m_pInstance = nullptr;
 
@@ -50,7 +51,7 @@ void CObjectManager::Late_Update()
 		}
 	}
 
-	// CollisionMgr::Collision_RectEx(m_ObjList[PLAYER], m_ObjList[MONSTER]);
+	 CCollisionManager::Collision_Rect(m_ObjList[PLAYER], m_ObjList[ITEM]);
 }
 
 void CObjectManager::Render(HDC hDC)

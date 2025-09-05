@@ -79,3 +79,9 @@ void CStageManager::ChangeStage(STAGEID _id)
 
 	m_currentStage->Initialize();
 }
+
+void CStageManager::Release()
+{
+	Safe_Delete(m_currentStage);
+}
+
