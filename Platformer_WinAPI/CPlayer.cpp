@@ -56,6 +56,9 @@ int CPlayer::Update()
 
 void CPlayer::Late_Update()
 {
+    m_mouseDir.x = m_fMousePosX - m_vPosition.x;
+    m_mouseDir.y = m_fMousePosY - m_vPosition.y;
+
     m_vPosinPosition.x = static_cast<LONG>(m_vPosition.x + (50 * Vector2::Nomalize(m_mouseDir).x));
     m_vPosinPosition.y = static_cast<LONG>(m_vPosition.y + (50 * Vector2::Nomalize(m_mouseDir).y));
 }
@@ -106,11 +109,6 @@ void CPlayer::Update_Components()
 
 void CPlayer::Do_Attack()
 {
-    m_mouseDir.x = m_fMousePosX - m_vPosition.x;
-    m_mouseDir.y = m_fMousePosY - m_vPosition.y;
-
-    float distance = sqrtf(m_mouseDir.x * m_mouseDir.x + m_mouseDir.y * m_mouseDir.y);
-
     Vector2 dir = Vector2::Nomalize(m_mouseDir);
     Vector2 barrel = m_vPosition + dir * 50.f;
 
