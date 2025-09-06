@@ -1,6 +1,5 @@
 ﻿#pragma once
 
-// For testing in Stage04. Can be modified or deleted freely.
 class CLine
 {
 public:

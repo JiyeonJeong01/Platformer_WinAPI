@@ -24,8 +24,14 @@ private:
 
 private:
 	float m_fPlayerBottom;
+
+	float m_fOffsetY = { };
+
 	float m_fJumpSpeed;
+
 	float m_fDeltaTime;
+
+	float m_fGroundY = 0;
 
 	int  m_iPlayerJump;		// 플레이어가 점프 입력을 누를 때, 타이머 지속 동안 true
 	//bool m_PlayerLanded;	// 플레이어 착지 중에 true

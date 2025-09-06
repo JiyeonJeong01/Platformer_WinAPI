@@ -21,7 +21,7 @@ enum OBJID
 	MOUSE, 
 	SHIELD, 
 	ITEM, 
-	BJ_END
+	OBJ_END
 };
 
 enum STAGEID

@@ -135,10 +135,10 @@
     <ClInclude Include="CBoss03.h" />
     <ClInclude Include="CBullet.h" />
     <ClInclude Include="CCollisionManager.h" />
+    <ClInclude Include="CLine.h" />
     <ClInclude Include="CUtility.h" />
     <ClInclude Include="CItem.h" />
     <ClInclude Include="CLifeItem.h" />
-    <ClInclude Include="CLine.h" />
     <ClInclude Include="CLineManager.h" />
     <ClInclude Include="CMainGame.h" />
     <ClInclude Include="CMob01.h" />

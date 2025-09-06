@@ -43,9 +43,9 @@ void CStage02::LateUpdate()
 {
 }
 
-void CStage02::Render(HDC hdc)
+void CStage02::Render(HDC hDC)
 {
-	CLineManager::Get_Instance()->Render(hdc);
+	CLineManager::Get_Instance()->Render(hDC);
 
 }
 

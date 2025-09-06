@@ -22,5 +22,5 @@ public:
 
 private:
 	list<CLine*> m_LineList;
-	LINEPOINT    m_tLinePoint[CLineManager::SIDE_END];
+	//LINEPOINT    m_tLinePoint[CLineManager::SIDE_END];
 };

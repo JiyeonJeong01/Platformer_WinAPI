@@ -3,7 +3,8 @@
 #include "CLineManager.h"
 
 CPlayer04::CPlayer04()
-	: m_fPlayerBottom(0.f), m_fJumpSpeed(0.f), m_fDeltaTime(0.f),
+	: m_fPlayerBottom(0.f),
+	  m_fJumpSpeed(0.f), m_fDeltaTime(0.f),
 	  m_iPlayerJump(0), m_qwDTTimer(GetTickCount64())
 {}
 
@@ -63,6 +64,8 @@ void CPlayer04::Late_Update()
 void CPlayer04::Render(HDC hDC)
 {
 	CPlayer::Render(hDC);
+
+	//CUtility::PrintText(hDC, 50, 200, L"Ground ? : ", m_fGroundY);
 }
 
 void CPlayer04::Release()
@@ -81,10 +84,10 @@ void CPlayer04::Take_Damage(float _fDamage)
 
 void CPlayer04::Update_Components()
 {
+	m_fGroundY = WINCY + 100;
 	// 라인에 착지하기 위한 Collision_Line 호출
-	float fGroundY = 0.f;
 	CLineManager::Get_Instance()
-		->Collision_Line(m_vPosition.x, fGroundY);
+		->Collision_Line(m_vPosition, &m_fGroundY);
 
 	// 좌우 방향키에 따른 수평방향 이동
 	if (bLeftPressed)
@@ -105,9 +108,12 @@ void CPlayer04::Update_Components()
 	{
 		m_fJumpSpeed = -800.f;
 		// 임의로 준 점프 스피드, 점프할때만 필요하므로 이 때 값을 집어넣는다.
+
 		m_iPlayerJump += 1;
 		// 플레이어가 점프를 하는 중일때 점프 하나 증가
+
 	}
+
 
 	// 가로로 이동
 	m_vPosition.x += m_vDirection.x * m_fSpeedX * m_fDeltaTime;
@@ -121,9 +127,9 @@ void CPlayer04::Update_Components()
 
 	// 땅에 발이 닿도록 위치 조정
 	//? 이러면 결국 fGroundY라는 위치값으로 착지 판단을 하는 건가?
-	if (m_vPosition.y > (fGroundY - (m_vSize.y / 2.f)))
+	if (m_vPosition.y > (m_fGroundY - (m_vSize.y / 2.f)))
 	{
-		m_vPosition.y = fGroundY - (m_vSize.y / 2.f);
+		m_vPosition.y = m_fGroundY - (m_vSize.y / 2.f);
 		m_fJumpSpeed  = 0.f;
 		m_iPlayerJump = 0;
 	}
