@@ -10,6 +10,7 @@
 #include "CObject.h"
 #include "CPlayer.h"
 #include "CStageManager.h"
+#include "CUIManager.h"
 #pragma endregion
 
 CMainGame::CMainGame() : m_hDC(nullptr), m_dwTime(GetTickCount()), m_iFPS(0)
@@ -39,6 +40,7 @@ void CMainGame::Initialize()
 
 	// Initialize managers
 	CInputManager::Get_Instance()->Initialize();
+	CUIManager::Get_Instance()->Initialize();
 
 	// Initialize objects
 	// CObjectManager::Get_Instance()->Add_Object(PLAYER, CAbstractFactory<CPlayer>::Create());
@@ -52,6 +54,7 @@ void CMainGame::Update()
 	CInputManager::Get_Instance()->Update();
 	CObjectManager::Get_Instance()->Update();
 	CStageManager::Get_Instance()->Update();
+	CUIManager::Get_Instance()->Update();
 
 }
 
@@ -71,10 +74,8 @@ void CMainGame::Render()
 
 	CObjectManager::Get_Instance()->Render(m_hDC_back);
 	CStageManager::Get_Instance()->Render(m_hDC_back);
+	CUIManager::Get_Instance()->Render(m_hDC_back);
 
-	// Print Stage
-	int stageNumber = CStageManager::Get_Instance()->Get_StageNumber();
-	CUtility::PrintText(m_hDC_back, 50, 50, L"Stage : ", stageNumber);
 
 }
 
@@ -92,5 +93,7 @@ void CMainGame::Release()
 
 	CStageManager::Get_Instance()->Release();
 	CStageManager::Destroy_Instance();
+
+	CUIManager::Destroy_Instance();
 }
 

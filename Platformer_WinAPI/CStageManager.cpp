@@ -14,7 +14,7 @@ CStageManager::CStageManager() : m_currentStageID(STAGE_END), m_currentStage(nul
 
 CStageManager::~CStageManager()
 {
-
+	Release();
 }
 
 void CStageManager::Initialize()
