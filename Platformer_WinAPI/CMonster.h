@@ -24,7 +24,7 @@ public :
 	void Set_Target(CObject* pObj) { pTarget = pObj; }
 	CObject* Get_Target() { return pTarget; }
 
-private :
+protected :
 	CObject* pTarget; 
 
 	// Monster's stat components

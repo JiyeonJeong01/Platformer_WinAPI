@@ -41,14 +41,10 @@ void CMainGame::Initialize()
 	CInputManager::Get_Instance()->Initialize();
 
 	// Initialize objects
-	CObjectManager::Get_Instance()->Add_Object(PLAYER, CAbstractFactory<CPlayer>::Create());
+	// CObjectManager::Get_Instance()->Add_Object(PLAYER, CAbstractFactory<CPlayer>::Create());
 
 	// Start Stage
-	//CStageManager::Get_Instance()->ChangeStage(STAGE1);
-
-#pragma region For Stage04 test, Remove when no longer needed.
-	CStageManager::Get_Instance()->ChangeStage(STAGE4);
-#pragma endregion
+	CStageManager::Get_Instance()->ChangeStage(STAGE2);
 }
 
 void CMainGame::Update()
