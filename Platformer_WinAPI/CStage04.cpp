@@ -49,7 +49,7 @@ bool CStage04::Collision_Line(float& rX, float& rY)
 		return false;
 
 	CLine* pTargetLine = nullptr;
-
+	
 	for (auto& pLine : m_LineList)
 	{
 		if (rX >= pLine->Get_Info().tLeft.fPosX

@@ -2,6 +2,8 @@
 
 #include "CMonster.h"
 
+enum class BOSS_PATTERN { Idle = 1, Attack, None, };
+
 class CBoss03 : public CMonster
 {
 public:
@@ -19,5 +21,10 @@ public:
 	void On_Collision(CObject* pObj) override;
 	void Do_Attack() override;
 	void Take_Damage(float _fDamage) override;
+
+private:
+	BOSS_PATTERN m_pattern = BOSS_PATTERN::Idle;
+
+	float m_Attack_Interval = 0.f;
 };
 

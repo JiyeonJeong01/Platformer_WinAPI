@@ -1,7 +1,7 @@
 ﻿#pragma once
 
-#define	WINCX		800
-#define	WINCY		600
+#define	WINCX		1280
+#define	WINCY		720
 
 #define PURE	= 0
 
@@ -12,7 +12,7 @@
 
 extern HWND g_hWnd;
 
-enum OBJID { PLAYER, BULLET, MONSTER, MOUSE, SHIELD, ITEM, OBJ_END };
+enum OBJID { PLAYER, PL_BULLET, MONSTER, MON_BULLET, MOUSE, SHIELD, ITEM, OBJ_END };
 
 enum STAGEID { STAGE1 = 0, STAGE2, STAGE3, STAGE4, STAGE_END };
 
@@ -25,33 +25,37 @@ struct DeleteObj
 	void	operator()(T& p) { if (p) { delete p; p = nullptr; } }
 };
 
+// LINEPOINT -> Vector2 replace
+
 // For testing in Stage04. Can be modified or deleted freely.
-typedef struct tagLinePoint
-{
-	float fPosX, fPosY;
+//typedef struct tagLinePoint
+//{
+//	float fPosX, fPosY;
+//
+//	tagLinePoint()
+//	{
+//		ZeroMemory(this, sizeof(tagLinePoint));
+//	}
+//
+//	tagLinePoint(float _fX, float _fY)
+//		: fPosX(_fX), fPosY(_fY) {
+//	}
+//}
+//LINEPOINT;
 
-	tagLinePoint()
-	{
-		ZeroMemory(this, sizeof(tagLinePoint));
-	}
-
-	tagLinePoint(float _fX, float _fY)
-		: fPosX(_fX), fPosY(_fY) {
-	}
-}
-LINEPOINT;
+#include "Vector2.h"
 
 typedef struct tagLine
 {
-	LINEPOINT tLeft;
-	LINEPOINT tRight;
+	Vector2 tLeft;
+	Vector2 tRight;
 
 	tagLine()
 	{
 		ZeroMemory(this, sizeof(tagLine));
 	}
 
-	tagLine(LINEPOINT _tLeft, LINEPOINT _tRight)
+	tagLine(Vector2 _tLeft, Vector2 _tRight)
 		: tLeft(_tLeft), tRight(_tRight) {
 	}
 }

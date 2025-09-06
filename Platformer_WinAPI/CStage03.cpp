@@ -21,7 +21,7 @@ CStage03::~CStage03()
 void CStage03::Initialize()
 {
 	CObjectManager::Get_Instance()->Add_Object(PLAYER, CAbstractFactory<CPlayer03>::Create());
-	CObjectManager::Get_Instance()->Add_Object(MONSTER, CAbstractFactory<CBoss03>::Create(550, 300));
+	CObjectManager::Get_Instance()->Add_Object(MONSTER, CAbstractFactory<CBoss03>::Create());
 
 }
 
@@ -37,6 +37,8 @@ void CStage03::LateUpdate()
 
 void CStage03::Render(HDC hDC)
 {
+
+
 }
 
 void CStage03::Release()
