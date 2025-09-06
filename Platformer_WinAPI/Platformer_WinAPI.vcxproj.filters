@@ -192,6 +192,9 @@
     <ClInclude Include="CLineManager.h">
       <Filter>02. Manager\05. LineManager</Filter>
     </ClInclude>
+    <ClInclude Include="CPlayer03.h">
+      <Filter>01. Object\01. Player</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Platformer_WinAPI.cpp">
@@ -256,6 +259,9 @@
     </ClCompile>
     <ClCompile Include="CLine.cpp">
       <Filter>02. Manager\05. LineManager</Filter>
+    </ClCompile>
+    <ClCompile Include="CPlayer03.cpp">
+      <Filter>01. Object\01. Player</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

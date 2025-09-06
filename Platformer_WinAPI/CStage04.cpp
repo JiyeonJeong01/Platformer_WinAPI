@@ -30,11 +30,11 @@ void CStage04::LateUpdate()
 
 void CStage04::Render(HDC hDC)
 {
-	//for (auto& pLine : m_LineList)
-	//	pLine->Render(hDC);
+	for (auto& pLine : m_LineList)
+		pLine->Render(hDC);
 
-	MoveToEx(hDC, 50.f, WINCY - 50.f, nullptr);
-	LineTo(hDC, WINCX - 50.f, WINCY - 50.f);
+	//MoveToEx(hDC, 50.f, 550.f, nullptr);
+	//LineTo(hDC, 750.f, 550.f);
 }
 
 void CStage04::Release()

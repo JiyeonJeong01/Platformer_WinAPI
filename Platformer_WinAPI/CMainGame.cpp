@@ -75,14 +75,13 @@ void CMainGame::Render()
 
 	CObjectManager::Get_Instance()->Render(m_hDC_back);
 	CStageManager::Get_Instance()->Render(m_hDC_back);
-	//? 현재 스테이지가 제대로 출력이 안되는 중
 
 	// Print Stage
 	{
 		TCHAR szStage[32];
 		int stage = CStageManager::Get_Instance()->Get_StageNumber();
 		swprintf_s(szStage, L"Stage : %d", stage);
-		TextOut(m_hDC, 40, 50, szStage, lstrlen(szStage));
+		TextOut(m_hDC_back, 40, 50, szStage, lstrlen(szStage));
 	}
 
 }
@@ -91,6 +90,7 @@ void CMainGame::Release()
 {
 	// Release window resources
 	ReleaseDC(g_hWnd, m_hDC);
+	ReleaseDC(g_hWnd, m_hDC_back);
 
 	// Release managers
 	CInputManager::Get_Instance()->Release();
