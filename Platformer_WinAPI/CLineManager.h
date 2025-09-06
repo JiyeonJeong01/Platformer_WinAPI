@@ -6,10 +6,10 @@
 class CLineManager
 {
 public:
-	enum SIDE { LEFT, RIGHT, SIDE_END };
+	//enum SIDE { LEFT, RIGHT, SIDE_END };
 
 private:
-	CLineManager() {}
+	CLineManager();
 	~CLineManager();
 
 	CLineManager(const CLineManager& rhs)       = delete;
@@ -22,8 +22,12 @@ public:
 	void Render(HDC hDC);
 	void Release();
 
+	bool Collision_Line(Vector2 PlayerPos, float* pY);
+
 public:
-	bool Collision_Line(float& rX, float& rY);
+
+	void Create_Line(Vector2* tPoint, int Num);
+
 
 public:
 	//void Save_Data();
@@ -31,7 +35,11 @@ public:
 
 private:
 	list<CLine*> m_LineList;
-	LINEPOINT    m_tLinePoint[SIDE_END];
+	//Vector2    m_tLinePoint;
+
+	float prevDistance = 0.f;
+	float Distance = 0.f;
+	float prevY = 0.f;
 
 #pragma region Singleton
 public:
