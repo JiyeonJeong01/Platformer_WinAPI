@@ -2,7 +2,7 @@
 #include "CMonster.h"
 
 CMonster::CMonster()
-	: pTarget(nullptr), m_iAttackAmount(0)
+	: pTarget(nullptr)
 {
 }
 
