@@ -137,12 +137,10 @@
     <ClInclude Include="CItem.h" />
     <ClInclude Include="CLifeItem.h" />
     <ClInclude Include="CMainGame.h" />
-    <ClInclude Include="CMob01.h" />
     <ClInclude Include="CMonster.h" />
     <ClInclude Include="CObject.h" />
     <ClInclude Include="CObjectManager.h" />
     <ClInclude Include="CPlayer.h" />
-    <ClInclude Include="CPlayer02.h" />
     <ClInclude Include="CPlayer03.h" />
     <ClInclude Include="CStage.h" />
     <ClInclude Include="CStage01.h" />
@@ -166,13 +164,11 @@
     <ClCompile Include="CItem.cpp" />
     <ClCompile Include="CLifeItem.cpp" />
     <ClCompile Include="CMainGame.cpp" />
-    <ClCompile Include="CMob01.cpp" />
     <ClCompile Include="CMonster.cpp" />
     <ClCompile Include="CObject.cpp" />
     <ClCompile Include="CObjectManager.cpp" />
     <ClCompile Include="CPlayer.cpp" />
     <ClCompile Include="CInputManager.cpp" />
-    <ClCompile Include="CPlayer02.cpp" />
     <ClCompile Include="CPlayer03.cpp" />
     <ClCompile Include="CStage.cpp" />
     <ClCompile Include="CStage01.cpp" />

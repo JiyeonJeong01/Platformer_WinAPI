@@ -27,12 +27,5 @@ public :
 protected :
 	CObject* pTarget; 
 
-	// Monster's stat components 
-	int m_iHP;
-	int m_iMaxHp;
-	
-	int m_iAttackAmount;
-	
-
 };
 

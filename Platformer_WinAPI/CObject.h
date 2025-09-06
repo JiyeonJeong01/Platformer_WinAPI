@@ -15,12 +15,12 @@ public:
 protected:
 	void		Update_Rect();
 
-public :
-	const Vector2& Get_Position() const { return m_vPosition;  }
+public:
+	const Vector2& Get_Position() const { return m_vPosition; }
 	const Vector2& Get_Direction() const { return m_vDirection; }
 	const Vector2& Get_Size() const { return m_vSize; }
 
-	const RECT* Get_Rect() { return &m_tRect;  }
+	const RECT* Get_Rect() { return &m_tRect; }
 
 	void Set_PosX(float _fX) { m_vPosition.x = _fX; }
 	void Set_PosY(float _fY) { m_vPosition.y = _fY; }
@@ -31,8 +31,17 @@ public :
 
 	OBJID Get_ObjectID() { return m_objID; }
 	virtual void		On_Collision(CObject* pObj) {}; 	// 충돌 시 CollisionManager에서 호출된다
-																				// 충돌 로직 구현은 각 객체에게 위임한다
-	
+	// 충돌 로직 구현은 각 객체에게 위임한다
+
+public: // Object's stats getter-setter 
+	float Get_HP() { return m_fHP; }
+	float Get_MaxHP() { return m_fMaxHP; }
+	float Get_Damage() { return m_fDamage; }
+
+	void Set_HP(float _HP) { m_fHP = _HP; }
+	void Set_MaxHP(float _HP) { m_fMaxHP = _HP; }
+	void Set_Damage(float _damage) { m_fDamage = _damage; }
+
 protected:
 	// Core components
 	Vector2 m_vPosition;		// 객체의 위치, 중점
@@ -44,8 +53,13 @@ protected:
 
 	float		m_fSpeedX;			// 수평 방향 속도
 	float		m_fSpeedY;			// 수직 방향 속도
-	bool		m_bDead;			
+	bool		m_bDead;
 
 	OBJID m_objID;				// 객체를 구분하는 enum
-};
 
+protected:
+	float m_fHP;
+	float m_fMaxHP;
+	float m_fDamage;
+
+};
