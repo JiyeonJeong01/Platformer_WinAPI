@@ -183,6 +183,9 @@
     <ClInclude Include="CLifeItem.h">
       <Filter>01. Object\05. Item</Filter>
     </ClInclude>
+    <ClInclude Include="CPlayer01.h">
+      <Filter>01. Object\01. Player</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Platformer_WinAPI.cpp">
@@ -241,6 +244,9 @@
     </ClCompile>
     <ClCompile Include="CLifeItem.cpp">
       <Filter>01. Object\05. Item</Filter>
+    </ClCompile>
+    <ClCompile Include="CPlayer01.cpp">
+      <Filter>01. Object\01. Player</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

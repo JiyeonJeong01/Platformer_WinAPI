@@ -30,6 +30,9 @@ protected:
 
 	Vector2		m_mouseDir;
 
+	float m_fHP;
+	float m_fMaxHP;
+
 protected:
 	bool		bLeftPressed;
 	bool		bRightPressed;
