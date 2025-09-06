@@ -1,8 +1,6 @@
 ﻿#include "pch.h"
 #include "CCollisionManager.h"
 
-
-
 void CCollisionManager::Collision_Rect(list<CObject*> _Dst, list<CObject*> _Src)
 {
 	RECT	rcCol{};

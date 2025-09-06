@@ -10,6 +10,7 @@
 #include "CObject.h"
 #include "CPlayer.h"
 #include "CStageManager.h"
+#include "CUIManager.h"
 #include "CLineManager.h"
 
 #pragma endregion
@@ -41,12 +42,13 @@ void CMainGame::Initialize()
 
 	// Initialize managers
 	CInputManager::Get_Instance()->Initialize();
+	CUIManager::Get_Instance()->Initialize();
 
 	// Initialize objects
 	// CObjectManager::Get_Instance()->Add_Object(PLAYER, CAbstractFactory<CPlayer>::Create());
 
 	// Start Stage
-	CStageManager::Get_Instance()->ChangeStage(STAGE2);
+	CStageManager::Get_Instance()->ChangeStage(STAGE3);
 }
 
 void CMainGame::Update()
@@ -54,6 +56,7 @@ void CMainGame::Update()
 	CInputManager::Get_Instance()->Update();
 	CObjectManager::Get_Instance()->Update();
 	CStageManager::Get_Instance()->Update();
+	CUIManager::Get_Instance()->Update();
 
 }
 
@@ -73,14 +76,8 @@ void CMainGame::Render()
 
 	CObjectManager::Get_Instance()->Render(m_hDC_back);
 	CStageManager::Get_Instance()->Render(m_hDC_back);
+	CUIManager::Get_Instance()->Render(m_hDC_back);
 
-	// Print Stage
-	{
-		TCHAR szStage[32];
-		int stage = CStageManager::Get_Instance()->Get_StageNumber();
-		swprintf_s(szStage, L"Stage : %d", stage);
-		TextOut(m_hDC_back, 40, 50, szStage, lstrlen(szStage));
-	}
 
 }
 
@@ -95,8 +92,8 @@ void CMainGame::Release()
 	CInputManager::Destroy_Instance();
 
 	CObjectManager::Destroy_Instance();
-
 	CStageManager::Destroy_Instance();
+	CUIManager::Destroy_Instance();
 	CLineManager::Destroy_Instance();
 }
 

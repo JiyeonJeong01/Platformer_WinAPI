@@ -1,9 +1,7 @@
 ﻿#pragma once
 
-#include "Vector2.h"
-
-#define	WINCX		800
-#define	WINCY		600
+#define	WINCX		1280
+#define	WINCY		720
 
 #define PURE	= 0
 
@@ -14,7 +12,7 @@
 
 extern HWND g_hWnd;
 
-enum OBJID { PLAYER, BULLET, MONSTER, MOUSE, SHIELD, ITEM, OBJ_END };
+enum OBJID { PLAYER, PL_BULLET, MONSTER, MON_BULLET, MOUSE, SHIELD, ITEM, OBJ_END };
 
 enum STAGEID { STAGE1 = 0, STAGE2, STAGE3, STAGE4, STAGE_END };
 
@@ -44,6 +42,8 @@ struct DeleteObj
 //	}
 //}
 //LINEPOINT;
+
+#include "Vector2.h"
 
 typedef struct tagLine
 {
