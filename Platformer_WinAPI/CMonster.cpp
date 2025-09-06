@@ -2,6 +2,7 @@
 #include "CMonster.h"
 
 CMonster::CMonster()
+	: pTarget(nullptr)
 {
 }
 

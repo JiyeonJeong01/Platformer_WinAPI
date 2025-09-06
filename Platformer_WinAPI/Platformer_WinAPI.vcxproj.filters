@@ -106,6 +106,15 @@
     <Filter Include="01. Object\05. Item">
       <UniqueIdentifier>{7c405f8f-bbd5-49ab-8b8a-d1e612793f8b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="02. Manager\05. LineManager">
+      <UniqueIdentifier>{39e72d16-dc61-468c-bb53-d0fe4060a2d8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03. Design\AbstractFactory\02. CollisionManager">
+      <UniqueIdentifier>{331ece6f-5c62-41a9-8c77-2845b63c1158}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="04. Utils\02. Utility">
+      <UniqueIdentifier>{676f91d3-10dd-4cad-8499-14bfce7b5f67}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -186,6 +195,30 @@
     <ClInclude Include="CPlayer01.h">
       <Filter>01. Object\01. Player</Filter>
     </ClInclude>
+    <ClInclude Include="CLine.h">
+      <Filter>02. Manager\05. LineManager</Filter>
+    </ClInclude>
+    <ClInclude Include="CLineManager.h">
+      <Filter>02. Manager\05. LineManager</Filter>
+    </ClInclude>
+    <ClInclude Include="CPlayer02.h">
+      <Filter>01. Object\01. Player</Filter>
+    </ClInclude>
+    <ClInclude Include="CPlayer03.h">
+      <Filter>01. Object\01. Player</Filter>
+    </ClInclude>
+    <ClInclude Include="CBoss03.h">
+      <Filter>01. Object\02. Monster\01. Boss01</Filter>
+    </ClInclude>
+    <ClInclude Include="CMob01.h">
+      <Filter>01. Object\02. Monster\05. Mob</Filter>
+    </ClInclude>
+    <ClInclude Include="CUIManager.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="CUtility.h">
+      <Filter>04. Utils\02. Utility</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Platformer_WinAPI.cpp">
@@ -247,6 +280,27 @@
     </ClCompile>
     <ClCompile Include="CPlayer01.cpp">
       <Filter>01. Object\01. Player</Filter>
+    </ClCompile>
+    <ClCompile Include="CLineManager.cpp">
+      <Filter>02. Manager\05. LineManager</Filter>
+    </ClCompile>
+    <ClCompile Include="CLine.cpp">
+      <Filter>02. Manager\05. LineManager</Filter>
+    </ClCompile>
+    <ClCompile Include="CPlayer02.cpp">
+      <Filter>01. Object\01. Player</Filter>
+    </ClCompile>
+    <ClCompile Include="CPlayer03.cpp">
+      <Filter>01. Object\01. Player</Filter>
+    </ClCompile>
+    <ClCompile Include="CBoss03.cpp">
+      <Filter>01. Object\02. Monster\01. Boss01</Filter>
+    </ClCompile>
+    <ClCompile Include="CMob01.cpp">
+      <Filter>01. Object\02. Monster\05. Mob</Filter>
+    </ClCompile>
+    <ClCompile Include="CUIManager.cpp">
+      <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
