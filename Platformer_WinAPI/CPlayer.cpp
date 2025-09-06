@@ -93,7 +93,8 @@ void CPlayer::Handle_KeyInput()
 void CPlayer::Update_Components()
 {
     // Update player's direction
-    m_vDirection.x = bLeftPressed ? -1.f : ( bRightPressed ? 1.f : 0.f );
+    // (조건) ? true일 경우 : false일 경우
+    m_vDirection.x = (bLeftPressed ? -1.f : ( bRightPressed ? 1.f : 0.f ));
     m_vDirection.y = bJumpPressed ? -1.f : 0.f;
 
     Vector2 normalized = Vector2::Nomalize(m_vDirection);
@@ -113,6 +114,6 @@ void CPlayer::Do_Attack()
     Vector2 dir = Vector2::Nomalize(m_mouseDir);
     Vector2 barrel = m_vPosition + dir * 50.f;
 
-    CObjectManager::Get_Instance()->Add_Object(BULLET, CAbstractFactory<CBullet>::Create(barrel, dir));
+    CObjectManager::Get_Instance()->Add_Object(PL_BULLET, CAbstractFactory<CBullet>::Create(barrel, dir));
 }
 	

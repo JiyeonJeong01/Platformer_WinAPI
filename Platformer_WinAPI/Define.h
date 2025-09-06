@@ -13,15 +13,15 @@
 extern HWND g_hWnd;
 
 enum OBJID
-{
-	PLAYER,
-	BULLET,
-	MONSTER,
-	MON_BULLET,
-	MOUSE,
-	SHIELD,
-	ITEM,
-	OBJ_END
+{ 
+	PLAYER = 0, 
+	PL_BULLET, 
+	MONSTER, 
+	MON_BULLET, 
+	MOUSE, 
+	SHIELD, 
+	ITEM, 
+	BJ_END
 };
 
 enum STAGEID
@@ -42,33 +42,37 @@ struct DeleteObj
 	void	operator()(T& p) { if (p) { delete p; p = nullptr; } }
 };
 
+// LINEPOINT -> Vector2 replace
+
 // For testing in Stage04. Can be modified or deleted freely.
-typedef struct tagLinePoint
-{
-	float fPosX, fPosY;
+//typedef struct tagLinePoint
+//{
+//	float fPosX, fPosY;
+//
+//	tagLinePoint()
+//	{
+//		ZeroMemory(this, sizeof(tagLinePoint));
+//	}
+//
+//	tagLinePoint(float _fX, float _fY)
+//		: fPosX(_fX), fPosY(_fY) {
+//	}
+//}
+//LINEPOINT;
 
-	tagLinePoint()
-	{
-		ZeroMemory(this, sizeof(tagLinePoint));
-	}
-
-	tagLinePoint(float _fX, float _fY)
-		: fPosX(_fX), fPosY(_fY) {
-	}
-}
-LINEPOINT;
+#include "Vector2.h"
 
 typedef struct tagLine
 {
-	LINEPOINT tLeft;
-	LINEPOINT tRight;
+	Vector2 tLeft;
+	Vector2 tRight;
 
 	tagLine()
 	{
 		ZeroMemory(this, sizeof(tagLine));
 	}
 
-	tagLine(LINEPOINT _tLeft, LINEPOINT _tRight)
+	tagLine(Vector2 _tLeft, Vector2 _tRight)
 		: tLeft(_tLeft), tRight(_tRight) {
 	}
 }
