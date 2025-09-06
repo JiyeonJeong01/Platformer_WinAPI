@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 #include "CItem.h"
 
 class CLifeItem :  public CItem

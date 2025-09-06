@@ -103,6 +103,9 @@
     <Filter Include="01. Object\05. Item">
       <UniqueIdentifier>{7c405f8f-bbd5-49ab-8b8a-d1e612793f8b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="02. Manager\05. LineManager">
+      <UniqueIdentifier>{39e72d16-dc61-468c-bb53-d0fe4060a2d8}</UniqueIdentifier>
+    </Filter>
     <Filter Include="03. Design\AbstractFactory\02. CollisionManager">
       <UniqueIdentifier>{331ece6f-5c62-41a9-8c77-2845b63c1158}</UniqueIdentifier>
     </Filter>
@@ -183,6 +186,12 @@
     <ClInclude Include="CLifeItem.h">
       <Filter>01. Object\05. Item</Filter>
     </ClInclude>
+    <ClInclude Include="CLine.h">
+      <Filter>02. Manager\05. LineManager</Filter>
+    </ClInclude>
+    <ClInclude Include="CLineManager.h">
+      <Filter>02. Manager\05. LineManager</Filter>
+    </ClInclude>
     <ClInclude Include="CPlayer02.h">
       <Filter>01. Object\01. Player</Filter>
     </ClInclude>
@@ -250,6 +259,12 @@
     </ClCompile>
     <ClCompile Include="CLifeItem.cpp">
       <Filter>01. Object\05. Item</Filter>
+    </ClCompile>
+    <ClCompile Include="CLineManager.cpp">
+      <Filter>02. Manager\05. LineManager</Filter>
+    </ClCompile>
+    <ClCompile Include="CLine.cpp">
+      <Filter>02. Manager\05. LineManager</Filter>
     </ClCompile>
     <ClCompile Include="CPlayer02.cpp">
       <Filter>01. Object\01. Player</Filter>

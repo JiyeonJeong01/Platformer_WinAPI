@@ -6,7 +6,7 @@ class CBullet :  public CObject
 {
 public:
 	CBullet();
-	virtual ~CBullet();
+	~CBullet() override;
 
 public:
 	void Initialize() override;
