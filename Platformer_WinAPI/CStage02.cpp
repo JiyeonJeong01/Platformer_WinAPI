@@ -31,6 +31,8 @@ void CStage02::LateUpdate()
 
 void CStage02::Render(HDC hdc)
 {
+	MoveToEx(hdc, 300, 300, NULL);
+	LineTo(hdc, 300, 400);
 }
 
 void CStage02::Release()
