@@ -1,10 +1,14 @@
-﻿#include "CStage.h"
+﻿#pragma once
+#include "CLineManager.h"
+#include "CStage.h"
 
-class CStage04 : public CStage
+class CLine;
+
+class CStage04 final : public CStage
 {
 public:
 	CStage04();
-	virtual ~CStage04();
+	~CStage04() override;
 
 public:
 	void Initialize() override;
@@ -13,6 +17,10 @@ public:
 	void Render(HDC hDC) override;
 	void Release() override;
 
-private:
+public:
+	bool Collision_Line(float& rX, float& rY);
 
+private:
+	list<CLine*> m_LineList;
+	LINEPOINT    m_tLinePoint[CLineManager::SIDE_END];
 };
