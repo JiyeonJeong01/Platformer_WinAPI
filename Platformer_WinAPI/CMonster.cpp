@@ -1,7 +1,7 @@
 ﻿#include "pch.h"
 #include "CMonster.h"
 
-CMonster::CMonster()
+CMonster::CMonster() : pTarget(nullptr), m_iHP(0), m_iAttackAmount(0)
 {
 }
 

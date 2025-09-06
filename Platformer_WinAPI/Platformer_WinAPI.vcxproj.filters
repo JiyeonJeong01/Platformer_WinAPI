@@ -49,9 +49,6 @@
     <Filter Include="02. Manager\01. StageManager">
       <UniqueIdentifier>{5673e98d-45c9-474d-aa71-fd5cc8285800}</UniqueIdentifier>
     </Filter>
-    <Filter Include="02. Manager\02. CollisionManager">
-      <UniqueIdentifier>{331ece6f-5c62-41a9-8c77-2845b63c1158}</UniqueIdentifier>
-    </Filter>
     <Filter Include="02. Manager\03. UIManager">
       <UniqueIdentifier>{d23109e7-20d6-47f1-be17-ebc61261148b}</UniqueIdentifier>
     </Filter>
@@ -105,6 +102,9 @@
     </Filter>
     <Filter Include="01. Object\05. Item">
       <UniqueIdentifier>{7c405f8f-bbd5-49ab-8b8a-d1e612793f8b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03. Design\AbstractFactory\02. CollisionManager">
+      <UniqueIdentifier>{331ece6f-5c62-41a9-8c77-2845b63c1158}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -160,7 +160,7 @@
       <Filter>05. Stage\00. Stage</Filter>
     </ClInclude>
     <ClInclude Include="CCollisionManager.h">
-      <Filter>02. Manager\02. CollisionManager</Filter>
+      <Filter>03. Design\AbstractFactory\02. CollisionManager</Filter>
     </ClInclude>
     <ClInclude Include="CBullet.h">
       <Filter>01. Object\03. Bullet</Filter>
@@ -182,6 +182,15 @@
     </ClInclude>
     <ClInclude Include="CLifeItem.h">
       <Filter>01. Object\05. Item</Filter>
+    </ClInclude>
+    <ClInclude Include="CPlayer02.h">
+      <Filter>01. Object\01. Player</Filter>
+    </ClInclude>
+    <ClInclude Include="CPlayer03.h">
+      <Filter>01. Object\01. Player</Filter>
+    </ClInclude>
+    <ClInclude Include="CMob01.h">
+      <Filter>01. Object\02. Monster\05. Mob</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -219,7 +228,7 @@
       <Filter>05. Stage\00. Stage</Filter>
     </ClCompile>
     <ClCompile Include="CCollisionManager.cpp">
-      <Filter>02. Manager\02. CollisionManager</Filter>
+      <Filter>03. Design\AbstractFactory\02. CollisionManager</Filter>
     </ClCompile>
     <ClCompile Include="CBullet.cpp">
       <Filter>01. Object\03. Bullet</Filter>
@@ -241,6 +250,15 @@
     </ClCompile>
     <ClCompile Include="CLifeItem.cpp">
       <Filter>01. Object\05. Item</Filter>
+    </ClCompile>
+    <ClCompile Include="CPlayer02.cpp">
+      <Filter>01. Object\01. Player</Filter>
+    </ClCompile>
+    <ClCompile Include="CPlayer03.cpp">
+      <Filter>01. Object\01. Player</Filter>
+    </ClCompile>
+    <ClCompile Include="CMob01.cpp">
+      <Filter>01. Object\02. Monster\05. Mob</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

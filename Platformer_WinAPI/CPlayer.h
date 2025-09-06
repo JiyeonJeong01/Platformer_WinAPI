@@ -14,9 +14,9 @@ public:
 	void Render(HDC hDC) override;
 	void Release() override;
 
-private:
-	void		Handle_KeyInput();
-	void		Update_Components();
+protected:
+	virtual void		Handle_KeyInput();
+	virtual void		Update_Components();
 
 public:
 	virtual void Do_Attack(); 

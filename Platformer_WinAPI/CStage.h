@@ -7,8 +7,8 @@ class CPlayer;
 class CStage abstract
 {
 public:
-	CStage();
-	virtual ~CStage();
+	CStage() { };
+	virtual ~CStage() { };
 
 public:
 	virtual void Initialize() PURE;

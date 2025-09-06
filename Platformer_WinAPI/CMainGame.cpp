@@ -41,10 +41,10 @@ void CMainGame::Initialize()
 	CInputManager::Get_Instance()->Initialize();
 
 	// Initialize objects
-	CObjectManager::Get_Instance()->Add_Object(PLAYER, CAbstractFactory<CPlayer>::Create());
+	// CObjectManager::Get_Instance()->Add_Object(PLAYER, CAbstractFactory<CPlayer>::Create());
 
 	// Start Stage
-	CStageManager::Get_Instance()->ChangeStage(STAGE1);
+	CStageManager::Get_Instance()->ChangeStage(STAGE2);
 }
 
 void CMainGame::Update()
@@ -77,7 +77,7 @@ void CMainGame::Render()
 		TCHAR szStage[32];
 		int stage = CStageManager::Get_Instance()->Get_StageNumber();
 		swprintf_s(szStage, L"Stage : %d", stage);
-		TextOut(m_hDC, 40, 50, szStage, lstrlen(szStage));
+		TextOut(m_hDC_back, 40, 50, szStage, lstrlen(szStage));
 	}
 
 }
