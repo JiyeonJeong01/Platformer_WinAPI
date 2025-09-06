@@ -1,23 +1,40 @@
 ﻿#pragma once
 
-#define	WINCX		1280
-#define	WINCY		720
+#define	WINCX			1280
+#define	WINCY			720
 
-#define PURE	= 0
+#define PURE			= 0
 
 #define OBJ_DEAD		1
 #define OBJ_NOEVENT		0
 
-#define	PI		3.14f
+#define	PI				3.14f
 
 extern HWND g_hWnd;
 
-enum OBJID { PLAYER, PL_BULLET, MONSTER, MON_BULLET, MOUSE, SHIELD, ITEM, OBJ_END };
+enum OBJID
+{ 
+	PLAYER = 0, 
+	PL_BULLET, 
+	MONSTER, 
+	MON_BULLET, 
+	MOUSE, 
+	SHIELD, 
+	ITEM, 
+	OBJ_END
+};
 
-enum STAGEID { STAGE1 = 0, STAGE2, STAGE3, STAGE4, STAGE_END };
+enum STAGEID
+{
+	STAGE1 = 0,
+	STAGE2,
+	STAGE3,
+	STAGE4,
+	STAGE_END
+};
 
 template<typename T>
-void	Safe_Delete(T& P) { if (P) { delete P; P = nullptr; }}
+void	Safe_Delete(T& P) { if (P) { delete P; P = nullptr; } }
 
 struct DeleteObj
 {

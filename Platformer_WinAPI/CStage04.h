@@ -18,9 +18,9 @@ public:
 	void Release() override;
 
 public:
-	bool Collision_Line(float& rX, float& rY);
+	list<CLine*>& Get_LineList() { return m_LineList; }
 
 private:
 	list<CLine*> m_LineList;
-	LINEPOINT    m_tLinePoint[CLineManager::SIDE_END];
+	//LINEPOINT    m_tLinePoint[CLineManager::SIDE_END];
 };

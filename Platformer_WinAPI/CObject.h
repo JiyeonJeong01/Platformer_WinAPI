@@ -31,11 +31,11 @@ public:
 
 	OBJID Get_ObjectID() { return m_objID; }
 
-		/**
+	/**
 	* \brief On_Collision : Automatically invoked by the CollisionManager on collision
 	* \note : Each object is responsible for implementing its own collision logic
 	*/
-	virtual void		On_Collision(CObject* pObj) {};
+	virtual void		On_Collision(CObject* pObj) {}
 
 public: // Object's stats getter-setter 
 	float Get_HP() { return m_fHP; }
