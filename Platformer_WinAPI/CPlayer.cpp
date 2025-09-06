@@ -82,7 +82,7 @@ void CPlayer::Handle_KeyInput()
     // Apply client's input to variables
     bLeftPressed = CInputManager::Get_Instance()->GetKey('A');
     bRightPressed = CInputManager::Get_Instance()->GetKey('D');
-    bJumpPressed = CInputManager::Get_Instance()->GetKey(VK_SPACE);
+    bJumpPressed = CInputManager::Get_Instance()->GetKeyDown(VK_SPACE);
 
     bLeftMouseClicked = CInputManager::Get_Instance()->GetKeyDown(VK_LBUTTON);
     m_fMousePosX = CInputManager::Get_Instance()->Get_CursorPosition().x;
@@ -92,7 +92,8 @@ void CPlayer::Handle_KeyInput()
 void CPlayer::Update_Components()
 {
     // Update player's direction
-    m_vDirection.x = bLeftPressed ? -1.f : ( bRightPressed ? 1.f : 0.f );
+    // (조건) ? true일 경우 : false일 경우
+    m_vDirection.x = (bLeftPressed ? -1.f : ( bRightPressed ? 1.f : 0.f ));
     m_vDirection.y = bJumpPressed ? -1.f : 0.f;
 
     Vector2 normalized = Vector2::Nomalize(m_vDirection);

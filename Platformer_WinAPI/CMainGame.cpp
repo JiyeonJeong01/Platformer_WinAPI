@@ -11,6 +11,8 @@
 #include "CPlayer.h"
 #include "CStageManager.h"
 #include "CUIManager.h"
+#include "CLineManager.h"
+
 #pragma endregion
 
 CMainGame::CMainGame() : m_hDC(nullptr), m_dwTime(GetTickCount()), m_iFPS(0)
@@ -90,10 +92,8 @@ void CMainGame::Release()
 	CInputManager::Destroy_Instance();
 
 	CObjectManager::Destroy_Instance();
-
-	CStageManager::Get_Instance()->Release();
 	CStageManager::Destroy_Instance();
-
 	CUIManager::Destroy_Instance();
+	CLineManager::Destroy_Instance();
 }
 

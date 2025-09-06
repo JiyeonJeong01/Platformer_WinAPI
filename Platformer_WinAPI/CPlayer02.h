@@ -16,6 +16,11 @@ public:
 public:
 	void Posin_Pos();
 	void Do_Attack();
+	//void		Update_Components();
+
 	void Jumping();
+
+	bool m_bJump;
+	float m_fTime;
 };
 
