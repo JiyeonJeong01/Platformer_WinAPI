@@ -1,7 +1,10 @@
 ﻿#include "pch.h"
 #include "CStage04.h"
 
+#include "CAbstractFactory.h"
 #include "CLine.h"
+#include "CObjectManager.h"
+#include "CPlayer04.h"
 
 CStage04::CStage04()
 {}
@@ -20,6 +23,10 @@ void CStage04::Initialize()
 	};
 
 	m_LineList.push_back(new CLine(tPoint[0], tPoint[1]));
+
+	CObjectManager::Get_Instance()
+		->Add_Object(PLAYER, CAbstractFactory<CPlayer04>::Create());
+	//todo 몬스터 만든 후 Create하기
 }
 
 void CStage04::Update()

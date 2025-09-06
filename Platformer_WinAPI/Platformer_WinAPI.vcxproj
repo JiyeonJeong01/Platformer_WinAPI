@@ -146,6 +146,7 @@
     <ClInclude Include="CPlayer.h" />
     <ClInclude Include="CPlayer02.h" />
     <ClInclude Include="CPlayer03.h" />
+    <ClInclude Include="CPlayer04.h" />
     <ClInclude Include="CStage.h" />
     <ClInclude Include="CStage01.h" />
     <ClInclude Include="CStage02.h" />
@@ -178,6 +179,7 @@
     <ClCompile Include="CInputManager.cpp" />
     <ClCompile Include="CPlayer02.cpp" />
     <ClCompile Include="CPlayer03.cpp" />
+    <ClCompile Include="CPlayer04.cpp" />
     <ClCompile Include="CStage.cpp" />
     <ClCompile Include="CStage01.cpp" />
     <ClCompile Include="CStage02.cpp" />
