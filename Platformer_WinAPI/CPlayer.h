@@ -1,7 +1,7 @@
 ﻿#pragma once
 #include "CObject.h"
 
-class CPlayer : public CObject
+class CPlayer :  public CObject
 {
 public:
 	CPlayer();
@@ -14,9 +14,9 @@ public:
 	void Render(HDC hDC) override;
 	void Release() override;
 
-private:
-	void		Handle_KeyInput();
-	void		Update_Components();
+protected:
+	virtual void		Handle_KeyInput();
+	virtual void		Update_Components();
 
 public:
 	virtual void Do_Attack(); 
@@ -26,7 +26,7 @@ protected:
 	Vector2		m_vPosinPosition;
 
 	float		m_fMousePosX = 0;	// 마우스의 x 좌표
-	float		m_fMousePosY = 0;	// 마우스의  y좌표
+	float		m_fMousePosY = 0;	// 마우스의 y 좌표
 
 	Vector2		m_mouseDir;
 

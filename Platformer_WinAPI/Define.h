@@ -12,7 +12,7 @@
 
 extern HWND g_hWnd;
 
-enum OBJID { PLAYER, BULLET, MONSTER, MOUSE, SHIELD, OBJ_END };
+enum OBJID { PLAYER, BULLET, MONSTER, MOUSE, SHIELD, ITEM, OBJ_END };
 
 enum STAGEID { STAGE1 = 0, STAGE2, STAGE3, STAGE4, STAGE_END };
 
@@ -24,3 +24,35 @@ struct DeleteObj
 	template<typename T>
 	void	operator()(T& p) { if (p) { delete p; p = nullptr; } }
 };
+
+// For testing in Stage04. Can be modified or deleted freely.
+typedef struct tagLinePoint
+{
+	float fPosX, fPosY;
+
+	tagLinePoint()
+	{
+		ZeroMemory(this, sizeof(tagLinePoint));
+	}
+
+	tagLinePoint(float _fX, float _fY)
+		: fPosX(_fX), fPosY(_fY) {
+	}
+}
+LINEPOINT;
+
+typedef struct tagLine
+{
+	LINEPOINT tLeft;
+	LINEPOINT tRight;
+
+	tagLine()
+	{
+		ZeroMemory(this, sizeof(tagLine));
+	}
+
+	tagLine(LINEPOINT _tLeft, LINEPOINT _tRight)
+		: tLeft(_tLeft), tRight(_tRight) {
+	}
+}
+LINE;

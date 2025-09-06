@@ -12,7 +12,7 @@
 #include "CStageManager.h"
 #pragma endregion
 
-CMainGame::CMainGame() : m_dwTime(GetTickCount()), m_iFPS(0)
+CMainGame::CMainGame() : m_hDC(nullptr), m_dwTime(GetTickCount()), m_iFPS(0)
 {
 	ZeroMemory(m_szFPS, sizeof(m_szFPS));
 }
@@ -41,10 +41,10 @@ void CMainGame::Initialize()
 	CInputManager::Get_Instance()->Initialize();
 
 	// Initialize objects
-	//CObjectManager::Get_Instance()->Add_Object(PLAYER, CAbstractFactory<CPlayer>::Create());
+	// CObjectManager::Get_Instance()->Add_Object(PLAYER, CAbstractFactory<CPlayer>::Create());
 
 	// Start Stage
-	CStageManager::Get_Instance()->ChangeStage(STAGE3);
+	CStageManager::Get_Instance()->ChangeStage(STAGE2);
 }
 
 void CMainGame::Update()
@@ -77,7 +77,7 @@ void CMainGame::Render()
 		TCHAR szStage[32];
 		int stage = CStageManager::Get_Instance()->Get_StageNumber();
 		swprintf_s(szStage, L"Stage : %d", stage);
-		TextOut(m_hDC, 40, 50, szStage, lstrlen(szStage));
+		TextOut(m_hDC_back, 40, 50, szStage, lstrlen(szStage));
 	}
 
 }
@@ -86,10 +86,15 @@ void CMainGame::Release()
 {
 	// Release window resources
 	ReleaseDC(g_hWnd, m_hDC);
+	ReleaseDC(g_hWnd, m_hDC_back);
 
 	// Release managers
+	CInputManager::Get_Instance()->Release();
 	CInputManager::Destroy_Instance();
+
 	CObjectManager::Destroy_Instance();
+
+	CStageManager::Get_Instance()->Release();
 	CStageManager::Destroy_Instance();
 }
 
