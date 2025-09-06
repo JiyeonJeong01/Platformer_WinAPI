@@ -26,6 +26,9 @@
 
 #include "Define.h"
 #include "Vector2.h"
+#include "CUtility.h"
+
+
 using namespace std;
 
 #endif //PCH_H

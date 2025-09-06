@@ -75,12 +75,8 @@ void CMainGame::Render()
 	CStageManager::Get_Instance()->Render(m_hDC_back);
 
 	// Print Stage
-	{
-		TCHAR szStage[32];
-		int stage = CStageManager::Get_Instance()->Get_StageNumber();
-		swprintf_s(szStage, L"Stage : %d", stage);
-		TextOut(m_hDC_back, 40, 50, szStage, lstrlen(szStage));
-	}
+	int stageNumber = CStageManager::Get_Instance()->Get_StageNumber();
+	CUtility::PrintText(m_hDC_back, 50, 50, L"Stage : ", stageNumber);
 
 }
 
