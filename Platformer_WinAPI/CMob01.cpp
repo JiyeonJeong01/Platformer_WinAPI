@@ -28,6 +28,8 @@ int CMob01::Update()
 {
 	if (m_bDead)
 		return OBJ_DEAD;
+
+    Update_Rect();
 	return 0;
 }
 

@@ -186,6 +186,9 @@
     <ClInclude Include="CPlayer02.h">
       <Filter>01. Object\01. Player</Filter>
     </ClInclude>
+    <ClInclude Include="CPlayer03.h">
+      <Filter>01. Object\01. Player</Filter>
+    </ClInclude>
     <ClInclude Include="CMob01.h">
       <Filter>01. Object\02. Monster\05. Mob</Filter>
     </ClInclude>
@@ -249,6 +252,9 @@
       <Filter>01. Object\05. Item</Filter>
     </ClCompile>
     <ClCompile Include="CPlayer02.cpp">
+      <Filter>01. Object\01. Player</Filter>
+    </ClCompile>
+    <ClCompile Include="CPlayer03.cpp">
       <Filter>01. Object\01. Player</Filter>
     </ClCompile>
     <ClCompile Include="CMob01.cpp">

@@ -79,17 +79,19 @@ void CPlayer02::Posin_Pos()
 
 void CPlayer02::Do_Attack()
 {
-	m_mouseDir.x = m_fMousePosX - m_vPosition.x;
-	m_mouseDir.y = m_fMousePosY - m_vPosition.y;
+	CPlayer::Do_Attack();
 
-	float distance = sqrtf(m_mouseDir.x * m_mouseDir.x + m_mouseDir.y * m_mouseDir.y);
-
-	Vector2 dir = Vector2::Nomalize(m_mouseDir);
-	Vector2 barrel = m_vPosition + dir * 100.f;
-
-	//m_vPosinPosition = barrel;
-
-	CObjectManager::Get_Instance()->Add_Object(BULLET, CAbstractFactory<CBullet>::Create(barrel, dir));
+	//m_mouseDir.x = m_fMousePosX - m_vPosition.x;
+	//m_mouseDir.y = m_fMousePosY - m_vPosition.y;
+	//
+	//float distance = sqrtf(m_mouseDir.x * m_mouseDir.x + m_mouseDir.y * m_mouseDir.y);
+	//
+	//Vector2 dir = Vector2::Nomalize(m_mouseDir);
+	//Vector2 barrel = m_vPosition + dir * 100.f;
+	//
+	////m_vPosinPosition = barrel;
+	//
+	//CObjectManager::Get_Instance()->Add_Object(BULLET, CAbstractFactory<CBullet>::Create(barrel, dir));
 }
 
 
