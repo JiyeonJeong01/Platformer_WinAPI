@@ -1,6 +1,7 @@
 ﻿#pragma once
 
 #include "CStage.h"
+class CMonster;
 
 class CStage01 : public CStage
 {
@@ -15,6 +16,24 @@ public:
 	void Render(HDC hDC) override;
 	void Release() override;
 
-private:
+public :
+	void Request_ChangeStage();
+	void Create_Monster();
+	void Handle_PlayerDead();
+	void Handle_BossDead();
 
+private:
+	int iMonsterSpawnLimit;
+	int iCurrentMonsterCount;
+	float fSpawnTime;
+
+	float fItemDropRate;
+
+	bool bBossDead;
+
+private :
+	CPlayer* pPlayer;
+	CMonster* pBoss;
+
+	vector<LINE*> m_vEnvironment;
 };
