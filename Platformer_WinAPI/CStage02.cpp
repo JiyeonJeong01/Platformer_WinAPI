@@ -32,7 +32,7 @@ void CStage02::Initialize()
 
 
 	CObjectManager::Get_Instance()->Add_Object(PLAYER, CAbstractFactory<CPlayer02>::Create());
-	CObjectManager::Get_Instance()->Add_Object(MONSTER, CAbstractFactory<CMob01>::Create(WINCX * 0.5, WINCY * 0.7));
+	CObjectManager::Get_Instance()->Add_Object(MONSTER, CAbstractFactory<CMob01>::Create());
 }
 
 void CStage02::Update()

@@ -2,6 +2,10 @@
 #include "CMob01.h"
 #include "CBullet.h"
 #include "CPlayer02.h"
+#include "CObjectManager.h"
+#include "CAbstractFactory.h"
+#include "Vector2.h"
+#include "CLineManager.h"
 
 CMob01::CMob01()
 {
@@ -13,14 +17,18 @@ CMob01::~CMob01()
 
 void CMob01::Initialize()
 {
-    m_vPosition = { WINCX *0.5f, WINCY *0.5f };
+    m_vPosition = { WINCX *0.5f-100, WINCY *0.5f-50 };
     m_vDirection = { 0.f, 0.f };
     m_vSize = { 40.f, 40.f };
 
     m_fSpeedX = 10.f;
     m_fSpeedY = 7.f;
 
-    m_fHP = 100.f;
+    // Boss Status
+    m_fMaxHP = 100.f;
+    m_fHP = m_fMaxHP;
+
+    m_fDamage = 10.f;
 
     m_objID = MONSTER;
 }
@@ -32,8 +40,19 @@ int CMob01::Update()
 
     Update_Rect();
 
+    ULONGLONG current = GetTickCount64();
 
+    if (current - m_Attack_Interval >= 1000)
+    {
 
+            Do_Attack();
+
+            m_Attack_Interval = current;
+       
+    }
+    float pY=0.f;
+    CLineManager::Get_Instance()->Collision_Line(m_vPosition, &pY);
+    m_vPosition.y = pY-(m_vSize.y / 2);
 	return 0;
 }
 
@@ -55,7 +74,7 @@ void CMob01::Release()
 
 void CMob01::On_Collision(CObject* pObj)
 {
-    if(pObj->Get_ObjectID() == BULLET)
+    if(pObj->Get_ObjectID() == PL_BULLET)
     {
         Take_Damage(pObj->Get_Damage());
     }
@@ -72,11 +91,15 @@ void CMob01::On_Collision(CObject* pObj)
 void CMob01::Take_Damage(float _fDamage)
 {
     if (0 <= (m_fHP - _fDamage))
-        m_iHP -= _fDamage;
+        m_fHP -= _fDamage;
     else
     {
         m_fHP = 0.f;
         m_bDead = true;
     }
 }
-// Take_Damage 이런 용어 통일 헷갈릴거 같음 
+void CMob01::Do_Attack()
+{
+    Vector2 dir = { 1,0 };
+    CObjectManager::Get_Instance()->Add_Object(MON_BULLET, CAbstractFactory<CBullet>::Create(m_vPosition, dir));
+}
