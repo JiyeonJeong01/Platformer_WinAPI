@@ -8,8 +8,8 @@ CObject::~CObject() { }
 
 void CObject::Update_Rect()
 {
-	m_tRect.left = long(m_vPosition.x - (m_vSize.x / 2.f));
-	m_tRect.top = long(m_vPosition.y - (m_vSize.y / 2.f));
-	m_tRect.right = long(m_vPosition.x + (m_vSize.x / 2.f));
-	m_tRect.bottom = long(m_vPosition.y + (m_vSize.y / 2.f));
+	m_tRect.left  = static_cast<long>(m_vPosition.x - (m_vSize.x / 2.f));
+	m_tRect.top   = static_cast<long>(m_vPosition.y - (m_vSize.y / 2.f));
+	m_tRect.right = static_cast<long>(m_vPosition.x + (m_vSize.x / 2.f));
+	m_tRect.bottom = static_cast<long>(m_vPosition.y + (m_vSize.y / 2.f));
 }

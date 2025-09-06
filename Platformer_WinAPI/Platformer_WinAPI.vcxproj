@@ -136,6 +136,8 @@
     <ClInclude Include="CCollisionManager.h" />
     <ClInclude Include="CItem.h" />
     <ClInclude Include="CLifeItem.h" />
+    <ClInclude Include="CLine.h" />
+    <ClInclude Include="CLineManager.h" />
     <ClInclude Include="CMainGame.h" />
     <ClInclude Include="CMonster.h" />
     <ClInclude Include="CObject.h" />
@@ -163,6 +165,8 @@
     <ClCompile Include="CCollisionManager.cpp" />
     <ClCompile Include="CItem.cpp" />
     <ClCompile Include="CLifeItem.cpp" />
+    <ClCompile Include="CLine.cpp" />
+    <ClCompile Include="CLineManager.cpp" />
     <ClCompile Include="CMainGame.cpp" />
     <ClCompile Include="CMonster.cpp" />
     <ClCompile Include="CObject.cpp" />

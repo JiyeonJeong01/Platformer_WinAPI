@@ -30,8 +30,12 @@ public:
 	void Set_SizeY(float _fY) { m_vSize.y = _fY; }
 
 	OBJID Get_ObjectID() { return m_objID; }
-	virtual void		On_Collision(CObject* pObj) {}; 	// 충돌 시 CollisionManager에서 호출된다
-	// 충돌 로직 구현은 각 객체에게 위임한다
+
+		/**
+	* \brief On_Collision : Automatically invoked by the CollisionManager on collision
+	* \note : Each object is responsible for implementing its own collision logic
+	*/
+	virtual void		On_Collision(CObject* pObj) {};
 
 public: // Object's stats getter-setter 
 	float Get_HP() { return m_fHP; }
