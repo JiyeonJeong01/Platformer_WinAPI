@@ -12,7 +12,7 @@
 #include "CStageManager.h"
 #pragma endregion
 
-CMainGame::CMainGame() : m_dwTime(GetTickCount()), m_iFPS(0)
+CMainGame::CMainGame() : m_hDC(nullptr), m_dwTime(GetTickCount()), m_iFPS(0)
 {
 	ZeroMemory(m_szFPS, sizeof(m_szFPS));
 }
@@ -86,6 +86,7 @@ void CMainGame::Release()
 {
 	// Release window resources
 	ReleaseDC(g_hWnd, m_hDC);
+	ReleaseDC(g_hWnd, m_hDC_back);
 
 	// Release managers
 	CInputManager::Get_Instance()->Release();

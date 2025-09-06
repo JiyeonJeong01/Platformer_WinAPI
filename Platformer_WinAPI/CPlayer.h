@@ -1,7 +1,7 @@
 ﻿#pragma once
 #include "CObject.h"
 
-class CPlayer : public CObject
+class CPlayer :  public CObject
 {
 public:
 	CPlayer();
@@ -26,7 +26,7 @@ protected:
 	Vector2		m_vPosinPosition;
 
 	float		m_fMousePosX = 0;	// 마우스의 x 좌표
-	float		m_fMousePosY = 0;	// 마우스의  y좌표
+	float		m_fMousePosY = 0;	// 마우스의 y 좌표
 
 	Vector2		m_mouseDir;
 

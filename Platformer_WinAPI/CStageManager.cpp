@@ -68,6 +68,9 @@ void CStageManager::ChangeStage(STAGEID _id)
 		newStage = new CStage04();
 		m_StageNumber = 4;
 		break;
+
+	case STAGEID::STAGE_END:
+		break;
 	}
 
 	// 기존 스테이지 할당 해제
