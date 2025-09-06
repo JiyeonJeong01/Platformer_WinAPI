@@ -23,7 +23,7 @@ void CLineManager::Initialize()
 	//m_LineList.push_back(new CLine(tPoint[0], tPoint[1]));
 	//m_LineList.push_back(new CLine(tPoint[1], tPoint[2]));
 	//m_LineList.push_back(new CLine(tPoint[2], tPoint[3]));
-	
+
 }
 
 int CLineManager::Update()
@@ -33,7 +33,7 @@ int CLineManager::Update()
 
 void CLineManager::Late_Update()
 {
-	
+
 }
 
 void CLineManager::Render(HDC hDC)
@@ -56,8 +56,8 @@ bool CLineManager::Collision_Line(Vector2 PlayerPos, float* pY)
 	if (m_LineList.empty())
 		return false;
 
-	list<CLine*> targetLine ;
-	
+	list<CLine*> targetLine;
+
 	for (auto& line : m_LineList)
 	{
 		if (PlayerPos.x >= line->Get_Info().tLeft.x &&
@@ -95,7 +95,7 @@ bool CLineManager::Collision_Line(Vector2 PlayerPos, float* pY)
 
 			float x1 = line->Get_Info().tLeft.x;
 			float y1 = line->Get_Info().tLeft.y;
-					   
+
 			float x2 = line->Get_Info().tRight.x;
 			float y2 = line->Get_Info().tRight.y;
 
@@ -130,9 +130,9 @@ void CLineManager::Create_Line(Vector2* tPoint, int Num)
 
 
 
-	for (int i = 0;i < Num-1; i++)
+	for (int i = 0;i < Num - 1; i++)
 	{
-		m_LineList.push_back(new CLine(tPoint[i], tPoint[i+1]));
+		m_LineList.push_back(new CLine(tPoint[i], tPoint[i + 1]));
 
 	}
 }
