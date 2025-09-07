@@ -2,7 +2,7 @@
 
 #include "CMonster.h"
 
-enum class BOSS_PATTERN { Idle = 1, Attack, None, };
+enum class BOSS_STATE { Idle = 1, Attack1, Attack2, None, };
 
 class CBoss03 : public CMonster
 {
@@ -23,7 +23,7 @@ public:
 	void Take_Damage(float _fDamage) override;
 
 private:
-	BOSS_PATTERN m_pattern = BOSS_PATTERN::Idle;
+	BOSS_STATE m_pattern = BOSS_STATE::Idle;
 
 	float m_Attack_Interval = 0.f;
 };

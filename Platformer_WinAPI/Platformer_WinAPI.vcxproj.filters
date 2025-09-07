@@ -225,11 +225,14 @@
     <ClInclude Include="CBoss03.h">
       <Filter>01. Object\02. Monster\03. Boss03</Filter>
     </ClInclude>
+    <ClInclude Include="CPlayer04.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
     <ClInclude Include="CBullet_Player03.h">
-      <Filter>01. Object\03. Bullet\03. Bullet03</Filter>
+      <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="CScrollManager.h">
-      <Filter>02. Manager</Filter>
+      <Filter>헤더 파일</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -311,11 +314,14 @@
     <ClCompile Include="CBoss03.cpp">
       <Filter>01. Object\02. Monster\03. Boss03</Filter>
     </ClCompile>
+    <ClCompile Include="CPlayer04.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
     <ClCompile Include="CBullet_Player03.cpp">
-      <Filter>01. Object\03. Bullet\03. Bullet03</Filter>
+      <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="CScrollManager.cpp">
-      <Filter>02. Manager</Filter>
+      <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

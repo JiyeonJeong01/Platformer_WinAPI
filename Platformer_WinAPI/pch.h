@@ -32,6 +32,7 @@ using namespace std;
 
 #include "CCollisionManager.h"
 #include "CInputManager.h"
+#include "CScrollManager.h"
 #include "CLineManager.h"
 #include "CObjectManager.h"
 #include "CStageManager.h"

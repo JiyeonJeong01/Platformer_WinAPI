@@ -21,6 +21,5 @@ public:
 	void Do_Attack() override;
 	void Take_Damage(float _fDamage) override;
 
-
 };
 
