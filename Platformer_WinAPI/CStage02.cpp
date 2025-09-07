@@ -1,11 +1,9 @@
 ﻿#include "pch.h"
 #include "CStage02.h"
-#include "CObjectManager.h"
 #include "CAbstractFactory.h"
 #include "CPlayer02.h"
+#include "CPlayer03.h"
 #include "CMob01.h"
-#include "CLineManager.h"
-#include "CUIManager.h"
 #include "CBoss02.h"
 
 CStage02::CStage02()

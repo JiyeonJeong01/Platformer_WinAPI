@@ -48,7 +48,7 @@ void CMainGame::Initialize()
 	// CObjectManager::Get_Instance()->Add_Object(PLAYER, CAbstractFactory<CPlayer>::Create());
 
 	// Start Stage
-	CStageManager::Get_Instance()->ChangeStage(STAGE3);
+	CStageManager::Get_Instance()->ChangeStage(STAGE2);
 
 #pragma region Stage4 test
 	//CStageManager::Get_Instance()->ChangeStage(STAGE4);
