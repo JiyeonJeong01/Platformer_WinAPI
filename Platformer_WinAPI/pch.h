@@ -28,6 +28,12 @@
 #include "Vector2.h"
 #include "CUtility.h"
 
+#include "CCollisionManager.h"
+#include "CInputManager.h"
+#include "CLineManager.h"
+#include "CObjectManager.h"
+#include "CStageManager.h"
+#include "CUIManager.h"
 
 using namespace std;
 
