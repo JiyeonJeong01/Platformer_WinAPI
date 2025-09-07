@@ -16,11 +16,16 @@ public:
 public:
 	void Posin_Pos();
 	void Do_Attack();
+	void Take_Damage(float _fDamage);
+	void		On_Collision(CObject* pObj);
 	//void		Update_Components();
 
 	void Jumping();
 
 	bool m_bJump;
 	float m_fTime;
+	bool isStart;
+	float tmp;
+	DWORD sz_Time;
 };
 

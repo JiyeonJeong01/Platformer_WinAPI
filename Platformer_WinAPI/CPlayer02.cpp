@@ -5,7 +5,8 @@
 #include "CAbstractFactory.h"
 #include "CBullet.h"
 #include "CLineManager.h"
-CPlayer02::CPlayer02() : m_bJump(false),m_fTime(0.f)
+#include "CUIManager.h"
+CPlayer02::CPlayer02() : m_bJump(false), m_fTime(0.f), sz_Time(GetTickCount())
 {
 
 }
@@ -25,6 +26,8 @@ void CPlayer02::Initialize()
 	m_fSpeedX = 8.f;
 	m_fSpeedY = 15.f;
 	m_vPosinPosition = { 1,1 };
+	m_fHP = 100;
+	m_fMaxHP = m_fHP;
 }
 
 int CPlayer02::Update()
@@ -39,7 +42,11 @@ int CPlayer02::Update()
 	Posin_Pos();
 
 	if (bJumpPressed)
+	{
+
+		isStart = true;
 		m_bJump = true;
+	}
 	Jumping();
 
 
@@ -61,6 +68,9 @@ void CPlayer02::Render(HDC hDC)
 	// Posin
 	MoveToEx(hDC, (int)m_vPosition.x, (int)m_vPosition.y, nullptr);
 	LineTo(hDC, m_vPosinPosition.x, m_vPosinPosition.y);
+
+	CUIManager::Get_Instance()->Render_PlayerHP(hDC, this);
+
 
 }
 
@@ -86,48 +96,90 @@ void CPlayer02::Do_Attack()
 
 }
 
+void CPlayer02::Take_Damage(float _fDamage)
+{
+	if (m_fHP <= 0)
+		m_bDead = true;
+
+	// 무적시간
+	if (sz_Time + 1000 < GetTickCount())
+	{
+
+		if (0 <= (m_fHP - _fDamage))
+			m_fHP -= _fDamage;
+		else
+		{
+			m_fHP = 0.f;
+			m_bDead = true;
+		}
+		sz_Time = GetTickCount();
+	}
+}
+
+void CPlayer02::On_Collision(CObject* pObj)
+{
+
+	Take_Damage(pObj->Get_Damage());
+
+}
+
 
 
 void CPlayer02::Jumping()
 {
 	float fY = .0f;
 	float m_fGravity = 9.8f;
+	bool isHight = false;
+
 	bool bLine = CLineManager::Get_Instance()->Collision_Line(m_vPosition, &fY);
 
-		if (m_bJump)
+	if (m_bJump)
+	{
+
+		if (isStart)
 		{
-			m_vPosition.y -= m_fSpeedY * m_fTime - (9.8f * m_fTime * m_fTime) * 0.5f;
-			
-			
+			tmp = m_vPosition.y;
+			isStart = false;
+			m_fTime = 0.f;
+		}
 
+		m_vPosition.y -= (m_fSpeedY * m_fTime - (9.8f * m_fTime * m_fTime) * 0.5f);
 
-			m_fTime += 0.2f;
-			if ( bLine&& fY<=m_vPosition.y +(m_vSize.y * .5f))
-			{
-  				m_fTime = 0.f;
-				m_vPosition.y = fY-(m_vSize.y * .5f);
-				m_bJump = false;
-			}
+		float h = ((m_fSpeedY * m_fSpeedY) / (2 * 9.8)) + tmp + (m_vSize.y * .5f);
+
+		m_fTime += 0.2f;
+
+		if (m_fSpeedY - m_fGravity * m_fTime <= 0)
+			isHight = true;
+
+		if (bLine && m_vPosition.y >= fY - (m_vSize.y * 0.5f) && isHight)
+		{
+			m_fTime = 0.f;
+			m_vPosition.y = fY - (m_vSize.y * .5f);
+			m_bJump = false;
+			isHight = false;
 
 		}
-		else if (bLine)
+
+	}
+	else if (bLine)
+	{
+		m_vPosition.y = fY - (m_vSize.y * .5f);
+
+	}
+	else
+	{
+		m_fTime += 0.2f;
+
+		m_vPosition.y -= -((9.8f * m_fTime * m_fTime) * 0.5f);
+
+		if (m_vPosition.y > WINCY)
 		{
-			m_vPosition.y = fY-(m_vSize.y*.5f);
-
+			m_bDead = true;
+			m_fTime = 0;
 		}
-		else
-		{
-			m_fTime += 0.2f;
 
-			m_vPosition.y -= -((9.8f * m_fTime * m_fTime) * 0.5f);
+	}
 
-			if (m_vPosition.y > WINCY)
-			{
-				m_bDead = true;
-				m_fTime = 0;
-			}
 
-		}
-	
-	
 }

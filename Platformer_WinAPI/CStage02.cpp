@@ -5,6 +5,7 @@
 #include "CPlayer02.h"
 #include "CMob01.h"
 #include "CLineManager.h"
+#include "CUIManager.h"
 
 CStage02::CStage02()
 {
@@ -46,6 +47,8 @@ void CStage02::LateUpdate()
 void CStage02::Render(HDC hdc)
 {
 	CLineManager::Get_Instance()->Render(hdc);
+	//CObjectManager::Get_Instance()->
+	//CUIManager::Get_Instance()->Render_PlayerHP(hdc, CObjectManager::Get_Instance()->Get_Player());
 
 }
 
