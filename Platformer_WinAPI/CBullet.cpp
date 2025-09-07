@@ -52,8 +52,18 @@ void CBullet::On_Collision(CObject* pObj)
 
 	switch (pObj->Get_ObjectID())
 	{
-	case MONSTER: m_bDead = true; break;
-	case PLAYER:  m_bDead = true; break;
+	case PLAYER:
+	{
+		if (m_objID == MON_BULLET)
+			m_bDead = true;
+	}
+	break;
+	case MONSTER:
+	{
+		if (m_objID == PL_BULLET)
+			m_bDead = true;
+	}
+	break;
 	case PL_BULLET:				  break;
 	case MON_BULLET:		      break;
 	case MOUSE:					  break;

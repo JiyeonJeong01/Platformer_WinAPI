@@ -28,6 +28,22 @@ public:
 		return pObj;
 	}
 
+	static CObject* Create(OBJID _eObjID, float _fPosX, float _fPosY, float _fSizeX, float _fSizeY)
+	{
+		CObject* pObj = new T;
+		pObj->Initialize();
+
+		pObj->Set_ObjectID(_eObjID);
+
+		pObj->Set_PosX(_fPosX);
+		pObj->Set_PosY(_fPosY);
+
+		pObj->Set_SizeX(_fSizeX);
+		pObj->Set_SizeY(_fSizeY);
+
+		return pObj;
+	}
+
 	static CObject* Create(OBJID _eObjID, Vector2 _position)
 	{
 		CObject* pObj = new T;

@@ -35,4 +35,3 @@ float CObject::DeltaTime()
 
 	return fDeltaTime;
 }
-
