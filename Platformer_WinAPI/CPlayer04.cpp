@@ -128,7 +128,7 @@ void CPlayer04::Landed()
 
 void CPlayer04::Jump()
 {
-	if (bJumpPressed && m_iPlayerJump < m_iPlayerMaxJump)
+	if (bJumpPressed && m_iPlayerJumpCount < m_iPlayerMaxJump)
 	{
 		m_fSpeedY = -900.f;
 		// 임의로 준 점프 스피드, 점프할때만 필요하므로 이 때 값을 집어넣는다.
