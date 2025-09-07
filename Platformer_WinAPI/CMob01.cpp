@@ -39,9 +39,10 @@ int CMob01::Update()
 	if (m_bDead)
 		return OBJ_DEAD;
 
-    Update_Rect();
+    __super::Update_Rect();
     Vector2 pos = CObjectManager::Get_Instance()->Get_Player()->Get_Position();
     Vector2 size = CObjectManager::Get_Instance()->Get_Player()->Get_Size();
+
     if (pos.y - (size.y*.5f) <= m_vPosition.y && pos.y + (size.y * .5f) >= m_vPosition.y)
     {
        
@@ -83,7 +84,11 @@ void CMob01::Late_Update()
 void CMob01::Render(HDC hDC)
 {
 	Rectangle(hDC, m_tRect.left, m_tRect.top, m_tRect.right, m_tRect.bottom);
-    CUIManager::Get_Instance()->Render_BossHP(hDC, this);
+    //CUIManager::Get_Instance()->Render_BossHP(hDC, this);
+    if (m_fHP < m_fMaxHP)
+    {
+        CUIManager::Get_Instance()->DrawHP(hDC, (m_vPosition.x - m_vSize.x * .5f), (m_vPosition.y + m_vSize.y * .5f) + 10, m_vSize.x, 5, m_fHP, m_fMaxHP);
+    }
 
 }
 
@@ -94,7 +99,7 @@ void CMob01::Release()
 
 void CMob01::On_Collision(CObject* pObj)
 {
-    if (dynamic_cast<CBullet*>(pObj))
+    if (pObj->Get_ObjectID() == PL_BULLET)
     {
         Take_Damage(pObj->Get_Damage());
     }
@@ -122,11 +127,11 @@ void CMob01::Take_Damage(float _fDamage)
 void CMob01::Do_Attack()
 {
     Vector2 dir = { 1,0 };
-    CObjectManager::Get_Instance()->Add_Object(MON_BULLET, CAbstractFactory<CBullet>::Create(m_vPosition, dir));
+    CObjectManager::Get_Instance()->Add_Object(MON_BULLET, CAbstractFactory<CBullet>::Create(MON_BULLET,m_vPosition, dir));
 }
 
 void CMob01::Do_Attack(Vector2 dir)
 {
-    CObjectManager::Get_Instance()->Add_Object(MON_BULLET, CAbstractFactory<CBullet>::Create(m_vPosition, dir));
+    CObjectManager::Get_Instance()->Add_Object(MON_BULLET, CAbstractFactory<CBullet>::Create(MON_BULLET,m_vPosition, dir));
 
 }
