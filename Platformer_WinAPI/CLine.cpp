@@ -1,6 +1,8 @@
 ﻿#include "pch.h"
 #include "CLine.h"
 
+#include "CScrollManager.h"
+
 CLine::CLine()
 {
 }
@@ -16,6 +18,8 @@ CLine::~CLine()
 
 void CLine::Render(HDC hDC)
 {
-	MoveToEx(hDC, (int)m_tLine.tLeft.x , (int)m_tLine.tLeft.y, NULL);
-	LineTo(hDC, m_tLine.tRight.x, m_tLine.tRight.y);
+	int iScrollX = static_cast<int>(CScrollManager::Get_Instance()->Get_ScrollX());
+
+	MoveToEx(hDC, static_cast<int>(m_tLine.tLeft.x + iScrollX), static_cast<int>(m_tLine.tLeft.y), NULL);
+	LineTo(hDC, static_cast<int>(m_tLine.tRight.x + iScrollX), static_cast<int>(m_tLine.tRight.y));
 }

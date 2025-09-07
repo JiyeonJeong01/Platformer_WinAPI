@@ -21,6 +21,7 @@ public:
 	list<CLine*>& Get_LineList() { return m_LineList; }
 
 private:
+	//list<CLine*> m_LineList;
+	//Vector2      m_tLinePoint[CLineManager::SIDE_END];
 	list<CLine*> m_LineList;
-	//LINEPOINT    m_tLinePoint[CLineManager::SIDE_END];
 };
