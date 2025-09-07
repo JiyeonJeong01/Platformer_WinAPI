@@ -1,7 +1,8 @@
 #include "pch.h"
 #include "CPlayer03.h"
 
-#include "CUIManager.h"
+#include "CAbstractFactory.h"
+#include "CBullet_Player03.h"
 
 CPlayer03::CPlayer03()
 {
@@ -24,10 +25,15 @@ void CPlayer03::Initialize()
 
 int CPlayer03::Update()
 {
-	if (m_bDead)
+	int result = CPlayer::Update();
+
+	if (result == OBJ_DEAD)
 		return OBJ_DEAD;
 
-	return CPlayer::Update();
+
+
+
+	return OBJ_NOEVENT;
 }
 
 void CPlayer03::Late_Update()
@@ -58,9 +64,15 @@ void CPlayer03::On_Collision(CObject* pObj)
 
 void CPlayer03::Do_Attack()
 {
-	CPlayer::Do_Attack();
+	//CPlayer::Do_Attack();
 
+	Vector2 dir = Vector2::Nomalize(m_mouseDir);
 
+	Vector2 barrel;
+	barrel.x = m_vPosition.x + dir.x * 50.f;
+	barrel.y = m_vPosition.y + dir.y * 50.f;
+
+	CObjectManager::Get_Instance()->Add_Object(PL_BULLET, CAbstractFactory<CBullet_Player03>::Create(MON_BULLET, barrel, dir));
 }
 
 void CPlayer03::Take_Damage(float _fDamage)
