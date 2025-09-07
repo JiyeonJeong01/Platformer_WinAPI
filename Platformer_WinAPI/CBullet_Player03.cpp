@@ -12,6 +12,9 @@ CBullet_Player03::~CBullet_Player03()
 void CBullet_Player03::Initialize()
 {
 	CBullet::Initialize();
+
+	m_fSpeedX = 10.f;
+	m_fSpeedY = 10.f;
 }
 
 int CBullet_Player03::Update()

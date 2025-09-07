@@ -25,6 +25,7 @@ public:
         swprintf_s(buffer, L"%s %.2f / %.2f", text, value1, value2);
         TextOut(hdc, x, y, buffer, lstrlen(buffer));
     }
+    //CUtility::PrintText(hdc, 좌표 x,y , 텍스트, 출력 값)
 
     static void PrintCmd(const wchar_t* text, int value)
     {
@@ -35,5 +36,11 @@ public:
     {
         wprintf(L"%s %.2f\n", text, value);
     }
+
+    static void PrintCmd(const wchar_t* text, Vector2 value)
+    {
+        wprintf(L"%s %.2f %.2f\n", text, value.x, value.y);
+    }
+    //CUtility::PrintCmd(L"가나다 : ", 출력하고 싶은 값); <<- 이렇게 사용하세요
 };
 

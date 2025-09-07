@@ -50,36 +50,43 @@ int CPlayer::Update()
     // Apply inputs to player's state 
     Update_Components();
 
+    __super::Update_Rect();
+
     if (bLeftMouseClicked)
         Do_Attack();
 
-    __super::Update_Rect();
+    CUtility::PrintCmd(L"플레이어 위치 : ", m_vPosition);
+
     return OBJ_NOEVENT;
 }
 
 void CPlayer::Late_Update()
 {
-    m_mouseDir.x = m_fMousePosX - m_vPosition.x;
-    m_mouseDir.y = m_fMousePosY - m_vPosition.y;
-
-    // TODO : 스크롤 값 추가해야함
-    int iScrollX = (int)CScrollManager::Get_Instance()->Get_ScrollX();
-
-    m_vPosinPosition.x = static_cast<LONG>(m_vPosition.x + (50 * Vector2::Nomalize(m_mouseDir).x));
-    m_vPosinPosition.y = static_cast<LONG>(m_vPosition.y + (50 * Vector2::Nomalize(m_mouseDir).y));
-
     Scroll_Offset();
+
+    int iScrollX = static_cast<int>(CScrollManager::Get_Instance()->Get_ScrollX());
+    int iScrollY = static_cast<int>(CScrollManager::Get_Instance()->Get_ScrollY());
+
+    m_mouseDir.x = m_fMousePosX - m_vPosition.x - iScrollX;
+    m_mouseDir.y = m_fMousePosY - m_vPosition.y - iScrollY;
+
+    Vector2 dir = Vector2::Nomalize(m_mouseDir);
+    m_vPosinPosition.x = m_vPosition.x + (50 * dir.x);
+    m_vPosinPosition.y = m_vPosition.y + (50 * dir.y);
+
+
 }
 
 void CPlayer::Render(HDC hDC)
 {
     int iScrollX = static_cast<int>(CScrollManager::Get_Instance()->Get_ScrollX());
+    int iScrollY = static_cast<int>(CScrollManager::Get_Instance()->Get_ScrollY());
 
-    Rectangle(hDC, m_tRect.left + iScrollX, m_tRect.top, m_tRect.right + iScrollX, m_tRect.bottom);
+    Rectangle(hDC, m_tRect.left + iScrollX, m_tRect.top + iScrollY, m_tRect.right + iScrollX, m_tRect.bottom + iScrollY);
 
     // Posin
-    MoveToEx(hDC, static_cast<int>(m_vPosition.x + iScrollX), static_cast<int>(m_vPosition.y), nullptr);
-    LineTo(hDC, static_cast<int>(m_vPosinPosition.x + iScrollX), static_cast<int>(m_vPosinPosition.y));
+    MoveToEx(hDC, static_cast<int>(m_vPosition.x + iScrollX), static_cast<int>(m_vPosition.y + iScrollY), nullptr);
+    LineTo(hDC, static_cast<int>(m_vPosinPosition.x + iScrollX), static_cast<int>(m_vPosinPosition.y + iScrollY));
 }
 
 void CPlayer::Release()
@@ -131,7 +138,7 @@ void CPlayer::Update_Components()
 
 void CPlayer::Do_Attack()
 {
-    // TODO : 각자 플레이어에서 세팅하기
+    // TODO : 각자 플레이어에서 세팅하기, Player03 보고 스크롤 세팅까지 하세요
     //Vector2 dir = Vector2::Nomalize(m_mouseDir);
     //Vector2 barrel = m_vPosition + dir * 50.f;
     //
@@ -191,24 +198,40 @@ void CPlayer::Vertical_Move()
 
 void CPlayer::Scroll_Offset()
 {
-    int iOffsetminX = 100;
-    int iOffsetmaxX = 700;
+    int minX = 250;
+    int maxX = WINCX - 300;
 
-    auto* scroll_Manager = CScrollManager::Get_Instance();
-    float scroll_X = scroll_Manager->Get_ScrollX();
+    int minY = 300;
+    int maxY = WINCY - 150;
 
-    float playerScreenX = m_vPosition.x + scroll_X;
+    float iScrollX = CScrollManager::Get_Instance()->Get_ScrollX();
+    float iScrollY = CScrollManager::Get_Instance()->Get_ScrollY();
 
-    if (playerScreenX < iOffsetminX) 
+    float playerScreenX = m_vPosition.x + iScrollX;
+    float playerScreenY = m_vPosition.y + iScrollY;
+
+    // X축 스크롤
+    if (playerScreenX < minX) 
     {
-        float delta = (iOffsetminX - playerScreenX);
-        scroll_Manager->Set_ScrollX(delta);   
+        float offset = (minX - playerScreenX);
+        CScrollManager::Get_Instance()->Set_ScrollX(offset);
+    }
+    else if (playerScreenX > maxX) 
+    {
+        float offset = (playerScreenX - maxX);
+        CScrollManager::Get_Instance()->Set_ScrollX(-offset);
     }
 
-    else if (playerScreenX > iOffsetmaxX) 
+    // Y축 스크롤
+    if (playerScreenY < minY)
     {
-        float delta = (playerScreenX - iOffsetmaxX);
-        scroll_Manager->Set_ScrollX(-delta);  
+        float offset = (minY - playerScreenY);
+        CScrollManager::Get_Instance()->Set_ScrollY(offset);
+    }
+    else if (playerScreenY > maxY)
+    {
+        float offset = (playerScreenY - maxY);
+        CScrollManager::Get_Instance()->Set_ScrollY(-offset);
     }
 }
 
