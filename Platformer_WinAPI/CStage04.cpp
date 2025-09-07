@@ -1,6 +1,7 @@
 ﻿#include "pch.h"
 #include "CStage04.h"
 #include "CAbstractFactory.h"
+#include "CBoss03.h"
 #include "CObjectManager.h"
 #include "CPlayer04.h"
 
@@ -29,6 +30,7 @@ void CStage04::Initialize()
 #pragma endregion
 
 #pragma region 은수의 노력을 흡수
+	
 	float   Ystart    = WINCY - 100.f;
 	Vector2 tPoint[2] =
 		{ { 0.f, (Ystart) }, { 300.f, Ystart } };
@@ -41,11 +43,16 @@ void CStage04::Initialize()
 	Vector2 tPoint3[2] =
 		{ { 450.f, Ystart - 200.f }, { 600.f, Ystart - 200.f } };
 	CLineManager::Get_Instance()->Create_Line(tPoint3, 2);
+	
 #pragma endregion
 
 	CObjectManager::Get_Instance()
 		->Add_Object(PLAYER, CAbstractFactory<CPlayer04>::Create(PLAYER));
-	//todo 몬스터 만든 후 Create하기
+
+	CObjectManager::Get_Instance()
+		->Add_Object(MONSTER, CAbstractFactory<CBoss03>::Create(MONSTER, 1000.f, 200.f));
+
+	//todo 플랫폼을 만들어보자
 }
 
 void CStage04::Update()

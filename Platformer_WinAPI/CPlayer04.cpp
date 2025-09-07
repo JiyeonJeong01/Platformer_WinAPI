@@ -4,9 +4,8 @@
 
 CPlayer04::CPlayer04()
 	: m_iPlayerJumpCount(0), m_iPlayerMaxJump(0),
-	m_fGroundY(0.f), m_bPlayerLanded(false)
-{
-}
+	  m_fGroundY(0.f), m_bPlayerLanded(false)
+{}
 
 CPlayer04::~CPlayer04()
 {
@@ -15,28 +14,28 @@ CPlayer04::~CPlayer04()
 
 void CPlayer04::Initialize()
 {
-	m_vPosition = { 200, 200 };
+	m_vPosition  = { 200, 200 };
 	m_vDirection = { 0.f, 0.f };
-	m_vSize = { 40.f, 40.f };
+	m_vSize      = { 40.f, 40.f };
 
 	m_fSpeedX = 500.f;
 	m_fSpeedY = 0.f;
 
-	m_fMaxHP = 100.f;
-	m_fHP = m_fMaxHP;
+	m_fMaxHP  = 100.f;
+	m_fHP     = m_fMaxHP;
 	m_fDamage = 1.f;
 }
 
 int CPlayer04::Update()
 {
 	if (m_vPosition.y + (m_vSize.y / 2.f) >= WINCY + 100) // 낭떠러지
-		//todo && 플레이어 사망 조건
+	//todo && 플레이어 사망 조건
 	{
 		//todo 플레이어가 스테이지 재시작하도록
 	}
 
 	// ↓ 콘솔로 원하는 값 보는 디버깅용 코드
-	_tprintf(_T(" Player04_SpeedY : %f \n"), m_fSpeedY);
+	_tprintf(_T(" Player04_SpeedY : %d \n"), m_bPlayerLanded);
 
 	// 낙하속도 상한 설정
 	if (m_fSpeedY > 3000.f)
@@ -76,12 +75,46 @@ void CPlayer04::Render(HDC hDC)
 }
 
 void CPlayer04::Release()
-{
-}
+{}
 
 void CPlayer04::On_Collision(CObject* pObj)
 {
-	//todo 충돌판정 구현하기
+	switch (pObj->Get_ObjectID())
+	{
+	case MONSTER:
+	{
+		//todo 아파...
+	}
+	break;
+	case MON_BULLET:
+	{
+		//todo 아파...
+	}
+	break;
+	case MOUSE:
+		//todo 마우스 오브젝트가 없는데요
+		break;
+	case SHIELD:
+		//todo 쉴드도 없구요
+		break;
+	case ITEM:
+	{
+		//todo 아이템도 다양해지면...
+		/*
+		 * 아이템별로 세부 태그에 따라 작업이 나뉘어야 정석임
+		 * 그 작업은 새로운 아이템 분류용 enum을 만들어서,
+		 * 이를 아이템용 새로운 멤버변수에 넣어줘야 할듯
+		 */
+	}
+	break;
+	case PLATFORM:
+	{
+		//todo 바닥 착지
+	}
+	break;
+	default:
+		break;
+	}
 }
 
 void CPlayer04::Do_Attack()
@@ -108,10 +141,7 @@ void CPlayer04::Update_Components()
 
 	Horizontal_Move();
 
-	if (!m_bPlayerLanded)
-	{
-		Vertical_Move();
-	}
+	Vertical_Move();
 }
 
 void CPlayer04::Landed()
@@ -119,10 +149,10 @@ void CPlayer04::Landed()
 	if (m_fSpeedY >= 0.f
 		&& m_vPosition.y + (m_vSize.y / 2.f) >= m_fGroundY)
 	{
-		m_vPosition.y = m_fGroundY - (m_vSize.y / 2.f);
-		m_fSpeedY = 0.f;
+		m_vPosition.y      = m_fGroundY - (m_vSize.y / 2.f);
+		m_fSpeedY          = 0.f;
 		m_iPlayerJumpCount = 0;
-		m_bPlayerLanded = true;
+		m_bPlayerLanded    = true;
 	}
 }
 

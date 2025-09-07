@@ -46,7 +46,7 @@ public: // Object's stats getter-setter
 	void			Set_Damage(float _damage) { m_fDamage = _damage; }
 
 protected:
-	virtual float	DeltaTime();
+	float	DeltaTime();
 
 protected:
 	OBJID			m_objID;		// 객체를 구분하는 enum

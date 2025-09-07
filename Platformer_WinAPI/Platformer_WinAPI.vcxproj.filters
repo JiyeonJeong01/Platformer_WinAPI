@@ -210,9 +210,6 @@
     <ClInclude Include="CPlayer04.h">
       <Filter>01. Object\01. Player</Filter>
     </ClInclude>
-    <ClInclude Include="CUIManager.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
     <ClInclude Include="CUtility.h">
       <Filter>04. Utils\02. Utility</Filter>
     </ClInclude>
@@ -220,7 +217,10 @@
       <Filter>02. Manager\05. LineManager</Filter>
     </ClInclude>
     <ClInclude Include="CPlatform.h">
-      <Filter>헤더 파일</Filter>
+      <Filter>01. Object\06. Platform</Filter>
+    </ClInclude>
+    <ClInclude Include="CUIManager.h">
+      <Filter>02. Manager\03. UIManager</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -299,14 +299,14 @@
     <ClCompile Include="CPlayer04.cpp">
       <Filter>01. Object\01. Player</Filter>
     </ClCompile>
-    <ClCompile Include="CUIManager.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
     <ClCompile Include="CLine.cpp">
       <Filter>02. Manager\05. LineManager</Filter>
     </ClCompile>
     <ClCompile Include="CPlatform.cpp">
-      <Filter>소스 파일</Filter>
+      <Filter>01. Object\06. Platform</Filter>
+    </ClCompile>
+    <ClCompile Include="CUIManager.cpp">
+      <Filter>02. Manager\03. UIManager</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
