@@ -49,7 +49,7 @@ void CMainGame::Initialize()
 
 	// Start Stage
 #pragma region Stage4 test
-	CStageManager::Get_Instance()->ChangeStage(STAGE4);
+	CStageManager::Get_Instance()->ChangeStage(STAGE1);
 #pragma endregion
 }
 

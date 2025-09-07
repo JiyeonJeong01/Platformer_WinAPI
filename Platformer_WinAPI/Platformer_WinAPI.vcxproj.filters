@@ -198,9 +198,6 @@
     <ClInclude Include="CPlayer03.h">
       <Filter>01. Object\01. Player</Filter>
     </ClInclude>
-    <ClInclude Include="CBoss03.h">
-      <Filter>01. Object\02. Monster\01. Boss01</Filter>
-    </ClInclude>
     <ClInclude Include="CMob01.h">
       <Filter>01. Object\02. Monster\05. Mob</Filter>
     </ClInclude>
@@ -215,6 +212,21 @@
     </ClInclude>
     <ClInclude Include="CLine.h">
       <Filter>02. Manager\05. LineManager</Filter>
+    </ClInclude>
+    <ClInclude Include="CBoss01.h">
+      <Filter>01. Object\02. Monster\01. Boss01</Filter>
+    </ClInclude>
+    <ClInclude Include="CBoss03.h">
+      <Filter>01. Object\02. Monster\03. Boss03</Filter>
+    </ClInclude>
+    <ClInclude Include="CPlayer01.h">
+      <Filter>01. Object\01. Player</Filter>
+    </ClInclude>
+    <ClInclude Include="CPowerItem.h">
+      <Filter>01. Object\05. Item</Filter>
+    </ClInclude>
+    <ClInclude Include="CMob03.h">
+      <Filter>01. Object\02. Monster\05. Mob</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -284,9 +296,6 @@
     <ClCompile Include="CPlayer03.cpp">
       <Filter>01. Object\01. Player</Filter>
     </ClCompile>
-    <ClCompile Include="CBoss03.cpp">
-      <Filter>01. Object\02. Monster\01. Boss01</Filter>
-    </ClCompile>
     <ClCompile Include="CMob01.cpp">
       <Filter>01. Object\02. Monster\05. Mob</Filter>
     </ClCompile>
@@ -298,6 +307,21 @@
     </ClCompile>
     <ClCompile Include="CLine.cpp">
       <Filter>02. Manager\05. LineManager</Filter>
+    </ClCompile>
+    <ClCompile Include="CBoss01.cpp">
+      <Filter>01. Object\02. Monster\01. Boss01</Filter>
+    </ClCompile>
+    <ClCompile Include="CBoss03.cpp">
+      <Filter>01. Object\02. Monster\03. Boss03</Filter>
+    </ClCompile>
+    <ClCompile Include="CPlayer01.cpp">
+      <Filter>01. Object\01. Player</Filter>
+    </ClCompile>
+    <ClCompile Include="CPowerItem.cpp">
+      <Filter>01. Object\05. Item</Filter>
+    </ClCompile>
+    <ClCompile Include="CMob03.cpp">
+      <Filter>01. Object\02. Monster\05. Mob</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

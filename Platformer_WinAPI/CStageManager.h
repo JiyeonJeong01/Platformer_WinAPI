@@ -11,7 +11,7 @@ private:
 
 public:
 	STAGEID	 Get_CurrentStageID() const { return m_currentStageID; }
-	CStage*  Get_CurrentStage()   const { return m_currentStage; }
+	CStage* Get_CurrentStage()   const { return m_currentStage; }
 	int		 Get_StageNumber()    const { return m_StageNumber; }
 
 public:
@@ -23,6 +23,9 @@ public:
 
 public:
 	void ChangeStage(STAGEID _id);
+	void On_CurrentBossDead(CObject* pObj);
+	void On_MobDead(CObject* pObj);
+	void On_PlayerDead(STAGEID sID, CObject* pObj);
 
 
 private:
@@ -30,6 +33,12 @@ private:
 	STAGEID m_currentStageID;
 
 	int		m_StageNumber = 0;
+	bool		bGameClear;
+
+	float		fItemDropRate;
+
+	float		fCurrentDamage;
+	bool		bRestartStage;
 
 #pragma region Singleton
 public:

@@ -25,6 +25,8 @@ void CPlayer02::Initialize()
 	m_fSpeedX = 8.f;
 	m_fSpeedY = 15.f;
 	m_vPosinPosition = { 1,1 };
+
+	m_fDamage = 12.f;
 }
 
 int CPlayer02::Update()
