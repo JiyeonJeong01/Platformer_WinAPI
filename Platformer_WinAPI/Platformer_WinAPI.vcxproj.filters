@@ -109,9 +109,6 @@
     <Filter Include="02. Manager\05. LineManager">
       <UniqueIdentifier>{39e72d16-dc61-468c-bb53-d0fe4060a2d8}</UniqueIdentifier>
     </Filter>
-    <Filter Include="03. Design\AbstractFactory\02. CollisionManager">
-      <UniqueIdentifier>{331ece6f-5c62-41a9-8c77-2845b63c1158}</UniqueIdentifier>
-    </Filter>
     <Filter Include="04. Utils\02. Utility">
       <UniqueIdentifier>{676f91d3-10dd-4cad-8499-14bfce7b5f67}</UniqueIdentifier>
     </Filter>

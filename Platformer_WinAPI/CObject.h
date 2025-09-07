@@ -19,8 +19,8 @@ public:
 	const Vector2& Get_Position() const { return m_vPosition; }
 	const Vector2& Get_Direction() const { return m_vDirection; }
 	const Vector2& Get_Size() const { return m_vSize; }
-
-	const RECT* Get_Rect() { return &m_tRect; }
+	const RECT*    Get_Rect() { return &m_tRect; }
+	OBJID          Get_ObjectID() { return m_objID; }
 
 	void Set_PosX(float _fX) { 
 		m_vPosition.x = _fX; 
@@ -32,13 +32,7 @@ public:
 	void Set_DirY(float _fY) { m_vDirection.y = _fY; }
 	void Set_SizeX(float _fX) { m_vSize.x = _fX; }
 	void Set_SizeY(float _fY) { m_vSize.y = _fY; }
-
-	OBJID Get_ObjectID() {
-		return m_objID;
-	}
-	void Set_ObjectID(OBJID _id) {
-		m_objID = _id;
-	}
+	void Set_ObjectID(OBJID _eObjID) { m_objID = _eObjID; }
 
 	/**
 	* \brief On_Collision : Automatically invoked by the CollisionManager on collision
@@ -61,7 +55,7 @@ protected:
 	// Core components
 	Vector2 m_vPosition;		// 객체의 위치, 중점
 	Vector2 m_vDirection;		// 객체의 방향
-	Vector2 m_vSize;				// 객체의 크기
+	Vector2 m_vSize;			// 객체의 크기
 
 	// Renderer
 	RECT		m_tRect;			// 객체의 렌더 범위
