@@ -54,6 +54,7 @@ void CObjectManager::Late_Update()
 	 CCollisionManager::Collision_Rect(m_ObjList[PLAYER], m_ObjList[ITEM]);
 	 CCollisionManager::Collision_Circle(m_ObjList[PL_BULLET], m_ObjList[MONSTER]);
 	 CCollisionManager::Collision_Circle(m_ObjList[MON_BULLET], m_ObjList[PLAYER]);
+	 CCollisionManager::Collision_Rect(m_ObjList[PLAYER], m_ObjList[PLATFORM]);
 }
 
 void CObjectManager::Render(HDC hDC)

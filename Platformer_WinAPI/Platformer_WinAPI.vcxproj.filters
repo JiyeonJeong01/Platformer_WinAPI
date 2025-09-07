@@ -201,9 +201,6 @@
     <ClInclude Include="CPlayer03.h">
       <Filter>01. Object\01. Player</Filter>
     </ClInclude>
-    <ClInclude Include="CBoss03.h">
-      <Filter>01. Object\02. Monster\01. Boss01</Filter>
-    </ClInclude>
     <ClInclude Include="CMob01.h">
       <Filter>01. Object\02. Monster\05. Mob</Filter>
     </ClInclude>
@@ -221,6 +218,9 @@
     </ClInclude>
     <ClInclude Include="CUIManager.h">
       <Filter>02. Manager\03. UIManager</Filter>
+    </ClInclude>
+    <ClInclude Include="CBoss03.h">
+      <Filter>01. Object\02. Monster\03. Boss03</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -290,9 +290,6 @@
     <ClCompile Include="CPlayer03.cpp">
       <Filter>01. Object\01. Player</Filter>
     </ClCompile>
-    <ClCompile Include="CBoss03.cpp">
-      <Filter>01. Object\02. Monster\01. Boss01</Filter>
-    </ClCompile>
     <ClCompile Include="CMob01.cpp">
       <Filter>01. Object\02. Monster\05. Mob</Filter>
     </ClCompile>
@@ -307,6 +304,9 @@
     </ClCompile>
     <ClCompile Include="CUIManager.cpp">
       <Filter>02. Manager\03. UIManager</Filter>
+    </ClCompile>
+    <ClCompile Include="CBoss03.cpp">
+      <Filter>01. Object\02. Monster\03. Boss03</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -20,6 +20,7 @@ public:
 	bool Get_PlayerLanded() { return m_bPlayerLanded; }
 
 	void Set_PlayerMaxJump(int _iMaxJump) { m_iPlayerMaxJump = _iMaxJump; }
+	void Set_AttackCooldown(float _fAtkCooldown) { m_fAtkCooldown = _fAtkCooldown; }
 
 public:
 	void On_Collision(CObject* pObj) override;
@@ -29,16 +30,19 @@ public:
 private:
 	void Update_Components() override;
 
-	void Landed();
+	void Landed_Platform(CObject* pObj);
+	void Landed_Line();
 	void Jump();
 	void Horizontal_Move();
 	void Vertical_Move();
 
 private:
-	int m_iPlayerJumpCount;			// 플레이어가 점프 입력 카운트. 착지하면 0이 됨
-	int m_iPlayerMaxJump;			// 한 번 체공 중 점프 몇 번 가능하게 만들건지
-
+	// 점프 및 착지 관련 변수
+	int   m_iPlayerJumpCount;		// 플레이어가 점프 입력 카운트. 착지하면 0이 됨
+	int   m_iPlayerMaxJump;			// 한 번 체공 중 점프 몇 번 가능하게 만들건지
 	float m_fGroundY;				// Collision_Line이 전달해 주는, 착지해야 할 y좌표 저장
+	bool  m_bPlayerLanded;			// 플레이어가 착지 중일 때 true
 
-	bool m_bPlayerLanded;		// 플레이어가 착지 중일 때 true
+	float m_fAtkTimer;				// m_fDeltaTime 을 += 로 더해주면 타이머로 사용 가능
+	float m_fAtkCooldown;			// 공격간 딜레이 설정
 };

@@ -1,10 +1,14 @@
 ﻿#include "pch.h"
 #include "CPlayer04.h"
+
+#include "CAbstractFactory.h"
+#include "CBullet.h"
 #include "CLineManager.h"
 
 CPlayer04::CPlayer04()
 	: m_iPlayerJumpCount(0), m_iPlayerMaxJump(0),
-	  m_fGroundY(0.f), m_bPlayerLanded(false)
+	  m_fGroundY(0.f), m_bPlayerLanded(false),
+	  m_fAtkTimer(0.f), m_fAtkCooldown(0.f)
 {}
 
 CPlayer04::~CPlayer04()
@@ -24,6 +28,10 @@ void CPlayer04::Initialize()
 	m_fMaxHP  = 100.f;
 	m_fHP     = m_fMaxHP;
 	m_fDamage = 1.f;
+
+	m_iPlayerMaxJump = 2;
+
+	m_fAtkCooldown = 0.3f;
 }
 
 int CPlayer04::Update()
@@ -35,7 +43,7 @@ int CPlayer04::Update()
 	}
 
 	// ↓ 콘솔로 원하는 값 보는 디버깅용 코드
-	_tprintf(_T(" Player04_SpeedY : %d \n"), m_bPlayerLanded);
+	_tprintf(_T(" m_bPlayerLanded : %d \n"), m_bPlayerLanded);
 
 	// 낙하속도 상한 설정
 	if (m_fSpeedY > 3000.f)
@@ -43,6 +51,9 @@ int CPlayer04::Update()
 
 	// DeltaTime 측정
 	m_fDeltaTime = CObject::DeltaTime();
+
+	// 타이머 시작
+	m_fAtkTimer += m_fDeltaTime;
 
 	// 플레이어 입력 받아오기
 	CPlayer::Handle_KeyInput();
@@ -55,7 +66,7 @@ int CPlayer04::Update()
 
 	// 플레이어 공격
 	if (bLeftMouseClicked)
-		CPlayer::Do_Attack();
+		CPlayer04::Do_Attack();
 
 	return OBJ_NOEVENT;
 }
@@ -92,10 +103,10 @@ void CPlayer04::On_Collision(CObject* pObj)
 	}
 	break;
 	case MOUSE:
-		//todo 마우스 오브젝트가 없는데요
+		// 마우스 오브젝트가 없는데요
 		break;
 	case SHIELD:
-		//todo 쉴드도 없구요
+		// 쉴드도 없구요
 		break;
 	case ITEM:
 	{
@@ -109,7 +120,11 @@ void CPlayer04::On_Collision(CObject* pObj)
 	break;
 	case PLATFORM:
 	{
-		//todo 바닥 착지
+		Landed_Platform(pObj);
+		//todo 천장에 닿을 때, 벽에 닿을 때
+
+		// 충돌판정용 RECT 갱신
+		CObject::Update_Rect();
 	}
 	break;
 	default:
@@ -119,7 +134,16 @@ void CPlayer04::On_Collision(CObject* pObj)
 
 void CPlayer04::Do_Attack()
 {
-	CPlayer::Do_Attack();
+	if (m_fAtkTimer > m_fAtkCooldown)
+	{
+		m_fAtkTimer = 0;
+
+		Vector2 dir    = Vector2::Nomalize(m_mouseDir);
+		Vector2 barrel = m_vPosition + dir * 50.f;
+
+		CObjectManager::Get_Instance()->
+			Add_Object(PL_BULLET, CAbstractFactory<CBullet>::Create(PL_BULLET, barrel, dir));
+	}
 }
 
 void CPlayer04::Take_Damage(float _fDamage)
@@ -135,16 +159,26 @@ void CPlayer04::Update_Components()
 	CLineManager::Get_Instance()
 		->Collision_Line(m_vPosition, &m_fGroundY);
 
-	Landed();
-
 	Jump();
 
 	Horizontal_Move();
 
+	//if (!m_bPlayerLanded)		// -> 라인에 착지하려면 이 조건 불가
 	Vertical_Move();
+
+	Landed_Line();
 }
 
-void CPlayer04::Landed()
+void CPlayer04::Landed_Platform(CObject* pObj)
+{
+	m_fSpeedY          = 0.f;
+	m_iPlayerJumpCount = 0;
+	m_vPosition.y      = pObj->Get_Position().y - (pObj->Get_Size().y / 2.f) - (m_vSize.y / 2.f);
+
+	m_bPlayerLanded = true;
+}
+
+void CPlayer04::Landed_Line()
 {
 	if (m_fSpeedY >= 0.f
 		&& m_vPosition.y + (m_vSize.y / 2.f) >= m_fGroundY)
@@ -152,9 +186,24 @@ void CPlayer04::Landed()
 		m_vPosition.y      = m_fGroundY - (m_vSize.y / 2.f);
 		m_fSpeedY          = 0.f;
 		m_iPlayerJumpCount = 0;
-		m_bPlayerLanded    = true;
+
+		m_bPlayerLanded = true;
 	}
 }
+
+#pragma region Legacy : 기존 Landed()
+//void CPlayer04::Landed_Platform()
+//{
+//	//if (m_fSpeedY >= 0.f
+//	//	&& m_vPosition.y + (m_vSize.y / 2.f) >= m_fGroundY)
+//	//{
+//		//m_vPosition.y      = m_fGroundY - (m_vSize.y / 2.f);
+//		m_fSpeedY          = 0.f;
+//		m_iPlayerJumpCount = 0;
+//		m_bPlayerLanded    = true;
+//	//}
+//}
+#pragma endregion
 
 void CPlayer04::Jump()
 {

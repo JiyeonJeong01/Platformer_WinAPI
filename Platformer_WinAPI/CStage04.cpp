@@ -3,6 +3,7 @@
 #include "CAbstractFactory.h"
 #include "CBoss03.h"
 #include "CObjectManager.h"
+#include "CPlatform.h"
 #include "CPlayer04.h"
 
 CStage04::CStage04()
@@ -15,44 +16,25 @@ CStage04::~CStage04()
 
 void CStage04::Initialize()
 {
-#pragma region Lagacy : 직접 라인 그리던 시절
-	/*
-	LINEPOINT tPoint[2] =
-	{
-		{ 50.f, WINCY - 100.f },
-		{ WINCX - 50.f, WINCY - 100.f }
-	};
-
-	m_LineList.push_back(new CLine(tPoint[0], tPoint[1]));
-
-	CLineManager::Get_Instance()->Initialize();
-	 */
-#pragma endregion
-
-#pragma region 은수의 노력을 흡수
-	
-	float   Ystart    = WINCY - 100.f;
-	Vector2 tPoint[2] =
-		{ { 0.f, (Ystart) }, { 300.f, Ystart } };
-	CLineManager::Get_Instance()->Create_Line(tPoint, 2);
-
-	Vector2 tPoint2[4] =
-		{ { 450.f, Ystart }, { 500.f, Ystart }, { 700.f, Ystart - 200.f }, { 1000.f, Ystart - 200.f } };
-	CLineManager::Get_Instance()->Create_Line(tPoint2, 4);
-
-	Vector2 tPoint3[2] =
-		{ { 450.f, Ystart - 200.f }, { 600.f, Ystart - 200.f } };
-	CLineManager::Get_Instance()->Create_Line(tPoint3, 2);
-	
-#pragma endregion
-
 	CObjectManager::Get_Instance()
 		->Add_Object(PLAYER, CAbstractFactory<CPlayer04>::Create(PLAYER));
 
 	CObjectManager::Get_Instance()
 		->Add_Object(MONSTER, CAbstractFactory<CBoss03>::Create(MONSTER, 1000.f, 200.f));
 
-	//todo 플랫폼을 만들어보자
+	// 첫 번째 바닥 : 사선
+	Vector2 tPoint[2] =
+		{ { 0.f, WINCY - 200.f }, { 300.f, WINCY - 100.f } };
+	CLineManager::Get_Instance()->Create_Line(tPoint, 2);
+
+	// 두 번째 바닥 : 플랫폼
+	CObjectManager::Get_Instance()
+		->Add_Object(PLATFORM, CAbstractFactory<CPlatform>::Create(PLATFORM, WINCX >> 1, WINCY - 95.f, 680.f, 10.f));
+
+	// 세 번째 바닥 : 사선
+	Vector2 tPoint2[2] =
+		{ { WINCX - 300.f, WINCY - 100.f }, { static_cast<float>(WINCX), WINCY - 200.f } };
+	CLineManager::Get_Instance()->Create_Line(tPoint2, 2);
 }
 
 void CStage04::Update()
@@ -63,13 +45,6 @@ void CStage04::LateUpdate()
 
 void CStage04::Render(HDC hDC)
 {
-#pragma region 직접 라인 그리던 시절
-	/*
-	for (auto& pLine : m_LineList)
-		pLine->Render(hDC);
-	*/
-#pragma endregion
-
 	CLineManager::Get_Instance()->Render(hDC);
 }
 
