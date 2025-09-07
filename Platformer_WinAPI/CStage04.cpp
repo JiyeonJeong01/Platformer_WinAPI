@@ -33,12 +33,13 @@ void CStage04::Initialize()
 	Vector2 tPoint[2] =
 		{ { 0.f, (Ystart) }, { 300.f, Ystart } };
 	CLineManager::Get_Instance()->Create_Line(tPoint, 2);
+
 	Vector2 tPoint2[4] =
-		{ { 400.f, Ystart }, { 500.f, Ystart }, { 700.f, Ystart - 200.f }, { 1000.f, Ystart - 200.f } };
+		{ { 450.f, Ystart }, { 500.f, Ystart }, { 700.f, Ystart - 200.f }, { 1000.f, Ystart - 200.f } };
 	CLineManager::Get_Instance()->Create_Line(tPoint2, 4);
 
 	Vector2 tPoint3[2] =
-		{ { 400.f, Ystart - 200.f }, { 600.f, Ystart - 200.f } };
+		{ { 450.f, Ystart - 200.f }, { 600.f, Ystart - 200.f } };
 	CLineManager::Get_Instance()->Create_Line(tPoint3, 2);
 #pragma endregion
 
