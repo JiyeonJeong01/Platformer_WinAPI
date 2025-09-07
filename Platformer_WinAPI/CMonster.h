@@ -25,8 +25,6 @@ public :
 	CObject* Get_Target() { return pTarget; }
 
 protected :
-	CObject* pTarget; 
-	
-
+	CObject* pTarget;
 };
 

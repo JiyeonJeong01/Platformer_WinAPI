@@ -1,4 +1,4 @@
-#include "pch.h"
+ï»¿#include "pch.h"
 #include "CBoss03.h"
 
 #include "CAbstractFactory.h"
@@ -27,7 +27,7 @@ void CBoss03::Initialize()
 	m_fSpeedX = 10.f;
 	m_fSpeedY = 7.f;
 
-	// TODO : º¸½º Å¸ÀÔÀ» ¸ó½ºÅÍ¿Í ºĞ¸®ÇÒÁö
+	// TODO : ë³´ìŠ¤ íƒ€ì…ì„ ëª¬ìŠ¤í„°ì™€ ë¶„ë¦¬í• ì§€
 	//m_objID = BOSS ?
 	m_objID = MONSTER;
 
@@ -45,7 +45,7 @@ int CBoss03::Update()
 
 	__super::Update_Rect();
 
-	// º¸½º °ø°İ ±¸Çö
+	// ë³´ìŠ¤ ê³µê²© êµ¬í˜„
 	ULONGLONG current = GetTickCount64();
 
 	if (current - m_Attack_Interval >= 1000)
@@ -71,13 +71,13 @@ void CBoss03::Render(HDC hDC)
 {
 	CMonster::Render(hDC);
 
-	// TODO : ÀÌ¹ÌÁö·Î º¯°æ
+	// TODO : ì´ë¯¸ì§€ë¡œ ë³€ê²½
 	Rectangle(hDC, m_tRect.left, m_tRect.top, m_tRect.right, m_tRect.bottom);
 
 	CUIManager::Get_Instance()->Render_BossHP(hDC, this);
 
 	int attackType = static_cast<int>(m_pattern);
-	CUtility::PrintText(hDC, 50, 240, L"°ø°İ Å¸ÀÔ : ", attackType);
+	CUtility::PrintText(hDC, 50, 240, L"ê³µê²© íƒ€ì… : ", attackType);
 }
 
 void CBoss03::Release()
@@ -93,7 +93,7 @@ void CBoss03::On_Collision(CObject* pObj)
 	if (pObj == nullptr)
 		return;
 
-	// PlayerÀÇ µ¥¹ÌÁö°¡ ¾Æ´Ï¶ó, BulletÀÇ µ¥¹ÌÁö·Î °è»ê Áß / PlayerÀÇ Damage°¡ ÇÊ¿äÇÑ°¡?
+	// Playerì˜ ë°ë¯¸ì§€ê°€ ì•„ë‹ˆë¼, Bulletì˜ ë°ë¯¸ì§€ë¡œ ê³„ì‚° ì¤‘ / Playerì˜ Damageê°€ í•„ìš”í•œê°€?
 	Take_Damage(pObj->Get_Damage());
 }
 
@@ -101,7 +101,7 @@ void CBoss03::Do_Attack()
 {
 	CMonster::Do_Attack();
 
-	// TODO : °ø°İ ÆĞÅÏ ¿©·¯°³¸é ·£´ıÀ¸·Î
+	// TODO : ê³µê²© íŒ¨í„´ ì—¬ëŸ¬ê°œë©´ ëœë¤ìœ¼ë¡œ
 	//int random = 1 + rand() % static_cast<int>(BOSS_PATTERN::None);
 	//m_pattern = static_cast<BOSS_PATTERN>(random);
 
@@ -114,9 +114,9 @@ void CBoss03::Do_Attack()
 	dir = Vector2::Nomalize(dir);
 
 	//CObjectManager::Get_Instance()->Add_Object(MON_BULLET, CAbstractFactory<CBullet>::Create(Vector2(m_vPosition.x - 200, m_vPosition.y), dir));
-	CObjectManager::Get_Instance()->Add_Object(MON_BULLET, CAbstractFactory<CBullet>::Create(m_vPosition, dir));
+	CObjectManager::Get_Instance()->Add_Object(MON_BULLET, CAbstractFactory<CBullet>::Create(MON_BULLET, m_vPosition, dir));
 
-	// ´ë±â »óÅÂ·Î
+	// ëŒ€ê¸° ìƒíƒœë¡œ
 	if (m_pattern == BOSS_PATTERN::Attack)
 		m_pattern = BOSS_PATTERN::Idle;
 }

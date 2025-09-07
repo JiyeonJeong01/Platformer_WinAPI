@@ -32,8 +32,8 @@ void CStage02::Initialize()
 	CLineManager::Get_Instance()->Create_Line(tPoint3, 2);
 
 
-	CObjectManager::Get_Instance()->Add_Object(PLAYER, CAbstractFactory<CPlayer02>::Create());
-	CObjectManager::Get_Instance()->Add_Object(MONSTER, CAbstractFactory<CMob01>::Create());
+	CObjectManager::Get_Instance()->Add_Object(PLAYER, CAbstractFactory<CPlayer02>::Create(PLAYER));
+	CObjectManager::Get_Instance()->Add_Object(MONSTER, CAbstractFactory<CMob01>::Create(MONSTER,  WINCX * 0.5f, WINCY * 0.7f ));
 }
 
 void CStage02::Update()
@@ -44,11 +44,9 @@ void CStage02::LateUpdate()
 {
 }
 
-void CStage02::Render(HDC hdc)
+void CStage02::Render(HDC hDC)
 {
-	CLineManager::Get_Instance()->Render(hdc);
-	//CObjectManager::Get_Instance()->
-	//CUIManager::Get_Instance()->Render_PlayerHP(hdc, CObjectManager::Get_Instance()->Get_Player());
+	CLineManager::Get_Instance()->Render(hDC);
 
 }
 
