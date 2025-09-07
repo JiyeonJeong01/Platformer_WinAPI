@@ -103,8 +103,7 @@ void CBoss01::Do_Attack()
 
 	Vector2 bulletDir = Vector2::Nomalize({ -fDistX, -fDistY });
 
-	CObject* pObj = CAbstractFactory<CBullet>::Create(m_vPosition, bulletDir);
-	pObj->Set_ObjectID(MON_BULLET);
+	CObject* pObj = CAbstractFactory<CBullet>::Create(MON_BULLET, m_vPosition, bulletDir);
 	CObjectManager::Get_Instance()->Add_Object(MON_BULLET, pObj);
 }
 

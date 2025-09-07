@@ -22,6 +22,7 @@ int CPlayer01::Update()
 void CPlayer01::Render(HDC hDC)
 {
 	CPlayer::Render(hDC);
+	_tprintf(_T("HP : %f\n"), m_fHP);
 	CUIManager::Get_Instance()->Render_PlayerHP(hDC, this);
 }
 

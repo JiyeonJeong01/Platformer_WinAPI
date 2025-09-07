@@ -25,10 +25,10 @@ void CStage01::Initialize()
 
 	vPlayerStartPosition = { 100.f, 400.f };
 
-	pPlayer = static_cast<CPlayer*>(CAbstractFactory<CPlayer01>::Create());
+	pPlayer = static_cast<CPlayer*>(CAbstractFactory<CPlayer01>::Create(PLAYER));
 	CObjectManager::Get_Instance()->Add_Object(PLAYER, pPlayer);
 	
-	pBoss = static_cast<CMonster*>(CAbstractFactory<CBoss01>::Create());
+	pBoss = static_cast<CMonster*>(CAbstractFactory<CBoss01>::Create(MONSTER));
 	pBoss->Set_Target(pPlayer);
 	CObjectManager::Get_Instance()->Add_Object(MONSTER, pBoss);
 
