@@ -55,8 +55,6 @@ int CPlayer::Update()
     if (bLeftMouseClicked)
         Do_Attack();
 
-    CUtility::PrintCmd(L"플레이어 위치 : ", m_vPosition);
-
     return OBJ_NOEVENT;
 }
 
