@@ -5,6 +5,7 @@
 #include "CBullet.h"
 #include "CInputManager.h"
 #include "CObjectManager.h"
+#include "CScrollManager.h"
 
 CPlayer::CPlayer()
 	: bLeftPressed(false), bRightPressed(false), bJumpPressed(false), bLeftMouseClicked(false)
@@ -61,15 +62,19 @@ void CPlayer::Late_Update()
 
     m_vPosinPosition.x = static_cast<LONG>(m_vPosition.x + (50 * Vector2::Nomalize(m_mouseDir).x));
     m_vPosinPosition.y = static_cast<LONG>(m_vPosition.y + (50 * Vector2::Nomalize(m_mouseDir).y));
+
+    Scroll_Offset();
 }
 
 void CPlayer::Render(HDC hDC)
 {
-    Rectangle(hDC, m_tRect.left, m_tRect.top, m_tRect.right, m_tRect.bottom);
+    int iScrollX = static_cast<int>(CScrollManager::Get_Instance()->Get_ScrollX());
+
+    Rectangle(hDC, m_tRect.left + iScrollX, m_tRect.top, m_tRect.right + iScrollX, m_tRect.bottom);
 
     // Posin
-    MoveToEx(hDC, static_cast<int>(m_vPosition.x), static_cast<int>(m_vPosition.y), nullptr);
-    LineTo(hDC, static_cast<int>(m_vPosinPosition.x), static_cast<int>(m_vPosinPosition.y));
+    MoveToEx(hDC, static_cast<int>(m_vPosition.x + iScrollX), static_cast<int>(m_vPosition.y), nullptr);
+    LineTo(hDC, static_cast<int>(m_vPosinPosition.x + iScrollX), static_cast<int>(m_vPosinPosition.y));
 }
 
 void CPlayer::Release()
@@ -114,5 +119,20 @@ void CPlayer::Do_Attack()
     Vector2 barrel = m_vPosition + dir * 50.f;
 
     CObjectManager::Get_Instance()->Add_Object(PL_BULLET, CAbstractFactory<CBullet>::Create(barrel, dir));
+}
+
+void CPlayer::Scroll_Offset()
+{
+    int iOffsetminX = 100;
+    int iOffsetmaxX = 700;
+
+
+    int iScrollX = (int)CScrollManager::Get_Instance()->Get_ScrollX();
+
+    if (iOffsetminX > m_vPosition.x + iScrollX)
+        CScrollManager::Get_Instance()->Set_ScrollX(m_fSpeedX);
+
+    if (iOffsetmaxX < m_vPosition.x + iScrollX)
+        CScrollManager::Get_Instance()->Set_ScrollX(-m_fSpeedX);
 }
 	

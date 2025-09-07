@@ -21,6 +21,6 @@ public:
 	bool Collision_Line(float& rX, float& rY);
 
 private:
-	list<CLine*> m_LineList;
-	Vector2      m_tLinePoint[CLineManager::SIDE_END];
+	//list<CLine*> m_LineList;
+	//Vector2      m_tLinePoint[CLineManager::SIDE_END];
 };

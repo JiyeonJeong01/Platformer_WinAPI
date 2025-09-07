@@ -22,6 +22,8 @@ public:
 	virtual void Do_Attack(); 
 	virtual void Take_Damage(float _fDamage) {};
 
+	virtual void Scroll_Offset();
+
 protected:
 	Vector2		m_vPosinPosition;
 
