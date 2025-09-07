@@ -219,6 +219,12 @@
     <ClInclude Include="CUtility.h">
       <Filter>04. Utils\02. Utility</Filter>
     </ClInclude>
+    <ClInclude Include="CBoss01.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="CMob3.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Platformer_WinAPI.cpp">
@@ -300,6 +306,12 @@
       <Filter>01. Object\02. Monster\05. Mob</Filter>
     </ClCompile>
     <ClCompile Include="CUIManager.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="CBoss01.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="CMob3.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>

@@ -35,5 +35,7 @@ private :
 	CPlayer* pPlayer;
 	CMonster* pBoss;
 
+	Vector2 vPlayerStartPosition;
+
 	vector<LINE*> m_vEnvironment;
 };

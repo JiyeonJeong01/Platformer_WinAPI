@@ -23,6 +23,7 @@ public:
 
 public:
 	void ChangeStage(STAGEID _id);
+	void On_CurrentBossDead(CObject* pObj);
 
 
 private:
@@ -30,6 +31,7 @@ private:
 	STAGEID m_currentStageID;
 
 	int		m_StageNumber = 0;
+	bool		bGameClear;
 
 #pragma region Singleton
 public:

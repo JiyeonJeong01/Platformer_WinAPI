@@ -22,14 +22,23 @@ public:
 
 	const RECT* Get_Rect() { return &m_tRect; }
 
-	void Set_PosX(float _fX) { m_vPosition.x = _fX; }
-	void Set_PosY(float _fY) { m_vPosition.y = _fY; }
+	void Set_PosX(float _fX) { 
+		m_vPosition.x = _fX; 
+	}
+	void Set_PosY(float _fY) { 
+		m_vPosition.y = _fY; 
+	}
 	void Set_DirX(float _fX) { m_vDirection.x = _fX; }
 	void Set_DirY(float _fY) { m_vDirection.y = _fY; }
 	void Set_SizeX(float _fX) { m_vSize.x = _fX; }
 	void Set_SizeY(float _fY) { m_vSize.y = _fY; }
 
-	OBJID Get_ObjectID() { return m_objID; }
+	OBJID Get_ObjectID() {
+		return m_objID;
+	}
+	void Set_ObjectID(OBJID _id) {
+		m_objID = _id;
+	}
 
 		/**
 	* \brief On_Collision : Automatically invoked by the CollisionManager on collision
@@ -38,7 +47,9 @@ public:
 	virtual void		On_Collision(CObject* pObj) {};
 
 public: // Object's stats getter-setter 
-	float Get_HP() { return m_fHP; }
+	float Get_HP() { 
+		return m_fHP; 
+	}
 	float Get_MaxHP() { return m_fMaxHP; }
 	float Get_Damage() { return m_fDamage; }
 

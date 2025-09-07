@@ -132,9 +132,11 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="CAbstractFactory.h" />
+    <ClInclude Include="CBoss01.h" />
     <ClInclude Include="CBoss03.h" />
     <ClInclude Include="CBullet.h" />
     <ClInclude Include="CCollisionManager.h" />
+    <ClInclude Include="CMob3.h" />
     <ClInclude Include="CUtility.h" />
     <ClInclude Include="CItem.h" />
     <ClInclude Include="CLifeItem.h" />
@@ -167,6 +169,7 @@
     <ClInclude Include="Vector2.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="CBoss01.cpp" />
     <ClCompile Include="CBoss03.cpp" />
     <ClCompile Include="CBullet.cpp" />
     <ClCompile Include="CCollisionManager.cpp" />
@@ -176,6 +179,7 @@
     <ClCompile Include="CLineManager.cpp" />
     <ClCompile Include="CMainGame.cpp" />
     <ClCompile Include="CMob01.cpp" />
+    <ClCompile Include="CMob3.cpp" />
     <ClCompile Include="CMonster.cpp" />
     <ClCompile Include="CObject.cpp" />
     <ClCompile Include="CObjectManager.cpp" />

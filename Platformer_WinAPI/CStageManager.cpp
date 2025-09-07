@@ -83,6 +83,18 @@ void CStageManager::ChangeStage(STAGEID _id)
 	m_currentStage->Initialize();
 }
 
+void CStageManager::On_CurrentBossDead(CObject* pObj)
+{
+	if (m_currentStageID <= STAGE3)
+	{
+		ChangeStage(STAGEID(m_currentStageID + 1));
+	}
+	else if (m_currentStageID == STAGE4)
+	{
+		bGameClear = true;
+	}
+}
+
 void CStageManager::Release()
 {
 	Safe_Delete(m_currentStage);

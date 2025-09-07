@@ -75,3 +75,9 @@ void CObjectManager::Release()
 		m_ObjList[i].clear();
 	}
 }
+
+void CObjectManager::Release_ObjID(OBJID eID)
+{
+	for_each(m_ObjList[eID].begin(), m_ObjList[eID].end(), DeleteObj());
+	m_ObjList[eID].clear();
+}

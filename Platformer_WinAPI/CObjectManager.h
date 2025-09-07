@@ -19,6 +19,10 @@ public:
 	void	Render(HDC hDC);
 	void	Release();
 
+public:
+	void Release_ObjID(OBJID eID);
+
+
 private:
 	list<CObject*>	m_ObjList[OBJ_END];
 

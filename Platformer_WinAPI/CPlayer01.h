@@ -9,6 +9,7 @@ public:
 public:
 	void Initialize() override;
 	int  Update() override;
+	void Render(HDC hDC) override;
 
 public :
 	void Do_Attack() override;
