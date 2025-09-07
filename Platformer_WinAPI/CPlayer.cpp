@@ -47,9 +47,6 @@ int CPlayer::Update()
 	if (bLeftMouseClicked)
 		Do_Attack();
 
-	float iScrollX = CScrollManager::Get_Instance()->Get_ScrollX();
-	float iScrollY = CScrollManager::Get_Instance()->Get_ScrollY();
-
 	return OBJ_NOEVENT;
 }
 
