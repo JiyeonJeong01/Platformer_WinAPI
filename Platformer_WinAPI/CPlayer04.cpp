@@ -3,9 +3,11 @@
 #include "CLineManager.h"
 
 CPlayer04::CPlayer04()
-	: m_fPlayerBottom(0.f),
-	  m_fJumpSpeed(0.f), m_fDeltaTime(0.f),
-	  m_iPlayerJump(0), m_qwDTTimer(GetTickCount64())
+	: m_fDeltaTime(0.f), m_fJumpSpeed(0.f), m_fGroundY(0.f),
+	  m_bPlayerLanded(false),
+	  m_iPlayerJump(0),
+	  m_qwDTTimer(GetTickCount64()),
+	  m_eMoveState(PLAYER_MOVESTATE::IDLE)
 {}
 
 CPlayer04::~CPlayer04()
@@ -33,23 +35,36 @@ void CPlayer04::Initialize()
 
 int CPlayer04::Update()
 {
+	// 낭떠러지
+	if (m_vPosition.y + (m_vSize.y / 2.f) >= WINCY + 100)
+		m_bDead = true;
+
 	if (m_bDead)
-		return OBJ_DEAD;
+	{
+		//return OBJ_DEAD;
+	}
+	// 플레이어는 삭제되면 재생성이 힘드므로 삭제는 추천 안함
+	//todo -> 플레이어가 죽을 시, 현재 스테이지 시작 위치로 이동하면서 체력 등만 초기화될 수 있도록 구성하자
 
 	m_fDeltaTime = DeltaTime();
-	//todo DeltaTime 은 추후 Timer 클래스로 따로 만들 예정
+	//todo -> DeltaTime 은 추후 Timer 클래스로 따로 만들 예정
 
-	CObject::Update_Rect();
-
-	m_fPlayerBottom = m_vPosition.y + (m_vSize.y / 2.f);
-
-	// Process client's inputs
+	// 플레이어 입력 받아오기
 	CPlayer::Handle_KeyInput();
 
-	// Apply inputs to player's state
-	// + 시간에 따른 등가속 물리 구현
+	// 상태 판단
+	CPlayer04::Decide_MoveState();
+
+	// 상태 머신 실행
+	CPlayer04::Apply_MoveState();
+
+	// 플레이어 위치, 속도 업데이트
 	CPlayer04::Update_Components();
 
+	// 충돌판정용 RECT 갱신
+	CObject::Update_Rect();
+
+	// 플레이어 공격
 	if (bLeftMouseClicked)
 		CPlayer::Do_Attack();
 
@@ -85,53 +100,48 @@ void CPlayer04::Take_Damage(float _fDamage)
 void CPlayer04::Update_Components()
 {
 	m_fGroundY = WINCY + 100;
+
 	// 라인에 착지하기 위한 Collision_Line 호출
 	CLineManager::Get_Instance()
 		->Collision_Line(m_vPosition, &m_fGroundY);
 
 	// 좌우 방향키에 따른 수평방향 이동
-	if (bLeftPressed)
-		m_vDirection.x = -1.f;
-	else if (bRightPressed)
-		m_vDirection.x = 1.f;
-	else
-		m_vDirection.x = 0.f;
+	//if (bLeftPressed)
+	//	m_vDirection.x = -1.f;
+	//else if (bRightPressed)
+	//	m_vDirection.x = 1.f;
+	//else
+	//	m_vDirection.x = 0.f;
 
-	m_vDirection.y = 0.f;
+	//m_vDirection.y = 0.f;
 	// -> 수직방향으로는 직접 점프, 낙하로 구현하므로 고정값은 안쓰임
 
-	m_vDirection = m_vDirection.GetNomalized();
+	//m_vDirection = m_vDirection.GetNomalized();
 	// 일단 Normalize 했지만, 사실상 m_vDirection은 0 또는 1이므로 현재 의미는 없음
 
-	// m_iPlayerJump 를 하나씩 증가시켜서, 조건식으로 더블 점프 구현
-	if (bJumpPressed && m_iPlayerJump < 2)
-	{
-		m_fJumpSpeed = -800.f;
-		// 임의로 준 점프 스피드, 점프할때만 필요하므로 이 때 값을 집어넣는다.
+	//// m_iPlayerJump 를 하나씩 증가시켜서, 조건식으로 더블 점프 구현
+	//if (bJumpPressed && m_iPlayerJump < 2)
+	//{
+	//	m_fJumpSpeed = -800.f;
+	//	// 임의로 준 점프 스피드, 점프할때만 필요하므로 이 때 값을 집어넣는다.
+	//
+	//	m_iPlayerJump += 1;
+	//	// 플레이어가 점프를 하는 중일때 점프 하나 증가
+	//}
 
-		m_iPlayerJump += 1;
-		// 플레이어가 점프를 하는 중일때 점프 하나 증가
+	CPlayer04::Move();
 
-	}
+	CPlayer04::Gravity();
 
-
-	// 가로로 이동
-	m_vPosition.x += m_vDirection.x * m_fSpeedX * m_fDeltaTime;
-
-	// 세로로 이동 (점프, 낙하)
-	m_fJumpSpeed += 2000 * m_fDeltaTime;
-	//! Y속도 += 가속도(중력가속도 * 화면 보정값) * dt : 속도의 적분
-
-	m_vPosition.y += m_fJumpSpeed * m_fDeltaTime;
-	//! Y위치 += Y속도 * dt : 위치의 적분
+	if (m_bPlayerLanded)
+		CPlayer04::Landed();
 
 	// 땅에 발이 닿도록 위치 조정
-	//? 이러면 결국 fGroundY라는 위치값으로 착지 판단을 하는 건가?
-	if (m_vPosition.y > (m_fGroundY - (m_vSize.y / 2.f)))
+	// 1. m_fJumpSpeed > 0 : 점프 속도가 양수 = 아래로 떨어지는 중
+	// 2. 플레이어의 바닥 부분 m_vPosition.y + (m_vSize.y / 2.f) 이 땅의 y좌표 m_fGroundY 보다 크면 착지 판정
+	if (m_fJumpSpeed > 0 && m_vPosition.y + (m_vSize.y / 2.f) >= (m_fGroundY))
 	{
 		m_vPosition.y = m_fGroundY - (m_vSize.y / 2.f);
-		m_fJumpSpeed  = 0.f;
-		m_iPlayerJump = 0;
 	}
 }
 
@@ -151,4 +161,107 @@ float CPlayer04::DeltaTime()
 	float fDeltaTime = static_cast<float>(qwTimeDiff) * 0.001f;
 
 	return fDeltaTime;
+}
+
+void CPlayer04::Move()
+{
+	if (bLeftPressed)
+		m_vDirection.x = -1.f;
+
+	else if (bRightPressed)
+		m_vDirection.x = 1.f;
+
+	else
+		m_vDirection.x = 0.f;
+
+	// 가로로 이동
+	m_vPosition.x += m_vDirection.x * m_fSpeedX * m_fDeltaTime;
+}
+
+void CPlayer04::Gravity()
+{
+	// 점프, 낙하
+	m_fJumpSpeed += 2000 * m_fDeltaTime;
+	//! Y속도 += 가속도(중력가속도 * 화면 보정값) * dt : 속도의 적분
+
+	m_vPosition.y += m_fJumpSpeed * m_fDeltaTime;
+	//! Y위치 += Y속도 * dt : 위치의 적분
+}
+
+void CPlayer04::Landed()
+{
+	// 바닥 아래로 못떨어지게 막기
+	m_vPosition.y = m_fGroundY - (m_vSize.y / 2.f);
+}
+
+void CPlayer04::Decide_MoveState()
+{
+	//! 카운트가 2가 되면 점프 불가
+	if (bJumpPressed && m_iPlayerJump < 2)
+		m_eMoveState = PLAYER_MOVESTATE::JUMP;
+
+	else if (m_fJumpSpeed > 0 && (m_vPosition.y + m_vSize.y / 2.f < m_fGroundY))
+		m_eMoveState = PLAYER_MOVESTATE::FALL;
+
+		//! 땅에 발이 닿도록 위치 조정
+		// 1. m_fJumpSpeed > 0 : 점프 속도가 양수 = 아래로 떨어지는 중
+		// 2. 플레이어의 바닥 부분 m_vPosition.y + (m_vSize.y / 2.f) 이 땅의 y좌표 m_fGroundY 보다 크면 착지 판정
+	else if (m_fJumpSpeed > 0 && (m_vPosition.y + m_vSize.y / 2.f >= m_fGroundY))
+		m_eMoveState = PLAYER_MOVESTATE::LANDED;
+
+	else if ((bLeftPressed || bRightPressed))
+		m_eMoveState = PLAYER_MOVESTATE::RUN;
+
+	else
+		m_eMoveState = PLAYER_MOVESTATE::IDLE;
+
+	//? 현재 FALL 관련 버그 존재
+}
+
+void CPlayer04::Apply_MoveState()
+{
+	switch (m_eMoveState)
+	{
+	case PLAYER_MOVESTATE::IDLE:
+	{
+		//todo ex) 플레이어 IDLE 이미지, 애니메이션 등
+	}
+	break;
+	case PLAYER_MOVESTATE::RUN:
+	{
+		//todo ex) 플레이어 RUN 이미지, 애니메이션 등
+
+		m_vDirection = m_vDirection.GetNomalized();
+	}
+	break;
+	case PLAYER_MOVESTATE::JUMP:
+	{
+		//todo ex) 플레이어 JUMP 이미지, 애니메이션 등
+
+		m_fJumpSpeed = -800.f;
+		// 임의로 준 점프 스피드, 점프할때만 필요하므로 이 때 값을 집어넣는다.
+
+		m_iPlayerJump += 1;
+		// 플레이어가 점프를 하는 중일때 점프 카운트 하나 증가
+
+		m_bPlayerLanded = false;
+	}
+	break;
+	case PLAYER_MOVESTATE::FALL:
+	{
+		//todo ex) 플레이어 FALL 이미지, 애니메이션 등
+
+		m_bPlayerLanded = false;
+	}
+	break;
+	case PLAYER_MOVESTATE::LANDED:
+	{
+		//todo ex) 플레이어 LANDED 이미지, 애니메이션 등
+
+		m_fJumpSpeed    = 0.f;
+		m_iPlayerJump   = 0;
+		m_bPlayerLanded = true;
+	}
+	break;
+	}
 }

@@ -10,17 +10,21 @@
 
 #define	PI				3.14f
 
+/////////////////////////////////
+
 extern HWND g_hWnd;
 
+/////////////////////////////////
+
 enum OBJID
-{ 
-	PLAYER = 0, 
-	PL_BULLET, 
-	MONSTER, 
-	MON_BULLET, 
-	MOUSE, 
-	SHIELD, 
-	ITEM, 
+{
+	PLAYER = 0,
+	PL_BULLET,
+	MONSTER,
+	MON_BULLET,
+	MOUSE,
+	SHIELD,
+	ITEM,
 	OBJ_END
 };
 
@@ -33,6 +37,8 @@ enum STAGEID
 	STAGE_END
 };
 
+/////////////////////////////////
+
 template<typename T>
 void	Safe_Delete(T& P) { if (P) { delete P; P = nullptr; } }
 
@@ -41,6 +47,8 @@ struct DeleteObj
 	template<typename T>
 	void	operator()(T& p) { if (p) { delete p; p = nullptr; } }
 };
+
+/////////////////////////////////
 
 // LINEPOINT -> Vector2 replace
 
@@ -73,7 +81,8 @@ typedef struct tagLine
 	}
 
 	tagLine(Vector2 _tLeft, Vector2 _tRight)
-		: tLeft(_tLeft), tRight(_tRight) {
+		: tLeft(_tLeft), tRight(_tRight)
+	{
 	}
 }
 LINE;
