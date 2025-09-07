@@ -36,6 +36,9 @@ int CPlayer04::Update()
 		//todo 플레이어가 스테이지 재시작하도록
 	}
 
+	// ↓ 콘솔로 원하는 값 보는 디버깅용 코드
+	//_tprintf(_T("%f y스피드 : "), m_fSpeedY);
+
 	// 낙하속도 상한 설정
 	if (m_fSpeedY > 3000.f)
 		m_fSpeedY = 3000.f;
