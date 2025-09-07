@@ -3,8 +3,7 @@
 #include "CLineManager.h"
 
 CPlayer04::CPlayer04()
-	: m_qwDTTimer(GetTickCount64()), m_fDeltaTime(0.f),
-	m_iPlayerJump(0), m_iPlayerMaxJump(2),
+	: m_iPlayerJumpCount(0), m_iPlayerMaxJump(0),
 	m_fGroundY(0.f), m_bPlayerLanded(false)
 {
 }
@@ -30,8 +29,7 @@ void CPlayer04::Initialize()
 
 int CPlayer04::Update()
 {
-	// 낭떠러지
-	if (m_vPosition.y + (m_vSize.y / 2.f) >= WINCY + 100)
+	if (m_vPosition.y + (m_vSize.y / 2.f) >= WINCY + 100) // 낭떠러지
 		//todo && 플레이어 사망 조건
 	{
 		//todo 플레이어가 스테이지 재시작하도록
@@ -45,7 +43,7 @@ int CPlayer04::Update()
 		m_fSpeedY = 3000.f;
 
 	// DeltaTime 측정
-	m_fDeltaTime = DeltaTime();
+	m_fDeltaTime = CObject::DeltaTime();
 
 	// 플레이어 입력 받아오기
 	CPlayer::Handle_KeyInput();
@@ -83,7 +81,7 @@ void CPlayer04::Release()
 
 void CPlayer04::On_Collision(CObject* pObj)
 {
-	//todo 충돌판정 구현
+	//todo 충돌판정 구현하기
 }
 
 void CPlayer04::Do_Attack()
@@ -116,24 +114,6 @@ void CPlayer04::Update_Components()
 	}
 }
 
-//! DeltaTime 측정용.
-// 먼저 CPlayer04의 생성자에서 m_qwDTTimer가 흐르기 시작하고,
-// 그 다음 Update() 안에서 DeltaTime()을 호출 할 때 qwCurrentTime은 흐르기 시작함
-// qwTimeDiff 에 둘의 차이를 저장하고 (이게 델타 타임)
-// m_qwDTTimer = qwCurrentTime 으로 m_qwDTTimer 재초기화
-// qwTimeDiff은 GetTickCount64 인 ms 단위이므로 0.001 을 곱해 초 단위로 변환
-// -> fDeltaTime 완성!
-float CPlayer04::DeltaTime()
-{
-	ULONGLONG qwCurrentTime = GetTickCount64();
-	ULONGLONG qwTimeDiff = qwCurrentTime - m_qwDTTimer;
-	m_qwDTTimer = qwCurrentTime;
-
-	float fDeltaTime = static_cast<float>(qwTimeDiff) * 0.001f;
-
-	return fDeltaTime;
-}
-
 void CPlayer04::Landed()
 {
 	if (m_fSpeedY >= 0.f
@@ -141,7 +121,7 @@ void CPlayer04::Landed()
 	{
 		m_vPosition.y = m_fGroundY - (m_vSize.y / 2.f);
 		m_fSpeedY = 0.f;
-		m_iPlayerJump = 0;
+		m_iPlayerJumpCount = 0;
 		m_bPlayerLanded = true;
 	}
 }
@@ -153,7 +133,7 @@ void CPlayer04::Jump()
 		m_fSpeedY = -900.f;
 		// 임의로 준 점프 스피드, 점프할때만 필요하므로 이 때 값을 집어넣는다.
 
-		m_iPlayerJump += 1;
+		m_iPlayerJumpCount += 1;
 		// 플레이어가 점프를 하는 중일때 점프 하나 증가, 현재 2 이상이 되면 점프 제한
 
 		m_bPlayerLanded = false;
@@ -162,7 +142,7 @@ void CPlayer04::Jump()
 
 void CPlayer04::Horizontal_Move()
 {
-	// 좌우 방향키에 따른 수평방향 이동
+	// 좌우 방향키에 따른 m_vDirection.x 변경
 	if (bLeftPressed)
 		m_vDirection.x = -1.f;
 	else if (bRightPressed)
