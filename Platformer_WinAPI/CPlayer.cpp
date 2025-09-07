@@ -47,16 +47,6 @@ int CPlayer::Update()
 	if (bLeftMouseClicked)
 		Do_Attack();
 
-	float iScrollX = CScrollManager::Get_Instance()->Get_ScrollX();
-	float iScrollY = CScrollManager::Get_Instance()->Get_ScrollY();
-
-	// 플레이어의 실제 월드 위치를 출력합니다.
-	CUtility::PrintCmd(L"플레이어 월드 위치 : ", m_vPosition);
-
-	// 플레이어의 스크롤이 적용된 화면 위치를 출력합니다.
-	Vector2 vScreenPos = { m_vPosition.x + iScrollX, m_vPosition.y + iScrollY };
-	CUtility::PrintCmd(L"플레이어 화면 위치 : ", vScreenPos);
-
 	return OBJ_NOEVENT;
 }
 
