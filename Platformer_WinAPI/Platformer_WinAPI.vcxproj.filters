@@ -112,6 +112,18 @@
     <Filter Include="04. Utils\02. Utility">
       <UniqueIdentifier>{676f91d3-10dd-4cad-8499-14bfce7b5f67}</UniqueIdentifier>
     </Filter>
+    <Filter Include="01. Object\03. Bullet\03. Bullet03">
+      <UniqueIdentifier>{745de438-9b87-4535-9813-9268409d2d6b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01. Object\03. Bullet\01. Bullet01">
+      <UniqueIdentifier>{93360fbd-576b-47e0-9d04-ccea6eba3185}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01. Object\03. Bullet\02. Bullet02">
+      <UniqueIdentifier>{33ad0717-66c5-4fba-be3b-74807cbe92df}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01. Object\03. Bullet\04. Bullet04">
+      <UniqueIdentifier>{d27e0c65-2918-46d2-bf2b-a70493a43326}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -189,6 +201,9 @@
     <ClInclude Include="CLifeItem.h">
       <Filter>01. Object\05. Item</Filter>
     </ClInclude>
+    <ClInclude Include="CLine.h">
+      <Filter>02. Manager\05. LineManager</Filter>
+    </ClInclude>
     <ClInclude Include="CLineManager.h">
       <Filter>02. Manager\05. LineManager</Filter>
     </ClInclude>
@@ -201,17 +216,23 @@
     <ClInclude Include="CMob01.h">
       <Filter>01. Object\02. Monster\05. Mob</Filter>
     </ClInclude>
-    <ClInclude Include="CPlayer04.h">
-      <Filter>01. Object\01. Player</Filter>
-    </ClInclude>
-    <ClInclude Include="CUIManager.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
     <ClInclude Include="CUtility.h">
       <Filter>04. Utils\02. Utility</Filter>
     </ClInclude>
-    <ClInclude Include="CLine.h">
-      <Filter>02. Manager\05. LineManager</Filter>
+    <ClInclude Include="CUIManager.h">
+      <Filter>02. Manager\03. UIManager</Filter>
+    </ClInclude>
+    <ClInclude Include="CBoss03.h">
+      <Filter>01. Object\02. Monster\03. Boss03</Filter>
+    </ClInclude>
+    <ClInclude Include="CPlayer04.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="CBullet_Player03.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="CScrollManager.h">
+      <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="CBoss01.h">
       <Filter>01. Object\02. Monster\01. Boss01</Filter>
@@ -290,6 +311,9 @@
     <ClCompile Include="CLineManager.cpp">
       <Filter>02. Manager\05. LineManager</Filter>
     </ClCompile>
+    <ClCompile Include="CLine.cpp">
+      <Filter>02. Manager\05. LineManager</Filter>
+    </ClCompile>
     <ClCompile Include="CPlayer02.cpp">
       <Filter>01. Object\01. Player</Filter>
     </ClCompile>
@@ -299,14 +323,20 @@
     <ClCompile Include="CMob01.cpp">
       <Filter>01. Object\02. Monster\05. Mob</Filter>
     </ClCompile>
-    <ClCompile Include="CPlayer04.cpp">
-      <Filter>01. Object\01. Player</Filter>
-    </ClCompile>
     <ClCompile Include="CUIManager.cpp">
+      <Filter>02. Manager\03. UIManager</Filter>
+    </ClCompile>
+    <ClCompile Include="CBoss03.cpp">
+      <Filter>01. Object\02. Monster\03. Boss03</Filter>
+    </ClCompile>
+    <ClCompile Include="CPlayer04.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="CLine.cpp">
-      <Filter>02. Manager\05. LineManager</Filter>
+    <ClCompile Include="CBullet_Player03.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="CScrollManager.cpp">
+      <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="CBoss01.cpp">
       <Filter>01. Object\02. Monster\01. Boss01</Filter>

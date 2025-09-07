@@ -50,7 +50,7 @@ int CBoss03::Update()
 
 	if (current - m_Attack_Interval >= 1000)
 	{
-		if (m_pattern == BOSS_PATTERN::Idle)
+		if (m_pattern == BOSS_STATE::Idle)
 		{
 			Do_Attack();
 
@@ -105,7 +105,10 @@ void CBoss03::Do_Attack()
 	//int random = 1 + rand() % static_cast<int>(BOSS_PATTERN::None);
 	//m_pattern = static_cast<BOSS_PATTERN>(random);
 
-	m_pattern = BOSS_PATTERN::Attack;
+	if (CObjectManager::Get_Instance()->Get_Player() == nullptr)
+		return;
+
+	m_pattern = BOSS_STATE::Attack1;
 
 	Vector2 dir;
 	dir.x = CObjectManager::Get_Instance()->Get_Player()->Get_Position().x - m_vPosition.x;
@@ -113,12 +116,11 @@ void CBoss03::Do_Attack()
 
 	dir = Vector2::Nomalize(dir);
 
-	//CObjectManager::Get_Instance()->Add_Object(MON_BULLET, CAbstractFactory<CBullet>::Create(Vector2(m_vPosition.x - 200, m_vPosition.y), dir));
 	CObjectManager::Get_Instance()->Add_Object(MON_BULLET, CAbstractFactory<CBullet>::Create(MON_BULLET, m_vPosition, dir));
 
 	// 대기 상태로
-	if (m_pattern == BOSS_PATTERN::Attack)
-		m_pattern = BOSS_PATTERN::Idle;
+	if (m_pattern == BOSS_STATE::Attack1)
+		m_pattern = BOSS_STATE::Idle;
 }
 
 void CBoss03::Take_Damage(float _fDamage)

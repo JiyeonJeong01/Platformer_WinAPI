@@ -141,6 +141,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
         break;
     case WM_CLOSE:
         FreeConsole();
+        DestroyWindow(hWnd);
         break;
 #pragma endregion
     case WM_COMMAND:
@@ -165,6 +166,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
         switch (wParam)
         {
         case VK_ESCAPE:
+            FreeConsole();
             DestroyWindow(hWnd);
             break;
          }

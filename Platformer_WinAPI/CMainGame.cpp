@@ -48,9 +48,8 @@ void CMainGame::Initialize()
 	// CObjectManager::Get_Instance()->Add_Object(PLAYER, CAbstractFactory<CPlayer>::Create());
 
 	// Start Stage
-#pragma region Stage4 test
 	CStageManager::Get_Instance()->ChangeStage(STAGE1);
-#pragma endregion
+
 }
 
 void CMainGame::Update()
@@ -79,7 +78,6 @@ void CMainGame::Render()
 	CObjectManager::Get_Instance()->Render(m_hDC_back);
 	CStageManager::Get_Instance()->Render(m_hDC_back);
 	CUIManager::Get_Instance()->Render(m_hDC_back);
-
 
 }
 
