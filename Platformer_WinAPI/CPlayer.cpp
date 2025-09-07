@@ -8,7 +8,8 @@
 #include "CScrollManager.h"
 
 CPlayer::CPlayer()
-	: bLeftPressed(false), bRightPressed(false), bJumpPressed(false), bLeftMouseClicked(false)
+	: bLeftPressed(false), bRightPressed(false),
+      bJumpPressed(false), bLeftMouseClicked(false)
 {
 	ZeroMemory(&m_vPosinPosition, sizeof(Vector2));
 	ZeroMemory(&m_mouseDir, sizeof(Vector2));
@@ -28,11 +29,11 @@ void CPlayer::Initialize()
     m_fSpeedX = 10.f;
     m_fSpeedY = 7.f;
 
-    bLeftPressed = false;
-    bRightPressed = false;
-    bJumpPressed = false;
-
-    bLeftMouseClicked = false;
+    //bLeftPressed = false;
+    //bRightPressed = false;
+    //bJumpPressed = false;
+    //bLeftMouseClicked = false;
+    // ↑ Initialization is performed in the constructor initializer list
 
     m_objID = PLAYER;
 }
@@ -118,7 +119,7 @@ void CPlayer::Do_Attack()
     Vector2 dir = Vector2::Nomalize(m_mouseDir);
     Vector2 barrel = m_vPosition + dir * 50.f;
 
-    CObjectManager::Get_Instance()->Add_Object(PL_BULLET, CAbstractFactory<CBullet>::Create(barrel, dir));
+    CObjectManager::Get_Instance()->Add_Object(PL_BULLET, CAbstractFactory<CBullet>::Create(PL_BULLET, barrel, dir));
 }
 
 void CPlayer::Scroll_Offset()

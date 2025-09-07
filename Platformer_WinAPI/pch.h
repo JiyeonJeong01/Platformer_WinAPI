@@ -16,19 +16,25 @@
 #include <stdlib.h>
 #include <crtdbg.h>
 
-#ifndef DBG_NEW 
+#ifndef DBG_NEW
 
-#define DBG_NEW new ( _NORMAL_BLOCK , __FILE__ , __LINE__ ) 
-#define new DBG_NEW 
+#define DBG_NEW new ( _NORMAL_BLOCK , __FILE__ , __LINE__ )
+#define new DBG_NEW
 
 #endif
 #endif
+
+using namespace std;
 
 #include "Define.h"
 #include "Vector2.h"
 #include "CUtility.h"
 
-
-using namespace std;
+#include "CCollisionManager.h"
+#include "CInputManager.h"
+#include "CLineManager.h"
+#include "CObjectManager.h"
+#include "CStageManager.h"
+#include "CUIManager.h"
 
 #endif //PCH_H
