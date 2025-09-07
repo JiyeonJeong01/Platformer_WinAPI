@@ -20,7 +20,7 @@ protected:
 
 public:
 	virtual void Do_Attack(); 
-	virtual void Take_Damage(float _fDamage) {};
+	virtual void Take_Damage(float _fDamage) {}
 
 protected:
 	Vector2		m_vPosinPosition;

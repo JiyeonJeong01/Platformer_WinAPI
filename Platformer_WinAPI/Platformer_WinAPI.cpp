@@ -2,6 +2,7 @@
 #include "framework.h"
 #include "Platformer_WinAPI.h"
 #include "CMainGame.h"
+#include <locale.h>
 
 #define MAX_LOADSTRING 100
 
@@ -10,6 +11,7 @@ HINSTANCE hInst;
 WCHAR szTitle[MAX_LOADSTRING];           
 WCHAR szWindowClass[MAX_LOADSTRING];   
 HWND g_hWnd;
+FILE* debug;
 
 ATOM                MyRegisterClass(HINSTANCE hInstance);
 BOOL                InitInstance(HINSTANCE, int);
@@ -129,6 +131,18 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 {
     switch (message)
     {
+#pragma region Debug Log
+    case WM_CREATE:
+        AllocConsole();
+        _tfreopen_s(&debug, _T("CONOUT$"), _T("w"), stdout);
+        _tfreopen_s(&debug, _T("CONIN$"), _T("r"), stdin);
+        _tfreopen_s(&debug, _T("CONERR"), _T("w"), stderr);
+        _tsetlocale(LC_ALL, _T(""));
+        break;
+    case WM_CLOSE:
+        FreeConsole();
+        break;
+#pragma endregion
     case WM_COMMAND:
         {
             int wmId = LOWORD(wParam);

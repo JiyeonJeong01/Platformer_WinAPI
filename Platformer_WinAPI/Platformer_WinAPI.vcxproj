@@ -137,10 +137,10 @@
     <ClInclude Include="CBullet.h" />
     <ClInclude Include="CCollisionManager.h" />
     <ClInclude Include="CMob3.h" />
+    <ClInclude Include="CLine.h" />
     <ClInclude Include="CUtility.h" />
     <ClInclude Include="CItem.h" />
     <ClInclude Include="CLifeItem.h" />
-    <ClInclude Include="CLine.h" />
     <ClInclude Include="CLineManager.h" />
     <ClInclude Include="CMainGame.h" />
     <ClInclude Include="CMob01.h" />
@@ -151,6 +151,7 @@
     <ClInclude Include="CPlayer01.h" />
     <ClInclude Include="CPlayer02.h" />
     <ClInclude Include="CPlayer03.h" />
+    <ClInclude Include="CPlayer04.h" />
     <ClInclude Include="CStage.h" />
     <ClInclude Include="CStage01.h" />
     <ClInclude Include="CStage02.h" />
@@ -188,6 +189,7 @@
     <ClCompile Include="CPlayer01.cpp" />
     <ClCompile Include="CPlayer02.cpp" />
     <ClCompile Include="CPlayer03.cpp" />
+    <ClCompile Include="CPlayer04.cpp" />
     <ClCompile Include="CStage.cpp" />
     <ClCompile Include="CStage01.cpp" />
     <ClCompile Include="CStage02.cpp" />

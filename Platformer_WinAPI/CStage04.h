@@ -18,7 +18,7 @@ public:
 	void Release() override;
 
 public:
-	bool Collision_Line(float& rX, float& rY);
+	list<CLine*>& Get_LineList() { return m_LineList; }
 
 private:
 	list<CLine*> m_LineList;

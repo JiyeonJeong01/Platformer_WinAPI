@@ -213,6 +213,9 @@
     <ClInclude Include="CMob01.h">
       <Filter>01. Object\02. Monster\05. Mob</Filter>
     </ClInclude>
+    <ClInclude Include="CPlayer04.h">
+      <Filter>01. Object\01. Player</Filter>
+    </ClInclude>
     <ClInclude Include="CUIManager.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
@@ -224,6 +227,9 @@
     </ClInclude>
     <ClInclude Include="CMob3.h">
       <Filter>헤더 파일</Filter>
+    </ClInclude>  
+    <ClInclude Include="CLine.h">
+      <Filter>02. Manager\05. LineManager</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -290,9 +296,6 @@
     <ClCompile Include="CLineManager.cpp">
       <Filter>02. Manager\05. LineManager</Filter>
     </ClCompile>
-    <ClCompile Include="CLine.cpp">
-      <Filter>02. Manager\05. LineManager</Filter>
-    </ClCompile>
     <ClCompile Include="CPlayer02.cpp">
       <Filter>01. Object\01. Player</Filter>
     </ClCompile>
@@ -305,6 +308,9 @@
     <ClCompile Include="CMob01.cpp">
       <Filter>01. Object\02. Monster\05. Mob</Filter>
     </ClCompile>
+    <ClCompile Include="CPlayer04.cpp">
+      <Filter>01. Object\01. Player</Filter>
+    </ClCompile>
     <ClCompile Include="CUIManager.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
@@ -313,6 +319,9 @@
     </ClCompile>
     <ClCompile Include="CMob3.cpp">
       <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="CLine.cpp">
+      <Filter>02. Manager\05. LineManager</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
