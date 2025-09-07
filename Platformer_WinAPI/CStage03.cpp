@@ -35,6 +35,18 @@ void CStage03::Initialize()
 	{ { 450.f, Ystart - 200.f }, { 600.f, Ystart - 200.f } };
 	CLineManager::Get_Instance()->Create_Line(tPoint3, 2);
 
+	Vector2 tPoint4[2] =
+	{ { 600.f, 260.f }, { 800.f, 260.f } };
+	CLineManager::Get_Instance()->Create_Line(tPoint4, 2);
+
+	Vector2 tPoint5[2] =
+	{ { 800.f, 200.f }, { 1000.f, 200.f } };
+	CLineManager::Get_Instance()->Create_Line(tPoint5, 2);
+
+	Vector2 tPoint6[2] =
+	{ { 1000.f, 130.f }, { 1200.f, 130.f } };
+	CLineManager::Get_Instance()->Create_Line(tPoint6, 2);
+
 	// Object 추가
 	CObjectManager::Get_Instance()->Add_Object(PLAYER, CAbstractFactory<CPlayer03>::Create(PLAYER));
 	//CObjectManager::Get_Instance()->Add_Object(MONSTER, CAbstractFactory<CBoss03>::Create(MONSTER));

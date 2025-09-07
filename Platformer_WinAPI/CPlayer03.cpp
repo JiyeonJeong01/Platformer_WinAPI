@@ -65,8 +65,13 @@ void CPlayer03::Do_Attack()
 {
 	//CPlayer::Do_Attack();
 
+	int iScrollX = static_cast<int>(CScrollManager::Get_Instance()->Get_ScrollX());
+	int iScrollY = static_cast<int>(CScrollManager::Get_Instance()->Get_ScrollY());
+
 	Vector2 dir = Vector2::Nomalize(m_mouseDir);
-	Vector2 barrel = m_vPosition + dir * 50.f;
+	Vector2 barrel;
+	barrel.x = m_vPosition.x + iScrollX + dir.x * 50.f;
+	barrel.y = m_vPosition.y + iScrollY + dir.y * 50.f;
 
 	CObjectManager::Get_Instance()->Add_Object(PL_BULLET, CAbstractFactory<CBullet_Player03>::Create(MON_BULLET, barrel, dir));
 }
