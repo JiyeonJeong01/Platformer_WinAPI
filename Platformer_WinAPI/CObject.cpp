@@ -16,10 +16,13 @@ CObject::~CObject()
 
 void CObject::Update_Rect()
 {
-	m_tRect.left = static_cast<LONG>(m_vPosition.x - (m_vSize.x / 2.f));
-	m_tRect.top = static_cast<LONG>(m_vPosition.y - (m_vSize.y / 2.f));
-	m_tRect.right = static_cast<LONG>(m_vPosition.x + (m_vSize.x / 2.f));
-	m_tRect.bottom = static_cast<LONG>(m_vPosition.y + (m_vSize.y / 2.f));
+	float iScrollX = CScrollManager::Get_Instance()->Get_ScrollX();
+	float iScrollY = CScrollManager::Get_Instance()->Get_ScrollY();
+
+	m_tRect.left = static_cast<LONG>(m_vPosition.x   + iScrollX - (m_vSize.x / 2.f));
+	m_tRect.top = static_cast<LONG>(m_vPosition.y    + iScrollY - (m_vSize.y / 2.f));
+	m_tRect.right = static_cast<LONG>(m_vPosition.x  + iScrollX + (m_vSize.x / 2.f));
+	m_tRect.bottom = static_cast<LONG>(m_vPosition.y + iScrollY + (m_vSize.y / 2.f));
 }
 
 float CObject::DeltaTime()

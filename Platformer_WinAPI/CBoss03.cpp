@@ -105,6 +105,9 @@ void CBoss03::Do_Attack()
 	//int random = 1 + rand() % static_cast<int>(BOSS_PATTERN::None);
 	//m_pattern = static_cast<BOSS_PATTERN>(random);
 
+	if (CObjectManager::Get_Instance()->Get_Player() == nullptr)
+		return;
+
 	m_pattern = BOSS_STATE::Attack1;
 
 	Vector2 dir;
