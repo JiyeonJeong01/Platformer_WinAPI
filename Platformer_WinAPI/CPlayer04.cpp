@@ -4,9 +4,10 @@
 
 CPlayer04::CPlayer04()
 	: m_qwDTTimer(GetTickCount64()), m_fDeltaTime(0.f),
-	  m_iPlayerJump(0), m_iPlayerMaxJump(0),
-	  m_fGroundY(0.f), m_bPlayerLanded(false)
-{}
+	m_iPlayerJump(0), m_iPlayerMaxJump(2),
+	m_fGroundY(0.f), m_bPlayerLanded(false)
+{
+}
 
 CPlayer04::~CPlayer04()
 {
@@ -15,15 +16,15 @@ CPlayer04::~CPlayer04()
 
 void CPlayer04::Initialize()
 {
-	m_vPosition  = { 200, 200 };
+	m_vPosition = { 200, 200 };
 	m_vDirection = { 0.f, 0.f };
-	m_vSize      = { 40.f, 40.f };
+	m_vSize = { 40.f, 40.f };
 
 	m_fSpeedX = 500.f;
 	m_fSpeedY = 0.f;
 
-	m_fMaxHP  = 100.f;
-	m_fHP     = m_fMaxHP;
+	m_fMaxHP = 100.f;
+	m_fHP = m_fMaxHP;
 	m_fDamage = 1.f;
 }
 
@@ -31,13 +32,13 @@ int CPlayer04::Update()
 {
 	// 낭떠러지
 	if (m_vPosition.y + (m_vSize.y / 2.f) >= WINCY + 100)
-	//todo && 플레이어 사망 조건
+		//todo && 플레이어 사망 조건
 	{
 		//todo 플레이어가 스테이지 재시작하도록
 	}
 
 	// ↓ 콘솔로 원하는 값 보는 디버깅용 코드
-	//_tprintf(_T("%f y스피드 : "), m_fSpeedY);
+	_tprintf(_T(" Player04_SpeedY : %f \n"), m_fSpeedY);
 
 	// 낙하속도 상한 설정
 	if (m_fSpeedY > 3000.f)
@@ -71,11 +72,19 @@ void CPlayer04::Render(HDC hDC)
 {
 	CPlayer::Render(hDC);
 
+#pragma region 텍스트 출력
 	//CUtility::PrintText(hDC, 50, 200, L"Ground ? : ", m_fGroundY);
+#pragma endregion
 }
 
 void CPlayer04::Release()
-{}
+{
+}
+
+void CPlayer04::On_Collision(CObject* pObj)
+{
+	//todo 충돌판정 구현
+}
 
 void CPlayer04::Do_Attack()
 {
@@ -101,7 +110,10 @@ void CPlayer04::Update_Components()
 
 	Horizontal_Move();
 
-	Vertical_Move();
+	if (!m_bPlayerLanded)
+	{
+		Vertical_Move();
+	}
 }
 
 //! DeltaTime 측정용.
@@ -114,8 +126,8 @@ void CPlayer04::Update_Components()
 float CPlayer04::DeltaTime()
 {
 	ULONGLONG qwCurrentTime = GetTickCount64();
-	ULONGLONG qwTimeDiff    = qwCurrentTime - m_qwDTTimer;
-	m_qwDTTimer             = qwCurrentTime;
+	ULONGLONG qwTimeDiff = qwCurrentTime - m_qwDTTimer;
+	m_qwDTTimer = qwCurrentTime;
 
 	float fDeltaTime = static_cast<float>(qwTimeDiff) * 0.001f;
 
@@ -125,23 +137,26 @@ float CPlayer04::DeltaTime()
 void CPlayer04::Landed()
 {
 	if (m_fSpeedY >= 0.f
-		&& m_vPosition.y + (m_vSize.y / 2.f) > m_fGroundY)
+		&& m_vPosition.y + (m_vSize.y / 2.f) >= m_fGroundY)
 	{
 		m_vPosition.y = m_fGroundY - (m_vSize.y / 2.f);
-		m_fSpeedY     = 0.f;
+		m_fSpeedY = 0.f;
 		m_iPlayerJump = 0;
+		m_bPlayerLanded = true;
 	}
 }
 
 void CPlayer04::Jump()
 {
-	if (bJumpPressed && m_iPlayerJump < 2)
+	if (bJumpPressed && m_iPlayerJump < m_iPlayerMaxJump)
 	{
 		m_fSpeedY = -900.f;
 		// 임의로 준 점프 스피드, 점프할때만 필요하므로 이 때 값을 집어넣는다.
 
 		m_iPlayerJump += 1;
 		// 플레이어가 점프를 하는 중일때 점프 하나 증가, 현재 2 이상이 되면 점프 제한
+
+		m_bPlayerLanded = false;
 	}
 }
 

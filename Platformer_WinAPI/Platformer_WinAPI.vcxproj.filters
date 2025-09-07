@@ -112,6 +112,9 @@
     <Filter Include="04. Utils\02. Utility">
       <UniqueIdentifier>{676f91d3-10dd-4cad-8499-14bfce7b5f67}</UniqueIdentifier>
     </Filter>
+    <Filter Include="01. Object\06. Platform">
+      <UniqueIdentifier>{7d52c7b2-f34f-43f1-8151-b10538afe34f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -216,6 +219,9 @@
     <ClInclude Include="CLine.h">
       <Filter>02. Manager\05. LineManager</Filter>
     </ClInclude>
+    <ClInclude Include="CPlatform.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Platformer_WinAPI.cpp">
@@ -298,6 +304,9 @@
     </ClCompile>
     <ClCompile Include="CLine.cpp">
       <Filter>02. Manager\05. LineManager</Filter>
+    </ClCompile>
+    <ClCompile Include="CPlatform.cpp">
+      <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

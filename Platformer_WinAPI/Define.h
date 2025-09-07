@@ -25,6 +25,7 @@ enum OBJID
 	MOUSE,
 	SHIELD,
 	ITEM,
+	PLATFORM,
 	OBJ_END
 };
 
@@ -49,24 +50,6 @@ struct DeleteObj
 };
 
 /////////////////////////////////
-
-// LINEPOINT -> Vector2 replace
-
-// For testing in Stage04. Can be modified or deleted freely.
-//typedef struct tagLinePoint
-//{
-//	float fPosX, fPosY;
-//
-//	tagLinePoint()
-//	{
-//		ZeroMemory(this, sizeof(tagLinePoint));
-//	}
-//
-//	tagLinePoint(float _fX, float _fY)
-//		: fPosX(_fX), fPosY(_fY) {
-//	}
-//}
-//LINEPOINT;
 
 #include "Vector2.h"
 
