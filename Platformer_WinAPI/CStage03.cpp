@@ -20,8 +20,8 @@ CStage03::~CStage03()
 
 void CStage03::Initialize()
 {
-	CObjectManager::Get_Instance()->Add_Object(PLAYER, CAbstractFactory<CPlayer03>::Create());
-	CObjectManager::Get_Instance()->Add_Object(MONSTER, CAbstractFactory<CBoss03>::Create());
+	CObjectManager::Get_Instance()->Add_Object(PLAYER, CAbstractFactory<CPlayer03>::Create(PLAYER));
+	CObjectManager::Get_Instance()->Add_Object(MONSTER, CAbstractFactory<CBoss03>::Create(MONSTER));
 
 }
 

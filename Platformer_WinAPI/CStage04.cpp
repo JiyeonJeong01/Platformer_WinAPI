@@ -44,7 +44,7 @@ void CStage04::Initialize()
 #pragma endregion
 
 	CObjectManager::Get_Instance()
-		->Add_Object(PLAYER, CAbstractFactory<CPlayer04>::Create());
+		->Add_Object(PLAYER, CAbstractFactory<CPlayer04>::Create(PLAYER));
 	//todo 몬스터 만든 후 Create하기
 }
 

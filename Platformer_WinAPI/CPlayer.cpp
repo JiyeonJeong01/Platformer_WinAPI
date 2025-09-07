@@ -114,6 +114,6 @@ void CPlayer::Do_Attack()
     Vector2 dir = Vector2::Nomalize(m_mouseDir);
     Vector2 barrel = m_vPosition + dir * 50.f;
 
-    CObjectManager::Get_Instance()->Add_Object(PL_BULLET, CAbstractFactory<CBullet>::Create(barrel, dir));
+    CObjectManager::Get_Instance()->Add_Object(PL_BULLET, CAbstractFactory<CBullet>::Create(PL_BULLET, barrel, dir));
 }
 	
