@@ -14,13 +14,13 @@ public:
 	void Render(HDC hDC) override;
 	void Release() override;
 public:
-	void Posin_Pos();
 	void Do_Attack();
-	//void		Update_Components();
+	void Take_Damage(float _fDamage);
+	void		On_Collision(CObject* pObj);
 
-	void Jumping();
+	DWORD sz_Time;
 
-	bool m_bJump;
-	float m_fTime;
+private:
+
 };
 
