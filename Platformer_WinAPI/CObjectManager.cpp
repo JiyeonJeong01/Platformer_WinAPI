@@ -64,7 +64,6 @@ void CObjectManager::Late_Update()
 	CCollisionManager::Collision_Rect(m_ObjList[PL_BULLET], m_ObjList[PLATFORM]);
 	CCollisionManager::Collision_Rect(m_ObjList[MON_BULLET], m_ObjList[PLATFORM]);
 #pragma endregion
-	
 }
 
 void CObjectManager::Render(HDC hDC)
