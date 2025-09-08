@@ -129,14 +129,7 @@ void CPlayer::Update_Components()
 }
 
 void CPlayer::Do_Attack()
-{
-    Vector2 dir = Vector2::Nomalize(m_mouseDir);
-    Vector2 barrel = m_vPosition + dir * 50.f;
-
-    CObject* pBullet = CAbstractFactory<CBullet>::Create(PL_BULLET, barrel, dir);
-    pBullet->Set_Damage(m_fDamage);
-    CObjectManager::Get_Instance()->Add_Object(PL_BULLET, pBullet);
-	
+{	
 	// TODO : 각자 플레이어에서 세팅하기, Player03 보고 스크롤 세팅까지 하세요
 	//Vector2 dir = Vector2::Nomalize(m_mouseDir);
 	//Vector2 barrel = m_vPosition + dir * 50.f;

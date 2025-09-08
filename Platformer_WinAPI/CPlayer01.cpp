@@ -2,6 +2,8 @@
 #include "CPlayer01.h"
 
 #include "CUIManager.h"
+#include "CAbstractFactory.h"
+#include "CBullet.h"
 
 void CPlayer01::Initialize()
 {
@@ -37,7 +39,12 @@ void CPlayer01::On_Collision(CObject* pObj)
 
 void CPlayer01::Do_Attack()
 {
-	CPlayer::Do_Attack();
+	Vector2 dir = Vector2::Nomalize(m_mouseDir);
+	Vector2 barrel = m_vPosition + dir * 50.f;
+
+	CObject* pBullet = CAbstractFactory<CBullet>::Create(PL_BULLET, barrel, dir);
+	pBullet->Set_Damage(m_fDamage);
+	CObjectManager::Get_Instance()->Add_Object(PL_BULLET, pBullet);
 }
 
 void CPlayer01::Take_Damage(float _fDamage)
