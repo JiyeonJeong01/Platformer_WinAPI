@@ -112,7 +112,7 @@ void CStageManager::On_CurrentBossDead(CObject* pObj)
 
 void CStageManager::On_MobDead(CObject* pObj)
 {
-	int iTotalCount = 1;
+	int iTotalCount = 2;
 
 	float fDropRate = (float)(rand() % 11);
 	if (/*fDropRate <= fItemDropRate*/true) // 100% drop for test!!!!!

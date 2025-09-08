@@ -122,6 +122,7 @@ void CMob01::Take_Damage(float _fDamage)
     {
         m_fHP = 0.f;
         m_bDead = true;
+        CStageManager::Get_Instance()->On_MobDead(this);
     }
 }
 void CMob01::Do_Attack()

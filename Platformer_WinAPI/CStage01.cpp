@@ -11,6 +11,8 @@
 #include "CBoss01.h"
 #include "CMob03.h"
 
+#include "CPlatform.h"
+
 CStage01::CStage01()
 {
 }
@@ -29,17 +31,30 @@ void CStage01::Initialize()
 	pPlayer = static_cast<CPlayer*>(CAbstractFactory<CPlayer01>::Create(PLAYER));
 	CObjectManager::Get_Instance()->Add_Object(PLAYER, pPlayer);
 
-	pBoss = static_cast<CMonster*>(CAbstractFactory<CBoss01>::Create(MONSTER));
+	pBoss = static_cast<CMonster*>(CAbstractFactory<CBoss01>::Create(MONSTER, {1200, 350}));
 	pBoss->Set_Target(pPlayer);
 	CObjectManager::Get_Instance()->Add_Object(MONSTER, pBoss);
 
 
-	CMonster* pMob = static_cast<CMonster*>(CAbstractFactory<CMob03>::Create(MONSTER, {300, 400}));
+	CMonster* pMob = static_cast<CMonster*>(CAbstractFactory<CMob03>::Create(MONSTER, {700, 400}));
+	pMob->Set_Target(pPlayer);
+	CObjectManager::Get_Instance()->Add_Object(MONSTER, pMob);
+
+	pMob = static_cast<CMonster*>(CAbstractFactory<CMob03>::Create(MONSTER, { 200, 400 }));
 	pMob->Set_Target(pPlayer);
 	CObjectManager::Get_Instance()->Add_Object(MONSTER, pMob);
 
 	pPlayer->Set_PosX(vPlayerStartPosition.x);
 	pPlayer->Set_PosY(vPlayerStartPosition.y);
+
+	CObjectManager::Get_Instance()->Add_Object(
+		PLATFORM,
+		CAbstractFactory<CPlatform>::Create(PLATFORM, (WINCX >> 1) - 100.f, 600, 300, 30.f));
+
+	CObjectManager::Get_Instance()->Add_Object(
+		PLATFORM,
+		CAbstractFactory<CPlatform>::Create(PLATFORM, WINCX, WINCY, WINCX * 3.f, 30.f));
+
 }
 
 void CStage01::Update()
@@ -60,10 +75,6 @@ void CStage01::Render(HDC hDC)
 
 void CStage01::Release()
 {
-	// CObjectManager::Get_Instance()->Release_ObjID(PLAYER);
-	// CObjectManager::Get_Instance()->Release_ObjID(PL_BULLET);
-	// CObjectManager::Get_Instance()->Release_ObjID(MON_BULLET);
-	// CObjectManager::Get_Instance()->Release_ObjID(MONSTER);
 }
 
 void CStage01::Request_ChangeStage()

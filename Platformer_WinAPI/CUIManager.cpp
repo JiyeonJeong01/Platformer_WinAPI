@@ -49,6 +49,7 @@ void CUIManager::Render_PlayerHP(HDC hDC, CObject* pObj)
         return;
 
 	CUtility::PrintText(hDC, 50, 100, L"플레이어 Hp : ", pObj->Get_HP());
+    CUtility::PrintText(hDC, 50, 130, L"플레이어 공격력 : ", pObj->Get_Damage());
 	DrawHP(hDC, 50, 50, 400, 40, pObj->Get_HP(), pObj->Get_MaxHP());
 }
 
@@ -100,7 +101,33 @@ void CUIManager::DrawHP(HDC hDC, float x, float y, float width, float height, fl
 void CUIManager::Render_GameClear(HDC hDC)
 {
     Rectangle(hDC, 0, 0, WINCX, WINCY);
-    TCHAR buffer[64] = L"G A M E C L E A R";
-    TextOut(hDC, WINCX >> 1, WINCY >> 1 , buffer, lstrlen(buffer));
+
+    HFONT hFont = CreateFont(80, 0, 0, 0, FW_BOLD,
+        FALSE, FALSE, FALSE,
+        DEFAULT_CHARSET, OUT_OUTLINE_PRECIS,
+        CLIP_DEFAULT_PRECIS, CLEARTYPE_QUALITY,
+        VARIABLE_PITCH, L"Segoe UI");
+    HFONT hOldFont = (HFONT)SelectObject(hDC, hFont);
+
+    SetBkMode(hDC, TRANSPARENT);
+
+    TCHAR buffer[64] = L"🏆  G A M E   C L E A R  🏆";
+
+    RECT rc;
+    GetClientRect(g_hWnd, &rc);
+
+    SetTextColor(hDC, RGB(50, 50, 50));
+    RECT shadow = rc;
+    OffsetRect(&shadow, 5, 5);
+    DrawText(hDC, buffer, lstrlen(buffer), &shadow,
+        DT_CENTER | DT_VCENTER | DT_SINGLELINE);
+
+    SetTextColor(hDC, RGB(255, 215, 0));
+    DrawText(hDC, buffer, lstrlen(buffer), &rc,
+        DT_CENTER | DT_VCENTER | DT_SINGLELINE);
+
+    SelectObject(hDC, hOldFont);
+    DeleteObject(hFont);
+
 
 }

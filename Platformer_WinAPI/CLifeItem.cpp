@@ -15,12 +15,12 @@ void CLifeItem::Initialize()
 
 	m_vPosition = { 0.f, 0.f };
 	m_vDirection = { 0.f, 0.f };
-	m_vSize = { 20.f, 20.f };
+	m_vSize = { 20.f, 10.f };
 }
 
 void CLifeItem::Apply_Effect(CObject* pObj)
 {
 	// player's current hp +20%
-	pObj->Set_HP(min(pObj->Get_MaxHP(), pObj->Get_HP() * 1.2f));
+	pObj->Set_HP(min(pObj->Get_MaxHP(), pObj->Get_HP() * 1.35f));
 	m_bDead = true;
 }
