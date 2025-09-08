@@ -231,9 +231,6 @@
     <ClInclude Include="CBoss03.h">
       <Filter>01. Object\02. Monster\03. Boss03</Filter>
     </ClInclude>
-    <ClInclude Include="CBullet_Player03.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
     <ClInclude Include="CPlatform.h">
       <Filter>01. Object\06. Platform</Filter>
     </ClInclude>
@@ -242,6 +239,18 @@
     </ClInclude>
     <ClInclude Include="CScrollManager.h">
       <Filter>02. Manager\06. ScrollManager</Filter>
+    </ClInclude>
+    <ClInclude Include="CBullet_Player03.h">
+      <Filter>01. Object\03. Bullet\03. Bullet03</Filter>
+    </ClInclude>
+    <ClInclude Include="CBullet04.h">
+      <Filter>01. Object\03. Bullet\04. Bullet04</Filter>
+    </ClInclude>
+    <ClInclude Include="CBoss04.h">
+      <Filter>01. Object\02. Monster\04. Boss04</Filter>
+    </ClInclude>
+    <ClInclude Include="CBullet_BossAtk01.h">
+      <Filter>01. Object\03. Bullet\04. Bullet04</Filter>
     </ClInclude>
     <ClInclude Include="CBoss02.h">
       <Filter>헤더 파일</Filter>
@@ -337,6 +346,15 @@
     </ClCompile>
     <ClCompile Include="CBullet_Player03.cpp">
       <Filter>01. Object\03. Bullet\03. Bullet03</Filter>
+    </ClCompile>
+    <ClCompile Include="CBullet04.cpp">
+      <Filter>01. Object\03. Bullet\04. Bullet04</Filter>
+    </ClCompile>
+    <ClCompile Include="CBoss04.cpp">
+      <Filter>01. Object\02. Monster\04. Boss04</Filter>
+    </ClCompile>
+    <ClCompile Include="CBullet_BossAtk01.cpp">
+      <Filter>01. Object\03. Bullet\04. Bullet04</Filter>
     </ClCompile>
     <ClCompile Include="CBoss02.cpp">
       <Filter>소스 파일</Filter>

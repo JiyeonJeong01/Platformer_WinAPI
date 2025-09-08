@@ -67,7 +67,6 @@ void CCollisionManager::Collision_RectEx(list<CObject*> _Dst, list<CObject*> _Sr
 					{
 						Dst->Set_PosY(fY);
 					}
-
 				}
 				else			// 좌우 충돌
 				{
@@ -87,8 +86,8 @@ void CCollisionManager::Collision_RectEx(list<CObject*> _Dst, list<CObject*> _Sr
 
 bool CCollisionManager::Check_Rect(CObject* _Dst, CObject* _Src, float* pX, float* pY)
 {
-	float	fDistanceX = abs(_Dst->Get_Position().x - _Src->Get_Position().x);
-	float	fDistanceY = abs(_Dst->Get_Position().y - _Src->Get_Position().y);
+	float	fDistanceX = fabsf(_Dst->Get_Position().x - _Src->Get_Position().x);
+	float	fDistanceY = fabsf(_Dst->Get_Position().y - _Src->Get_Position().y);
 
 	float	fRadiusX = (_Dst->Get_Size().x + _Src->Get_Size().x) * 0.5f;
 	float	fRadiusY = (_Dst->Get_Size().y + _Src->Get_Size().y) * 0.5f;
