@@ -20,6 +20,8 @@ void CPlayer03::Initialize()
 
 	m_fMaxHP = 100.f;
 	m_fHP = m_fMaxHP;
+
+	m_fDamage = 16.f;
 }
 
 

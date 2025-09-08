@@ -16,19 +16,23 @@ protected:
 	void			Update_Rect();
 
 public:
-	const Vector2& Get_Position() const { return m_vPosition; }
-	const Vector2& Get_Direction() const { return m_vDirection; }
-	const Vector2& Get_Size() const { return m_vSize; }
-	const RECT* Get_Rect() { return &m_tRect; }
 	OBJID			Get_ObjectID() { return m_objID; }
+	const Vector2&	Get_Position() const { return m_vPosition; }
+	const Vector2&	Get_Direction() const { return m_vDirection; }
+	const Vector2&	Get_Size() const { return m_vSize; }
+	float			Get_SpeedX() { return m_fSpeedX; }
+	float			Get_SpeedY() { return m_fSpeedY; }
+	const RECT*		Get_Rect() { return &m_tRect; }
 
+	void			Set_ObjectID(OBJID _eObjID) { m_objID = _eObjID; }
 	void			Set_PosX(float _fX) { m_vPosition.x = _fX; }
 	void			Set_PosY(float _fY) { m_vPosition.y = _fY; }
 	void			Set_DirX(float _fX) { m_vDirection.x = _fX; }
 	void			Set_DirY(float _fY) { m_vDirection.y = _fY; }
 	void			Set_SizeX(float _fX) { m_vSize.x = _fX; }
 	void			Set_SizeY(float _fY) { m_vSize.y = _fY; }
-	void			Set_ObjectID(OBJID _eObjID) { m_objID = _eObjID; }
+	void			Set_SpeedX(float _fSpeedX) { m_fSpeedX = _fSpeedX; }
+	void			Set_SpeedY(float _fSpeedY) { m_fSpeedY = _fSpeedY; }
 
 	/**
 	* \brief On_Collision : Automatically invoked by the CollisionManager on collision
@@ -45,8 +49,13 @@ public: // Object's stats getter-setter
 	void			Set_MaxHP(float _HP) { m_fMaxHP = _HP; }
 	void			Set_Damage(float _damage) { m_fDamage = _damage; }
 
+public:		// Add functions
+	void			Add_PosX(float _fX) { m_vPosition.x += _fX; }
+	void			Add_PosY(float _fY) { m_vPosition.y += _fY; }
+
+
 protected:
-	virtual float	DeltaTime();
+	float	DeltaTime();
 
 protected:
 	OBJID			m_objID;		// 객체를 구분하는 enum

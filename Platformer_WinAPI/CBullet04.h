@@ -1,13 +1,11 @@
 ﻿#pragma once
-#include "CPlayer.h"
+#include "CBullet.h"
 
-//! 현재 깡통임. 그냥 부모 플레이어를 쓰자
-
-class CPlayer04 final : public CPlayer
+class CBullet04 final : public CBullet
 {
 public:
-	CPlayer04();
-	~CPlayer04() override;
+	CBullet04();
+	~CBullet04() override;
 
 public:
 	void Initialize() override;
@@ -19,4 +17,5 @@ public:
 public:
 	void On_Collision(CObject* pObj) override;
 	void Do_Attack() override;
+	void Take_Damage(float _fDamage) override;
 };

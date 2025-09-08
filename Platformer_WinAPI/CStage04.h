@@ -16,12 +16,4 @@ public:
 	void LateUpdate() override;
 	void Render(HDC hDC) override;
 	void Release() override;
-
-public:
-	list<CLine*>& Get_LineList() { return m_LineList; }
-
-private:
-	//list<CLine*> m_LineList;
-	//Vector2      m_tLinePoint[CLineManager::SIDE_END];
-	list<CLine*> m_LineList;
 };

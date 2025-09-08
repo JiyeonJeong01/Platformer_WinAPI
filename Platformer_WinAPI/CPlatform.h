@@ -1,13 +1,11 @@
 ﻿#pragma once
-#include "CPlayer.h"
+#include "CObject.h"
 
-//! 현재 깡통임. 그냥 부모 플레이어를 쓰자
-
-class CPlayer04 final : public CPlayer
+class CPlatform final : public CObject
 {
 public:
-	CPlayer04();
-	~CPlayer04() override;
+	CPlatform();
+	~CPlatform() override;
 
 public:
 	void Initialize() override;
@@ -18,5 +16,6 @@ public:
 
 public:
 	void On_Collision(CObject* pObj) override;
-	void Do_Attack() override;
 };
+
+

@@ -28,6 +28,9 @@
     <Filter Include="04. Utils">
       <UniqueIdentifier>{92071ca6-55d4-4824-a8da-d8d607f12fb5}</UniqueIdentifier>
     </Filter>
+    <Filter Include="01. Object\00. Object">
+      <UniqueIdentifier>{1fa2703c-9b38-434b-a212-0454a256786c}</UniqueIdentifier>
+    </Filter>
     <Filter Include="01. Object\01. Player">
       <UniqueIdentifier>{1f9ea313-66dd-4620-bd5c-fd0587dc607b}</UniqueIdentifier>
     </Filter>
@@ -121,8 +124,11 @@
     <Filter Include="01. Object\03. Bullet\04. Bullet04">
       <UniqueIdentifier>{d27e0c65-2918-46d2-bf2b-a70493a43326}</UniqueIdentifier>
     </Filter>
+    <Filter Include="01. Object\06. Platform">
+      <UniqueIdentifier>{0a690c0b-ce99-4185-9138-a019028c0be5}</UniqueIdentifier>
+    </Filter>
     <Filter Include="02. Manager\06. ScrollManager">
-      <UniqueIdentifier>{2b6b954c-cf2d-4fa7-b43f-21f8d45ef231}</UniqueIdentifier>
+      <UniqueIdentifier>{0357aa8d-51b7-428e-b57a-1db96caf5cb6}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -149,6 +155,9 @@
     </ClInclude>
     <ClInclude Include="Vector2.h">
       <Filter>04. Utils\00. Vector</Filter>
+    </ClInclude>
+    <ClInclude Include="CObject.h">
+      <Filter>01. Object\00. Object</Filter>
     </ClInclude>
     <ClInclude Include="CPlayer.h">
       <Filter>01. Object\01. Player</Filter>
@@ -222,23 +231,44 @@
     <ClInclude Include="CBoss03.h">
       <Filter>01. Object\02. Monster\03. Boss03</Filter>
     </ClInclude>
-    <ClInclude Include="CBullet_Player03.h">
-      <Filter>01. Object\03. Bullet\03. Bullet03</Filter>
-    </ClInclude>
-    <ClInclude Include="CScrollManager.h">
-      <Filter>02. Manager\06. ScrollManager</Filter>
+    <ClInclude Include="CPlatform.h">
+      <Filter>01. Object\06. Platform</Filter>
     </ClInclude>
     <ClInclude Include="CPlayer04.h">
       <Filter>01. Object\01. Player</Filter>
     </ClInclude>
-    <ClInclude Include="CBullet_Boss03.h">
+    <ClInclude Include="CScrollManager.h">
+      <Filter>02. Manager\06. ScrollManager</Filter>
+    </ClInclude>
+    <ClInclude Include="CBullet_Player03.h">
       <Filter>01. Object\03. Bullet\03. Bullet03</Filter>
     </ClInclude>
-    <ClInclude Include="CObject.h">
-      <Filter>01. Object</Filter>
+    <ClInclude Include="CBullet04.h">
+      <Filter>01. Object\03. Bullet\04. Bullet04</Filter>
     </ClInclude>
-    <ClInclude Include="CBullet02_Boss03.h">
-      <Filter>01. Object\03. Bullet\03. Bullet03</Filter>
+    <ClInclude Include="CBoss04.h">
+      <Filter>01. Object\02. Monster\04. Boss04</Filter>
+    </ClInclude>
+    <ClInclude Include="CBullet_BossAtk01.h">
+      <Filter>01. Object\03. Bullet\04. Bullet04</Filter>
+    </ClInclude>
+    <ClInclude Include="CBoss02.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="CBoss01.h">
+      <Filter>01. Object\02. Monster\01. Boss01</Filter>
+    </ClInclude>
+    <ClInclude Include="CBoss03.h">
+      <Filter>01. Object\02. Monster\03. Boss03</Filter>
+    </ClInclude>
+    <ClInclude Include="CPlayer01.h">
+      <Filter>01. Object\01. Player</Filter>
+    </ClInclude>
+    <ClInclude Include="CPowerItem.h">
+      <Filter>01. Object\05. Item</Filter>
+    </ClInclude>
+    <ClInclude Include="CMob03.h">
+      <Filter>01. Object\02. Monster\05. Mob</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -250,6 +280,9 @@
     </ClCompile>
     <ClCompile Include="Vector2.cpp">
       <Filter>04. Utils\00. Vector</Filter>
+    </ClCompile>
+    <ClCompile Include="CObject.cpp">
+      <Filter>01. Object\00. Object</Filter>
     </ClCompile>
     <ClCompile Include="CPlayer.cpp">
       <Filter>01. Object\01. Player</Filter>
@@ -317,23 +350,44 @@
     <ClCompile Include="CBoss03.cpp">
       <Filter>01. Object\02. Monster\03. Boss03</Filter>
     </ClCompile>
-    <ClCompile Include="CBullet_Player03.cpp">
-      <Filter>01. Object\03. Bullet\03. Bullet03</Filter>
-    </ClCompile>
-    <ClCompile Include="CScrollManager.cpp">
-      <Filter>02. Manager\06. ScrollManager</Filter>
+    <ClCompile Include="CPlatform.cpp">
+      <Filter>01. Object\06. Platform</Filter>
     </ClCompile>
     <ClCompile Include="CPlayer04.cpp">
       <Filter>01. Object\01. Player</Filter>
     </ClCompile>
-    <ClCompile Include="CBullet_Boss03.cpp">
+    <ClCompile Include="CScrollManager.cpp">
+      <Filter>02. Manager\06. ScrollManager</Filter>
+    </ClCompile>
+    <ClCompile Include="CBullet_Player03.cpp">
       <Filter>01. Object\03. Bullet\03. Bullet03</Filter>
     </ClCompile>
-    <ClCompile Include="CObject.cpp">
-      <Filter>01. Object</Filter>
+    <ClCompile Include="CBullet04.cpp">
+      <Filter>01. Object\03. Bullet\04. Bullet04</Filter>
     </ClCompile>
-    <ClCompile Include="CBullet02_Boss03.cpp">
-      <Filter>01. Object\03. Bullet\03. Bullet03</Filter>
+    <ClCompile Include="CBoss04.cpp">
+      <Filter>01. Object\02. Monster\04. Boss04</Filter>
+    </ClCompile>
+    <ClCompile Include="CBullet_BossAtk01.cpp">
+      <Filter>01. Object\03. Bullet\04. Bullet04</Filter>
+    </ClCompile>
+    <ClCompile Include="CBoss02.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="CBoss01.cpp">
+      <Filter>01. Object\02. Monster\01. Boss01</Filter>
+    </ClCompile>
+    <ClCompile Include="CBoss03.cpp">
+      <Filter>01. Object\02. Monster\03. Boss03</Filter>
+    </ClCompile>
+    <ClCompile Include="CPlayer01.cpp">
+      <Filter>01. Object\01. Player</Filter>
+    </ClCompile>
+    <ClCompile Include="CPowerItem.cpp">
+      <Filter>01. Object\05. Item</Filter>
+    </ClCompile>
+    <ClCompile Include="CMob03.cpp">
+      <Filter>01. Object\02. Monster\05. Mob</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
