@@ -1,4 +1,4 @@
-#include "pch.h"
+ï»¿#include "pch.h"
 #include "CBmp.h"
 
 CBmp::CBmp()
@@ -18,10 +18,10 @@ void CBmp::Load_Bmp(const TCHAR* pFilePath)
 
 	ReleaseDC(g_hWnd, hDC);
 
-	m_hBitmap = (HBITMAP)LoadImage(NULL,		// ÇÁ·Î±×·¥ ÀÎ½ºÅÏ½º ÇÚµé
-		pFilePath,  // ÆÄÀÏÀÇ °æ·Î
-		IMAGE_BITMAP,  // ¾î¶² Å¸ÀÔÀ» ÀÐ¾îµéÀÏ °ÍÀÎ°¡
-		0, 0, // ÀÌ¹ÌÁöÀÇ °¡·Î, ¼¼·Î »çÀÌÁî
+	m_hBitmap = (HBITMAP)LoadImage(NULL,		// í”„ë¡œê·¸ëž¨ ì¸ìŠ¤í„´ìŠ¤ í•¸ë“¤
+		pFilePath,  // íŒŒì¼ì˜ ê²½ë¡œ
+		IMAGE_BITMAP,  // ì–´ë–¤ íƒ€ìž…ì„ ì½ì–´ë“¤ì¼ ê²ƒì¸ê°€
+		0, 0, // ì´ë¯¸ì§€ì˜ ê°€ë¡œ, ì„¸ë¡œ ì‚¬ì´ì¦ˆ
 		LR_LOADFROMFILE | LR_CREATEDIBSECTION);
 
 	m_hOldBmp = (HBITMAP)SelectObject(m_hMemDC, m_hBitmap);
