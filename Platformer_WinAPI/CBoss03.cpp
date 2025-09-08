@@ -36,6 +36,7 @@ void CBoss03::Initialize()
 	// Boss Status
 	m_fMaxHP = 100.f;
 	m_fHP = m_fMaxHP;
+
 	m_fDamage = 10.f;
 }
 
@@ -169,27 +170,32 @@ void CBoss03::Attack2()
 {
 	ULONGLONG current = GetTickCount64();
 
-	// 5초뒤에 Idle로 전환
-	//if (current - m_Attack_Interval >= 5000)
-	//{
-	//	m_pattern = BOSS_STATE::Idle;
-	//	m_Attack_Interval = current;
-	//
-	//	return;
-	//}
+	CUtility::PrintCmd(L"Attack Count : ", m_Attack_Count);
+
+	if (m_Attack_Count > 5)
+	{
+		m_pattern = BOSS_STATE::Idle;
+		m_Attack_Interval = current;
+
+		m_Attack_Count = 0;
+	
+		return;
+	}
 
 	if (current - m_Attack1 >= 1000)
 	{
+		m_Attack_Count++;
+
 		Vector2 startPos;
 		startPos.x = m_vPosition.x;
-		startPos.y = m_vPosition.y - 200;
+		startPos.y = m_vPosition.y - 250;
 
 		Vector2 dir;
 		dir.x = CObjectManager::Get_Instance()->Get_Player()->Get_Position().x - startPos.x;
 		dir.y = CObjectManager::Get_Instance()->Get_Player()->Get_Position().y - startPos.y;
 		dir = Vector2::Nomalize(dir);
 
-		CObjectManager::Get_Instance()->Add_Object(
+			CObjectManager::Get_Instance()->Add_Object(
 			MON_BULLET, CAbstractFactory<CBullet02_Boss03>::Create(MON_BULLET, startPos, dir));
 
 		m_Attack1 = current;

@@ -61,33 +61,24 @@ void CPlayer03::On_Collision(CObject* pObj)
 {
 	CPlayer::On_Collision(pObj);
 
-	Take_Damage(pObj->Get_Damage());
 }
 
 void CPlayer03::Do_Attack()
 {
-	//CPlayer::Do_Attack();
+	CPlayer::Do_Attack();
 
-	Vector2 dir = Vector2::Nomalize(m_mouseDir);
-
-	Vector2 barrel;
-	barrel.x = m_vPosition.x + dir.x * 50.f;
-	barrel.y = m_vPosition.y + dir.y * 50.f;
-
-	CObjectManager::Get_Instance()->Add_Object(PL_BULLET, CAbstractFactory<CBullet_Player03>::Create(MON_BULLET, barrel, dir));
+	//Vector2 dir = Vector2::Nomalize(m_mouseDir);
+	//
+	//Vector2 barrel;
+	//barrel.x = m_vPosition.x + dir.x * 50.f;
+	//barrel.y = m_vPosition.y + dir.y * 50.f;
+	//
+	//CObjectManager::Get_Instance()->Add_Object(PL_BULLET, CAbstractFactory<CBullet_Player03>::Create(MON_BULLET, barrel, dir));
 }
 
 void CPlayer03::Take_Damage(float _fDamage)
 {
 	CPlayer::Take_Damage(_fDamage);
 
-	if (m_fHP - _fDamage > 0.f)
-	{
-		Set_HP(m_fHP - _fDamage);
-	}
-	else
-	{
-		Set_HP(0.f);
-		m_bDead = true;
-	}
+
 }

@@ -13,6 +13,8 @@ CBullet_Boss03::~CBullet_Boss03()
 void CBullet_Boss03::Initialize()
 {
 	CBullet::Initialize();
+
+	m_fDamage = 10.f;
 }
 
 int CBullet_Boss03::Update()

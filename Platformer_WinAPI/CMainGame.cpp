@@ -48,7 +48,7 @@ void CMainGame::Initialize()
 	// CObjectManager::Get_Instance()->Add_Object(PLAYER, CAbstractFactory<CPlayer>::Create());
 
 	// Start Stage
-	CStageManager::Get_Instance()->ChangeStage(STAGE2);
+	CStageManager::Get_Instance()->ChangeStage(STAGE3);
 
 }
 
@@ -95,5 +95,6 @@ void CMainGame::Release()
 	CStageManager::Destroy_Instance();
 	CUIManager::Destroy_Instance();
 	CLineManager::Destroy_Instance();
+	CScrollManager::Destroy_Instance();
 }
 

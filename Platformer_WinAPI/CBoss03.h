@@ -34,5 +34,7 @@ private:
 
 	float m_Attack_Interval = 0.f;
 	float m_Attack1 = 0.f;
+
+	int	  m_Attack_Count = 0;
 };
 

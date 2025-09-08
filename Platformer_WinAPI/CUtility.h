@@ -2,6 +2,10 @@
 
 #include "pch.h"
 
+#include "CAbstractFactory.h"
+#include "CObjectManager.h"
+#include "CPlatform.h"
+
 class CUtility
 {
 public:
@@ -46,6 +50,7 @@ public:
     {
         wprintf(L"%s %.2f %.2f\n", text, value.x, value.y);
     }
+
   
 };
 
