@@ -100,23 +100,6 @@ void CPlayer::Handle_KeyInput()
 
 void CPlayer::Update_Components()
 {
-	// Update player's direction
-	// (조건) ? true일 경우 : false일 경우
-	//m_vDirection.x = (bLeftPressed ? -1.f : ( bRightPressed ? 1.f : 0.f ));
-	//m_vDirection.y = bJumpPressed ? -1.f : 0.f;
-	//
-	//Vector2 normalized = Vector2::Nomalize(m_vDirection);
-	//m_vDirection.x = normalized.x;
-	//m_vDirection.y = normalized.y;
-	//
-	//// Update player's position
-	//m_vPosition.x += m_vDirection.x * m_fSpeedX;
-	//m_vPosition.y += m_vDirection.y * m_fSpeedY;
-	//
-	//// Update player's renderer rect
-	//__super::Update_Rect();
-
-	// Jump Jump
 	m_fGroundY = WINCY + 100.f;
 	CLineManager::Get_Instance()->Collision_Line(m_vPosition, &m_fGroundY);
 
@@ -130,7 +113,7 @@ void CPlayer::Update_Components()
 
 void CPlayer::Do_Attack()
 {
-	// TODO : 각자 플레이어에서 세팅하기, Player03 보고 스크롤 세팅까지 하세요
+	// TODO : 각자 플레이어에서 세팅하기
 	//Vector2 dir = Vector2::Nomalize(m_mouseDir);
 	//Vector2 barrel = m_vPosition + dir * 50.f;
 	//
@@ -190,7 +173,7 @@ void CPlayer::Vertical_Move()
 
 void CPlayer::Scroll_Offset()
 {
-	int minX = 250;
+	int minX = 150;
 	int maxX = WINCX - 300;
 
 	int minY = 300;
