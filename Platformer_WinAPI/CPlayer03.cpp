@@ -89,5 +89,6 @@ void CPlayer03::Take_Damage(float _fDamage)
 	{
 		Set_HP(0.f);
 		m_bDead = true;
+		CStageManager::Get_Instance()->On_PlayerDead(STAGE1, this);
 	}
 }

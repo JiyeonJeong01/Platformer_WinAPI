@@ -26,6 +26,9 @@ public:
 	void On_CurrentBossDead(CObject* pObj);
 	void On_MobDead(CObject* pObj);
 	void On_PlayerDead(STAGEID sID, CObject* pObj);
+	
+public :
+	bool Get_GameClear() { return bGameClear;  }
 
 
 private:

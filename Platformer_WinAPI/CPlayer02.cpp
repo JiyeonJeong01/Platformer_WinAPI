@@ -6,6 +6,7 @@
 #include "CBullet.h"
 #include "CLineManager.h"
 #include "CUIManager.h"
+#include "CStageManager.h"
 CPlayer02::CPlayer02() : sz_Time(GetTickCount())
 {
 
@@ -92,6 +93,7 @@ void CPlayer02::Take_Damage(float _fDamage)
 	{
 		m_fHP = 0.f;
 		m_bDead = true;
+		CStageManager::Get_Instance()->On_PlayerDead(STAGE2, this);
 	}
 
 	

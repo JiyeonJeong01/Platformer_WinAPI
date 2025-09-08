@@ -83,7 +83,7 @@ void CPlayer::Late_Update()
 	m_vPosinPosition.y = m_vPosition.y + (50 * dir.y);
 
 	// ↓ 콘솔로 원하는 값 보는 디버깅용 코드
-	_tprintf(_T(" Is Player Landed? : %d \n"), m_bPlayerLanded);
+	// _tprintf(_T(" Is Player Landed? : %d \n"), m_bPlayerLanded);
 
 	// 충돌판정용 RECT 갱신
 	__super::Update_Rect();

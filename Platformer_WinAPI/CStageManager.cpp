@@ -26,6 +26,7 @@ void CStageManager::Initialize()
 {
 	fItemDropRate = 0.4f;
 	fCurrentDamage = -1.f;
+	bGameClear = false;
 }
 
 void CStageManager::Update()

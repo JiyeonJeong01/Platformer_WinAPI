@@ -109,6 +109,12 @@ void CBoss04::On_Collision(CObject* pObj)
 	case PL_BULLET:
 	{
 		CBoss04::Take_Damage(pObj->Get_Damage());
+		_tprintf(_T("BOSS04 hp : %f \n"), m_fHP);
+
+		if (m_fHP <= 0.f)
+		{
+			CStageManager::Get_Instance()->On_CurrentBossDead(this);
+		}
 	}
 	break;
 	case PLATFORM:

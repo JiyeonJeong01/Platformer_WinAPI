@@ -96,3 +96,11 @@ void CUIManager::DrawHP(HDC hDC, float x, float y, float width, float height, fl
     DeleteObject(newBrush);
     DeleteObject(newPen);
 }
+
+void CUIManager::Render_GameClear(HDC hDC)
+{
+    Rectangle(hDC, 0, 0, WINCX, WINCY);
+    TCHAR buffer[64] = L"G A M E C L E A R";
+    TextOut(hDC, WINCX >> 1, WINCY >> 1 , buffer, lstrlen(buffer));
+
+}

@@ -43,12 +43,10 @@ void CMainGame::Initialize()
 	// Initialize managers
 	CInputManager::Get_Instance()->Initialize();
 	CUIManager::Get_Instance()->Initialize();
-
-	// Initialize objects
-	// CObjectManager::Get_Instance()->Add_Object(PLAYER, CAbstractFactory<CPlayer>::Create());
+	CStageManager::Get_Instance()->Initialize();
 
 	// Start Stage
-	CStageManager::Get_Instance()->ChangeStage(STAGE2);
+	CStageManager::Get_Instance()->ChangeStage(STAGE1);
 
 }
 
@@ -74,7 +72,11 @@ void CMainGame::Render()
 		BitBlt(m_hDC, 0, 0, m_rect.right, m_rect.bottom, m_hDC_back, 0, 0, SRCCOPY);
 		PatBlt(m_hDC_back, 0, 0, m_rect.right, m_rect.bottom, WHITENESS);
 	}
-
+	if (CStageManager::Get_Instance()->Get_GameClear())
+	{
+		CUIManager::Get_Instance()->Render_GameClear(m_hDC_back);
+		return;
+	}
 	CObjectManager::Get_Instance()->Render(m_hDC_back);
 	CStageManager::Get_Instance()->Render(m_hDC_back);
 	CUIManager::Get_Instance()->Render(m_hDC_back);

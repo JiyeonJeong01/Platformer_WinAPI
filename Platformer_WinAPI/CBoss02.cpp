@@ -246,6 +246,7 @@ void CBoss02::Take_Damage(float _fDamage)
 	{
 		m_fHP = 0.f;
 		m_bDead = true;
+		CStageManager::Get_Instance()->On_CurrentBossDead(this);
 	}
 }
 
