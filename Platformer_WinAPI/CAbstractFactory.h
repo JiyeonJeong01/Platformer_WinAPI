@@ -74,17 +74,19 @@ public:
 		return pObj;
 	}
 
-	//static CObject* Create(Vector2 _position, Vector2 _dir)
-	//{
-	//	CObject* pObj = new T;
-	//	pObj->Initialize();
-	//
-	//	pObj->Set_PosX(_position.x);
-	//	pObj->Set_PosY(_position.y);
-	//
-	//	pObj->Set_DirX(_dir.x);
-	//	pObj->Set_DirY(_dir.y);
-	//
-	//	return pObj;
-	//}
+	static CObject* Create(OBJID _eObjID, Vector2 _position, CObject* _target)
+	{
+		CObject* pObj = new T;
+
+		pObj->Set_ObjectID(_eObjID);
+
+		pObj->Set_PosX(_position.x);
+		pObj->Set_PosY(_position.y);
+
+		pObj->Set_Target(_target);
+
+		pObj->Initialize();
+
+		return pObj;
+	}
 };

@@ -130,6 +130,9 @@
     <Filter Include="02. Manager\02. CollisionManager\03. UIManager">
       <UniqueIdentifier>{d23109e7-20d6-47f1-be17-ebc61261148b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="01. Object\07. Shield">
+      <UniqueIdentifier>{81dccc28-5d44-4921-ab47-e23525f7f662}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -276,6 +279,12 @@
     <ClInclude Include="CBoss02.h">
       <Filter>01. Object\02. Monster\02. Boss02</Filter>
     </ClInclude>
+    <ClInclude Include="CShield.h">
+      <Filter>01. Object\07. Shield</Filter>
+    </ClInclude>
+    <ClInclude Include="CBullet03_Boss03.h">
+      <Filter>01. Object\03. Bullet\03. Bullet03</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Platformer_WinAPI.cpp">
@@ -400,6 +409,12 @@
     </ClCompile>
     <ClCompile Include="CBoss02.cpp">
       <Filter>01. Object\02. Monster\02. Boss02</Filter>
+    </ClCompile>
+    <ClCompile Include="CShield.cpp">
+      <Filter>01. Object\07. Shield</Filter>
+    </ClCompile>
+    <ClCompile Include="CBullet03_Boss03.cpp">
+      <Filter>01. Object\03. Bullet\03. Bullet03</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

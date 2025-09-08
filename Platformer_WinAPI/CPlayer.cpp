@@ -115,6 +115,8 @@ void CPlayer::Handle_KeyInput()
 	bLeftMouseClicked = CInputManager::Get_Instance()->GetKey(VK_LBUTTON);
 	m_fMousePosX      = CInputManager::Get_Instance()->Get_CursorPosition().x;
 	m_fMousePosY      = CInputManager::Get_Instance()->Get_CursorPosition().y;
+
+	bRightMouseClicked = CInputManager::Get_Instance()->GetKey(VK_RBUTTON);
 }
 
 void CPlayer::Update_Components()

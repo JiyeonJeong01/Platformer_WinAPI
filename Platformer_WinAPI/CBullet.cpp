@@ -71,6 +71,7 @@ void CBullet::On_Collision(CObject* pObj)
 	case MOUSE:					  break;
 	case SHIELD:				  break;
 	case ITEM:					  break;
+		break;
 
 	}
 }

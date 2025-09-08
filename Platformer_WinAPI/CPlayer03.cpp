@@ -3,6 +3,7 @@
 
 #include "CAbstractFactory.h"
 #include "CBullet_Player03.h"
+#include "CShield.h"
 
 CPlayer03::CPlayer03()
 {
@@ -50,11 +51,30 @@ void CPlayer03::Render(HDC hDC)
 	CPlayer::Render(hDC);
 
 	CUIManager::Get_Instance()->Render_PlayerHP(hDC, this);
+
+	//if (bRightMouseClicked)
+	//{
+	//	CObjectManager::Get_Instance()->Add_Object(
+	//		OBJID::SHIELD, CAbstractFactory<CShield>::Create(SHIELD, ))
+	//}
 }
 
 void CPlayer03::Release()
 {
 	CPlayer::Release();
+}
+
+void CPlayer03::Update_Components()
+{
+	CPlayer::Update_Components();
+
+}
+
+void CPlayer03::Handle_KeyInput()
+{
+	CPlayer::Handle_KeyInput();
+
+
 }
 
 void CPlayer03::On_Collision(CObject* pObj)
@@ -91,18 +111,12 @@ void CPlayer03::Do_Attack()
 {
 	CPlayer::Do_Attack();
 
-	//Vector2 dir = Vector2::Nomalize(m_mouseDir);
-	//
-	//Vector2 barrel;
-	//barrel.x = m_vPosition.x + dir.x * 50.f;
-	//barrel.y = m_vPosition.y + dir.y * 50.f;
-	//
-	//CObjectManager::Get_Instance()->Add_Object(PL_BULLET, CAbstractFactory<CBullet_Player03>::Create(MON_BULLET, barrel, dir));
+	
 }
 
 void CPlayer03::Take_Damage(float _fDamage)
 {
 	CPlayer::Take_Damage(_fDamage);
 
-
 }
+

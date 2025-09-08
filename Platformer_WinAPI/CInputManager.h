@@ -20,7 +20,7 @@ public:
 	bool GetKeyUp(int iKey);
 
 private:
-	vector<int> m_vKeys{ VK_SPACE, 'A', 'D', VK_LBUTTON };
+	vector<int> m_vKeys{ VK_SPACE, 'A', 'D', VK_LBUTTON, VK_RBUTTON };
 	map<int, InputKeyInfo*> m_KeyInfos;
 
 	Vector2 m_vCursorPosition;

@@ -1,6 +1,7 @@
 ﻿#pragma once
 
 #include "CBullet.h"
+#include "CBullet02_Boss03.h"
 
 class CBullet_Boss03 : public CBullet
 {
@@ -18,5 +19,14 @@ public:
 public:
 	void On_Collision(CObject* pObj) override;
 	void Take_Damage(float _fDamage) override;
+
+private:
+	Type attackType = Type::Charge;
+
+	float      m_fAngleDeg;
+	float      m_fRadius;
+	float      m_fAngSpeed;
+	float      m_fElapsed;
+	Vector2    m_center;
 };
 

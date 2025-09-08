@@ -30,14 +30,13 @@ private:
 
 private:
 	BOSS_STATE m_pattern = BOSS_STATE::Idle;
-
-	Vector2		m_PlayerDir = { };
-
-	float m_Attack1_Time = 0.0f;
-	float m_Attack2_Time = 0.0f;
-
-	int	  m_Attack2_Count = 0;
-
 	unordered_map<BOSS_STATE, float> m_PatternTimers;
+
+	int m_nextIndex = 0;
+
+private:
+	float m_Attack1_Timer = 0.f;
+	float m_Attack2_Timer = 0.f;
+	float m_Attack3_Timer = 0.f;
 };
 

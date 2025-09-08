@@ -23,36 +23,11 @@ CStage03::~CStage03()
 void CStage03::Initialize()
 {
 	// 맵 만들기
-	/*float   Ystart = WINCY - 100.f;
-	Vector2 tPoint[2] =
-	{ { 0.f, (Ystart) }, { 300.f, Ystart } };
-	CLineManager::Get_Instance()->Create_Line(tPoint, 2);
-
-	Vector2 tPoint2[4] =
-	{ { 450.f, Ystart }, { 500.f, Ystart }, { 700.f, Ystart - 200.f }, { 2800.f, Ystart - 200.f } };
-	CLineManager::Get_Instance()->Create_Line(tPoint2, 4);
-
-	Vector2 tPoint3[2] =
-	{ { 450.f, Ystart - 200.f }, { 600.f, Ystart - 200.f } };
-	CLineManager::Get_Instance()->Create_Line(tPoint3, 2);
-
-	Vector2 tPoint4[2] =
-	{ { 600.f, 260.f }, { 800.f, 260.f } };
-	CLineManager::Get_Instance()->Create_Line(tPoint4, 2);
-
-	Vector2 tPoint5[2] =
-	{ { 800.f, 200.f }, { 1000.f, 200.f } };
-	CLineManager::Get_Instance()->Create_Line(tPoint5, 2);
-
-	Vector2 tPoint6[2] =
-	{ { 1000.f, 130.f }, { 1200.f, 130.f } };
-	CLineManager::Get_Instance()->Create_Line(tPoint6, 2);*/
-
 	CreateTile();
 
 	// Object 추가
 	CObjectManager::Get_Instance()->Add_Object(PLAYER, CAbstractFactory<CPlayer03>::Create(PLAYER));
-	CObjectManager::Get_Instance()->Add_Object(MONSTER, CAbstractFactory<CBoss03>::Create(MONSTER, 800, 620));
+	CObjectManager::Get_Instance()->Add_Object(MONSTER, CAbstractFactory<CBoss03>::Create(MONSTER, 1200, 620));
 
 }
 
@@ -75,6 +50,7 @@ void CStage03::Render(HDC hDC)
 
 void CStage03::Release()
 {
+
 }
 
 void CStage03::CreateTile()

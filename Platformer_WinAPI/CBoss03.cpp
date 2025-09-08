@@ -4,6 +4,7 @@
 #include "CAbstractFactory.h"
 #include "CBullet.h"
 #include "CBullet02_Boss03.h"
+#include "CBullet03_Boss03.h"
 #include "CBullet_Boss03.h"
 #include "CObjectManager.h"
 #include "CUIManager.h"
@@ -38,6 +39,7 @@ void CBoss03::Initialize()
 	m_PatternTimers[BOSS_STATE::Idle] = 0.f;
 	m_PatternTimers[BOSS_STATE::Attack1] = 0.f;
 	m_PatternTimers[BOSS_STATE::Attack2] = 0.f;
+	m_PatternTimers[BOSS_STATE::Attack3] = 0.f;
 }
 
 int CBoss03::Update()
@@ -47,10 +49,10 @@ int CBoss03::Update()
 
 	__super::Update_Rect();
 
-	float dt = DeltaTime();          
-	m_fDeltaTime = dt;
+	float delta = DeltaTime();          
+	m_fDeltaTime = delta;
 
-	m_PatternTimers[m_pattern] += dt;
+	m_PatternTimers[m_pattern] += delta;
 
 	switch (m_pattern)
 	{
@@ -118,14 +120,13 @@ void CBoss03::Do_Attack()
 	if (CObjectManager::Get_Instance()->Get_Player() == nullptr)
 		return;
 
-	int random = 1 + rand() % static_cast<int>(BOSS_STATE::Attack2);
-	m_pattern = static_cast<BOSS_STATE>(random);
+	// 랜덤으로 했다가 그냥 하나씩 증가로 변경
+	m_nextIndex = (m_nextIndex + 1) % 4;
+	m_pattern = static_cast<BOSS_STATE>(m_nextIndex);
 
-	//m_pattern = BOSS_STATE::Attack2;
-
-	for (auto& pair : m_PatternTimers) 
+	for (auto& time : m_PatternTimers) 
 	{
-		pair.second = 0.f;
+		time.second = 0.f;
 	}
 }
 
@@ -147,9 +148,16 @@ void CBoss03::Take_Damage(float _fDamage)
 
 void CBoss03::Attack1()
 {
-	m_Attack1_Time += m_fDeltaTime; 
+	if (m_PatternTimers[BOSS_STATE::Attack1] >= 5.0f)
+	{
+		m_pattern = BOSS_STATE::Idle;
+		m_PatternTimers[BOSS_STATE::Idle] = 0.f;
+		return;
+	}
 
-	if (m_Attack1_Time >= 0.1f)
+	m_Attack1_Timer += m_fDeltaTime;
+
+	if (m_Attack1_Timer >= 0.1f)
 	{
 		Vector2 dir;
 		dir.x = CObjectManager::Get_Instance()->Get_Player()->Get_Position().x - m_vPosition.x;
@@ -159,34 +167,24 @@ void CBoss03::Attack1()
 		CObjectManager::Get_Instance()->Add_Object(
 			MON_BULLET, CAbstractFactory<CBullet_Boss03>::Create(MON_BULLET, m_vPosition, dir));
 
-		m_Attack1_Time = 0.0f;
+		m_Attack1_Timer = 0.f;
 	}
 
-	if (m_PatternTimers[m_pattern] > 5.0f)
-	{
-		m_pattern = BOSS_STATE::Idle;
-		m_PatternTimers[BOSS_STATE::Idle] = 0.f;
-
-		return;
-	}
 }
 
 void CBoss03::Attack2()
 {
-	m_Attack2_Time += m_fDeltaTime;
-
-	if (m_Attack2_Count > 5)
+	if (m_PatternTimers[BOSS_STATE::Attack2] >= 5.0f)
 	{
 		m_pattern = BOSS_STATE::Idle;
-		m_Attack2_Count = 0;
-
+		m_PatternTimers[BOSS_STATE::Idle] = 0.f;
 		return;
 	}
 
-	if (m_Attack2_Time >= 0.5f)
-	{
-		m_Attack2_Count++;
+	m_Attack2_Timer += m_fDeltaTime;
 
+	if (m_Attack2_Timer >= 0.5f)
+	{
 		Vector2 startPos;
 		startPos.x = m_vPosition.x;
 		startPos.y = m_vPosition.y - 250;
@@ -199,11 +197,27 @@ void CBoss03::Attack2()
 		CObjectManager::Get_Instance()->Add_Object(
 		MON_BULLET, CAbstractFactory<CBullet02_Boss03>::Create(MON_BULLET, startPos, dir));
 
-		m_Attack2_Time = 0.f;
+		m_Attack2_Timer = 0.0f;
 	}
 }
 
 void CBoss03::Attack3()
 {
-	// 실드 ? 
+	if (m_PatternTimers[BOSS_STATE::Attack3] >= 2.0f) {
+		m_pattern = BOSS_STATE::Idle;
+		m_PatternTimers[BOSS_STATE::Idle] = 0.f;
+		return;
+	}
+
+	m_Attack3_Timer += m_fDeltaTime;
+
+	if (m_Attack3_Timer >= 1.5f)
+	{	
+		CObjectManager::Get_Instance()->Add_Object(
+			MON_BULLET, CAbstractFactory<CBullet03_Boss03>::Create(MON_BULLET, m_vPosition));
+
+		m_Attack3_Timer = 0.f;
+	}
+
+	
 }

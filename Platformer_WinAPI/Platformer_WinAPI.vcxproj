@@ -138,6 +138,7 @@
     <ClInclude Include="CBoss04.h" />
     <ClInclude Include="CBullet.h" />
     <ClInclude Include="CBullet02_Boss03.h" />
+    <ClInclude Include="CBullet03_Boss03.h" />
     <ClInclude Include="CBullet04.h" />
     <ClInclude Include="CBullet_Boss03.h" />
     <ClInclude Include="CBullet_BossAtk01.h" />
@@ -149,6 +150,7 @@
     <ClInclude Include="CPlayer01.h" />
     <ClInclude Include="CPowerItem.h" />
     <ClInclude Include="CScrollManager.h" />
+    <ClInclude Include="CShield.h" />
     <ClInclude Include="CUtility.h" />
     <ClInclude Include="CItem.h" />
     <ClInclude Include="CLifeItem.h" />
@@ -186,6 +188,7 @@
     <ClCompile Include="CBoss04.cpp" />
     <ClCompile Include="CBullet.cpp" />
     <ClCompile Include="CBullet02_Boss03.cpp" />
+    <ClCompile Include="CBullet03_Boss03.cpp" />
     <ClCompile Include="CBullet04.cpp" />
     <ClCompile Include="CBullet_Boss03.cpp" />
     <ClCompile Include="CBullet_BossAtk01.cpp" />
@@ -210,6 +213,7 @@
     <ClCompile Include="CPlayer04.cpp" />
     <ClCompile Include="CPowerItem.cpp" />
     <ClCompile Include="CScrollManager.cpp" />
+    <ClCompile Include="CShield.cpp" />
     <ClCompile Include="CStage.cpp" />
     <ClCompile Include="CStage01.cpp" />
     <ClCompile Include="CStage02.cpp" />
