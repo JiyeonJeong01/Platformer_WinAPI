@@ -21,6 +21,7 @@ public:
 
 	void Set_PlayerMaxJump(int _iMaxJump) { m_iPlayerMaxJump = _iMaxJump; }
 	void Set_AttackCooldown(float _fAtkCooldown) { m_fAtkCooldown = _fAtkCooldown; }
+	void Set_PlayerLanded(bool _bPlayerLanded) { m_bPlayerLanded = _bPlayerLanded; }
 
 public:
 	void On_Collision(CObject* pObj) override;
@@ -36,7 +37,9 @@ protected:
 
 	void Landed_Platform(CObject* pObj);
 	void Landed_Line();
+
 	void Jump();
+
 	void Horizontal_Move();
 	void Vertical_Move();
 
@@ -62,6 +65,4 @@ protected:
 	// 공격 딜레이 관련 변수
 	float m_fAtkTimer;				// m_fDeltaTime 을 += 로 더해주면 타이머로 사용 가능
 	float m_fAtkCooldown;			// 공격간 딜레이 설정, 조절시 공속 바꾸기 가능!
-
-#pragma endregion
 };

@@ -82,6 +82,9 @@ void CPlayer::Late_Update()
 	m_vPosinPosition.x = m_vPosition.x + (50 * dir.x);
 	m_vPosinPosition.y = m_vPosition.y + (50 * dir.y);
 
+	// ↓ 콘솔로 원하는 값 보는 디버깅용 코드
+	_tprintf(_T(" Is Player Landed? : %d \n"), m_bPlayerLanded);
+
 	// 충돌판정용 RECT 갱신
 	__super::Update_Rect();
 }
@@ -156,12 +159,13 @@ void CPlayer::On_Collision(CObject* pObj)
 	break;
 	case PLATFORM:
 	{
-		if (m_fSpeedY >= 0.f)
-		{
+		//if (m_fSpeedY >= 0.f)
+		//{
 			Landed_Platform(pObj);
-		}
+		//}
 
 		//todo 천장에 닿을 때, 벽에 닿을 때
+		//! -> 이를 Collision_RectEx 를 고쳐 사용 가능할지 테스트중
 
 		// 충돌판정용 RECT 갱신
 		CObject::Update_Rect();
@@ -205,12 +209,104 @@ void CPlayer::Take_Damage(float _fDamage)
 
 void CPlayer::Landed_Platform(CObject* pObj)
 {
-	m_fSpeedY          = 0.f;
-	m_iPlayerJumpCount = 0;
-	m_vPosition.y      = pObj->Get_Position().y - (pObj->Get_Size().y / 2.f) - (m_vSize.y / 2.f);
+	// 상 충돌
+	//m_fSpeedY          = 0.f;
+	//m_iPlayerJumpCount = 0;
+	//m_vPosition.y      = pObj->Get_Position().y - (pObj->Get_Size().y / 2.f) - (m_vSize.y / 2.f);
+	//
+	//m_bPlayerLanded = true;
 
-	m_bPlayerLanded = true;
+	float fX = 0.f, fY = 0.f;
+
+	if (CCollisionManager::Check_Rect(this, pObj, &fX, &fY))
+	{
+		if (fX > fY)	// 상하 충돌
+		{
+			if (m_vPosition.y < pObj->Get_Position().y && m_fSpeedY >= 0.f)		//	상 충돌
+			{
+				m_fSpeedY = 0.f;
+				m_iPlayerJumpCount = 0;
+				m_vPosition.y = pObj->Get_Position().y - (pObj->Get_Size().y / 2.f + m_vSize.y / 2.f);
+			}
+			else //-------------------------------------------	하 충돌
+			{
+				//m_fSpeedY = 0.f;
+				//m_vPosition.y = pObj->Get_Position().y + (pObj->Get_Size().y / 2.f + m_vSize.y / 2.f);
+				//! 천장 필요하면 사용하기
+			}
+		}
+
+		if (fX < fY)		// 좌우 충돌
+		{
+			if (m_vPosition.x < pObj->Get_Position().x)		//	좌 충돌
+			{
+				m_vPosition.x = pObj->Get_Position().x - (pObj->Get_Size().x / 2.f + m_vSize.x / 2.f);;
+			}
+			else //-------------------------------------------	우 충돌
+			{
+				m_vPosition.x = pObj->Get_Position().x + (pObj->Get_Size().x / 2.f + m_vSize.x / 2.f);;
+			}
+		}
+		
+	}
 }
+
+/*
+void CCollisionManager::Collision_RectEx(list<CObject*> _Dst, list<CObject*> _Src)
+{
+	float fX(0.f), fY(0.f);
+
+	for (auto& Dst : _Dst)
+	{
+		for (auto& Src : _Src)
+		{
+			if (Check_Rect(Dst, Src, &fX, &fY))
+			{
+				if (fX > fY)	// 상하 충돌
+				{
+					if (Dst->Get_Position().y < Src->Get_Position().y) // 상 충돌
+					{
+						Dst->Set_PosY(-fY);
+					}
+					else  // 하충돌
+					{
+						Dst->Set_PosY(fY);
+					}
+				}
+				else			// 좌우 충돌
+				{
+					if (Dst->Get_Position().x < Src->Get_Position().x) // 좌 충돌
+					{
+						Dst->Set_PosX(-fX);
+					}
+					else  // 우 충돌
+					{
+						Dst->Set_PosX(fX);
+					}
+				}
+			}
+		}
+	}
+}
+
+bool CCollisionManager::Check_Rect(CObject* _Dst, CObject* _Src, float* pX, float* pY)
+{
+	float	fDistanceX = abs(_Dst->Get_Position().x - _Src->Get_Position().x);
+	float	fDistanceY = abs(_Dst->Get_Position().y - _Src->Get_Position().y);
+
+	float	fRadiusX = (_Dst->Get_Size().x + _Src->Get_Size().x) * 0.5f;
+	float	fRadiusY = (_Dst->Get_Size().y + _Src->Get_Size().y) * 0.5f;
+
+	if ((fRadiusX >= fDistanceX) && (fRadiusY >= fDistanceY))
+	{
+		*pX = fRadiusX - fDistanceX;
+		*pY = fRadiusY - fDistanceY;
+
+		return true;
+	}
+	return false;
+}
+ */
 
 void CPlayer::Landed_Line()
 {

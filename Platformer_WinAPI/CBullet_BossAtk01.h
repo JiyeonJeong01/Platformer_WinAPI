@@ -1,13 +1,14 @@
 ﻿#pragma once
-#include "CPlayer.h"
+#include "CBullet.h"
 
-//! 현재 깡통임. 그냥 부모 플레이어를 쓰자
+//! 보스 공격1 전용 총알 테스트
+//! 가속하는 총알
 
-class CPlayer04 final : public CPlayer
+class CBullet_BossAtk01 final : public CBullet
 {
 public:
-	CPlayer04();
-	~CPlayer04() override;
+	CBullet_BossAtk01();
+	~CBullet_BossAtk01() override;
 
 public:
 	void Initialize() override;
@@ -19,4 +20,5 @@ public:
 public:
 	void On_Collision(CObject* pObj) override;
 	void Do_Attack() override;
+	void Take_Damage(float _fDamage) override;
 };
