@@ -9,13 +9,13 @@ public :
 public :
 	void Initialize() override;
 	int Update() override;
-	void Late_Update() override {};
-	void Release() override {};
+	void Late_Update() override {}
+	void Release() override {}
 
 public :
 	void On_Collision(CObject* pObj) override;
 
 public :
-	virtual void Apply_Effect(CObject* pObj) {};
+	virtual void Apply_Effect(CObject* pObj) {}
 };
 
