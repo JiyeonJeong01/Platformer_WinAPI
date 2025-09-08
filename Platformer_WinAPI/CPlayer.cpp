@@ -30,7 +30,7 @@ void CPlayer::Initialize()
 	m_fHP            = m_fMaxHP;
 	m_fDamage        = 1.f;
 	m_iPlayerMaxJump = 2;
-	m_fAtkCooldown   = 0.3f;
+	m_fAtkCooldown   = 0.2f;
 }
 
 int CPlayer::Update()
@@ -161,7 +161,7 @@ void CPlayer::On_Collision(CObject* pObj)
 	{
 		//if (m_fSpeedY >= 0.f)
 		//{
-			Landed_Platform(pObj);
+		Landed_Platform(pObj);
 		//}
 
 		//todo 천장에 닿을 때, 벽에 닿을 때
@@ -209,13 +209,6 @@ void CPlayer::Take_Damage(float _fDamage)
 
 void CPlayer::Landed_Platform(CObject* pObj)
 {
-	// 상 충돌
-	//m_fSpeedY          = 0.f;
-	//m_iPlayerJumpCount = 0;
-	//m_vPosition.y      = pObj->Get_Position().y - (pObj->Get_Size().y / 2.f) - (m_vSize.y / 2.f);
-	//
-	//m_bPlayerLanded = true;
-
 	float fX = 0.f, fY = 0.f;
 
 	if (CCollisionManager::Check_Rect(this, pObj, &fX, &fY))
@@ -224,9 +217,9 @@ void CPlayer::Landed_Platform(CObject* pObj)
 		{
 			if (m_vPosition.y < pObj->Get_Position().y && m_fSpeedY >= 0.f)		//	상 충돌
 			{
-				m_fSpeedY = 0.f;
+				m_fSpeedY          = 0.f;
 				m_iPlayerJumpCount = 0;
-				m_vPosition.y = pObj->Get_Position().y - (pObj->Get_Size().y / 2.f + m_vSize.y / 2.f);
+				m_vPosition.y      = pObj->Get_Position().y - (pObj->Get_Size().y / 2.f + m_vSize.y / 2.f);
 			}
 			else //-------------------------------------------	하 충돌
 			{
@@ -240,14 +233,13 @@ void CPlayer::Landed_Platform(CObject* pObj)
 		{
 			if (m_vPosition.x < pObj->Get_Position().x)		//	좌 충돌
 			{
-				m_vPosition.x = pObj->Get_Position().x - (pObj->Get_Size().x / 2.f + m_vSize.x / 2.f);;
+				m_vPosition.x = pObj->Get_Position().x - (pObj->Get_Size().x / 2.f + m_vSize.x / 2.f);
 			}
 			else //-------------------------------------------	우 충돌
 			{
-				m_vPosition.x = pObj->Get_Position().x + (pObj->Get_Size().x / 2.f + m_vSize.x / 2.f);;
+				m_vPosition.x = pObj->Get_Position().x + (pObj->Get_Size().x / 2.f + m_vSize.x / 2.f);
 			}
 		}
-		
 	}
 }
 
@@ -363,7 +355,7 @@ void CPlayer::Vertical_Move()
 
 void CPlayer::Scroll_Offset()
 {
-	int minX = 250;
+	int minX = 50;
 	int maxX = WINCX - 300;
 
 	int minY = 300;

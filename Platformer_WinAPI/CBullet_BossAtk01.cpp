@@ -23,6 +23,7 @@ int CBullet_BossAtk01::Update()
 {
 	const int iResult = __super::Update();
 
+	// 가속 기능
 	m_fSpeedX += 1.0f;
 	m_fSpeedY += 1.0f;
 
