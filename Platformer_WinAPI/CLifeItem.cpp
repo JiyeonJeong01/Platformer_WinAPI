@@ -20,5 +20,7 @@ void CLifeItem::Initialize()
 
 void CLifeItem::Apply_Effect(CObject* pObj)
 {
-	// TODO : Implement player's heal logic
+	// player's current hp +20%
+	pObj->Set_HP(min(pObj->Get_MaxHP(), pObj->Get_HP() * 1.2f));
+	m_bDead = true;
 }

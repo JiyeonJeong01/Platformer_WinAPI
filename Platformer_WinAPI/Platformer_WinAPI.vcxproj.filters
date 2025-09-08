@@ -255,6 +255,21 @@
     <ClInclude Include="CBoss02.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
+    <ClInclude Include="CBoss01.h">
+      <Filter>01. Object\02. Monster\01. Boss01</Filter>
+    </ClInclude>
+    <ClInclude Include="CBoss03.h">
+      <Filter>01. Object\02. Monster\03. Boss03</Filter>
+    </ClInclude>
+    <ClInclude Include="CPlayer01.h">
+      <Filter>01. Object\01. Player</Filter>
+    </ClInclude>
+    <ClInclude Include="CPowerItem.h">
+      <Filter>01. Object\05. Item</Filter>
+    </ClInclude>
+    <ClInclude Include="CMob03.h">
+      <Filter>01. Object\02. Monster\05. Mob</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Platformer_WinAPI.cpp">
@@ -358,6 +373,21 @@
     </ClCompile>
     <ClCompile Include="CBoss02.cpp">
       <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="CBoss01.cpp">
+      <Filter>01. Object\02. Monster\01. Boss01</Filter>
+    </ClCompile>
+    <ClCompile Include="CBoss03.cpp">
+      <Filter>01. Object\02. Monster\03. Boss03</Filter>
+    </ClCompile>
+    <ClCompile Include="CPlayer01.cpp">
+      <Filter>01. Object\01. Player</Filter>
+    </ClCompile>
+    <ClCompile Include="CPowerItem.cpp">
+      <Filter>01. Object\05. Item</Filter>
+    </ClCompile>
+    <ClCompile Include="CMob03.cpp">
+      <Filter>01. Object\02. Monster\05. Mob</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

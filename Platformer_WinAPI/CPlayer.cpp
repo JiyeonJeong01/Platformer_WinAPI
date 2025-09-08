@@ -177,7 +177,7 @@ void CPlayer::On_Collision(CObject* pObj)
 }
 
 void CPlayer::Do_Attack()
-{
+{	
 	// TODO : 각자 플레이어에서 세팅하기, Player03 보고 스크롤 세팅까지 하세요
 	// -> 플레이어에 다 합쳐서 그냥 CPlayer 거 가져다가 써도 됨
 
