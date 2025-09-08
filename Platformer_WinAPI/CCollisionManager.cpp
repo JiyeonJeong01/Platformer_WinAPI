@@ -28,8 +28,10 @@ void CCollisionManager::Collision_Circle(list<CObject*> _Dst, list<CObject*> _Sr
 			if (Check_Circle(Dst, Src))
 			{
 				// TODO : Implement collision logic
-				Dst->On_Collision(Src);
-				Src->On_Collision(Dst);
+				if (Dst)
+					Dst->On_Collision(Src);
+				if(Src)
+					Src->On_Collision(Dst);
 			}
 		}
 	}

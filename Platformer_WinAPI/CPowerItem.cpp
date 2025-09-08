@@ -10,14 +10,26 @@ void CPowerItem::Initialize()
 
 	m_vPosition = { 0.f, 0.f };
 	m_vDirection = { 0.f, 0.f };
-	m_vSize = { 10.f, 20.f };
+	m_vSize = { 20.f, 20.f };
 
 	fPowerUpPercentage = 1.2f;
 }
 
 void CPowerItem::Render(HDC _hDC)
 {
-	Rectangle(_hDC, m_tRect.left, m_tRect.top, m_tRect.right, m_tRect.bottom);
+	HDC	hMemDC = CBmpManager::Get_Instance()->Find_Img(L"ItemPower");
+
+	GdiTransparentBlt(_hDC,
+		m_tRect.left,
+		m_tRect.top,
+		(int)m_vSize.x,
+		(int)m_vSize.y,
+		hMemDC,
+		0,
+		0,
+		(int)m_vSize.x,
+		(int)m_vSize.y,
+		RGB(255, 255, 255));
 }
 
 

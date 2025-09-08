@@ -131,6 +131,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="CBmpManager.h" />
     <ClInclude Include="CAbstractFactory.h" />
     <ClInclude Include="CBoss02.h" />
     <ClInclude Include="CBoss01.h" />
@@ -171,6 +172,7 @@
     <ClInclude Include="framework.h" />
     <ClInclude Include="InputKeyInfo.h" />
     <ClInclude Include="CInputManager.h" />
+    <ClInclude Include="CBmp.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="Platformer_WinAPI.h" />
     <ClInclude Include="Resource.h" />
@@ -178,6 +180,7 @@
     <ClInclude Include="Vector2.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="CBmpManager.cpp" />
     <ClCompile Include="CBoss02.cpp" />
     <ClCompile Include="CBoss01.cpp" />
     <ClCompile Include="CBoss03.cpp" />
@@ -213,6 +216,7 @@
     <ClCompile Include="CStage04.cpp" />
     <ClCompile Include="CStageManager.cpp" />
     <ClCompile Include="CUIManager.cpp" />
+    <ClCompile Include="CBmp.cpp" />
     <ClCompile Include="pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>

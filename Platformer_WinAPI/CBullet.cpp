@@ -18,9 +18,7 @@ void CBullet::Initialize()
 	m_fSpeedX = 5.f;
 	m_fSpeedY = 5.f;
 
-	m_fDamage = 10.f;
-
-
+	m_fDamage = 5.f;
 }
 
 int CBullet::Update()
