@@ -30,7 +30,7 @@ void CPlayer::Initialize()
 	m_fHP            = m_fMaxHP;
 	m_fDamage        = 1.f;
 	m_iPlayerMaxJump = 2;
-	m_fAtkCooldown   = 0.2f;
+	m_fAtkCooldown   = 0.3f;
 }
 
 int CPlayer::Update()
@@ -41,14 +41,12 @@ int CPlayer::Update()
 		//todo 스테이지 매니저에서 재시작하도록 함수 호출
 	}
 
-	// ↓ 콘솔로 원하는 값 보는 디버깅용 코드
-	//_tprintf(_T(" m_bPlayerLanded : %d \n"), m_bPlayerLanded);
+	// 델타타임 사용을 위해 포함할 것
+	m_fDeltaTime = CObject::DeltaTime();
 
 	// 낙하속도 상한 설정
 	if (m_fSpeedY > 1000.f)
 		m_fSpeedY = 1000.f;
-
-	m_fDeltaTime = CObject::DeltaTime();
 
 	// 플레이어 내장 타이머
 	m_fAtkTimer += m_fDeltaTime;
@@ -81,9 +79,6 @@ void CPlayer::Late_Update()
 	Vector2 dir        = Vector2::Nomalize(m_mouseDir);
 	m_vPosinPosition.x = m_vPosition.x + (50 * dir.x);
 	m_vPosinPosition.y = m_vPosition.y + (50 * dir.y);
-
-	// ↓ 콘솔로 원하는 값 보는 디버깅용 코드
-	_tprintf(_T(" Is Player Landed? : %d \n"), m_bPlayerLanded);
 
 	// 충돌판정용 RECT 갱신
 	__super::Update_Rect();
@@ -159,13 +154,7 @@ void CPlayer::On_Collision(CObject* pObj)
 	break;
 	case PLATFORM:
 	{
-		//if (m_fSpeedY >= 0.f)
-		//{
 		Landed_Platform(pObj);
-		//}
-
-		//todo 천장에 닿을 때, 벽에 닿을 때
-		//! -> 이를 Collision_RectEx 를 고쳐 사용 가능할지 테스트중
 
 		// 충돌판정용 RECT 갱신
 		CObject::Update_Rect();
@@ -220,6 +209,8 @@ void CPlayer::Landed_Platform(CObject* pObj)
 				m_fSpeedY          = 0.f;
 				m_iPlayerJumpCount = 0;
 				m_vPosition.y      = pObj->Get_Position().y - (pObj->Get_Size().y / 2.f + m_vSize.y / 2.f);
+
+				m_bPlayerLanded = true;
 			}
 			else //-------------------------------------------	하 충돌
 			{
@@ -242,63 +233,6 @@ void CPlayer::Landed_Platform(CObject* pObj)
 		}
 	}
 }
-
-/*
-void CCollisionManager::Collision_RectEx(list<CObject*> _Dst, list<CObject*> _Src)
-{
-	float fX(0.f), fY(0.f);
-
-	for (auto& Dst : _Dst)
-	{
-		for (auto& Src : _Src)
-		{
-			if (Check_Rect(Dst, Src, &fX, &fY))
-			{
-				if (fX > fY)	// 상하 충돌
-				{
-					if (Dst->Get_Position().y < Src->Get_Position().y) // 상 충돌
-					{
-						Dst->Set_PosY(-fY);
-					}
-					else  // 하충돌
-					{
-						Dst->Set_PosY(fY);
-					}
-				}
-				else			// 좌우 충돌
-				{
-					if (Dst->Get_Position().x < Src->Get_Position().x) // 좌 충돌
-					{
-						Dst->Set_PosX(-fX);
-					}
-					else  // 우 충돌
-					{
-						Dst->Set_PosX(fX);
-					}
-				}
-			}
-		}
-	}
-}
-
-bool CCollisionManager::Check_Rect(CObject* _Dst, CObject* _Src, float* pX, float* pY)
-{
-	float	fDistanceX = abs(_Dst->Get_Position().x - _Src->Get_Position().x);
-	float	fDistanceY = abs(_Dst->Get_Position().y - _Src->Get_Position().y);
-
-	float	fRadiusX = (_Dst->Get_Size().x + _Src->Get_Size().x) * 0.5f;
-	float	fRadiusY = (_Dst->Get_Size().y + _Src->Get_Size().y) * 0.5f;
-
-	if ((fRadiusX >= fDistanceX) && (fRadiusY >= fDistanceY))
-	{
-		*pX = fRadiusX - fDistanceX;
-		*pY = fRadiusY - fDistanceY;
-
-		return true;
-	}
-	return false;
-}
- */
 
 void CPlayer::Landed_Line()
 {
@@ -345,7 +279,6 @@ void CPlayer::Horizontal_Move()
 
 void CPlayer::Vertical_Move()
 {
-	// 수직방향 이동 (점프, 낙하)
 	m_fSpeedY += 3000.f * m_fDeltaTime;
 	//! Y속도 += 가속도(중력가속도 * 화면 보정값) * dt : 속도의 적분
 

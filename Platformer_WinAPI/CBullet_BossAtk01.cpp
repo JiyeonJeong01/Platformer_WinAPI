@@ -13,8 +13,8 @@ void CBullet_BossAtk01::Initialize()
 {
 	__super::Initialize();
 
-	m_fSpeedX = 0.5f;
-	m_fSpeedY = 0.5f;
+	m_fSpeedX = -2.0f;
+	m_fSpeedY = -2.0f;
 
 	m_fDamage = 10.f;
 }
@@ -69,6 +69,8 @@ void CBullet_BossAtk01::On_Collision(CObject* pObj)
 	default:
 		break;
 	}
+
+	__super::Update_Rect();
 }
 
 void CBullet_BossAtk01::Do_Attack()

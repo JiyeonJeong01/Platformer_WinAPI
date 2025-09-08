@@ -5,7 +5,7 @@
 #include "CBullet_BossAtk01.h"
 
 CBoss04::CBoss04()
-	: m_eBossState(BOSS04_STATE::IDLE), m_fBossAtkTimer(0.f), m_bTalk_Idle(false)
+	: m_eBossState(BOSS04_STATE::IDLE), m_fBossAtkDelay(0.f), m_bCanAttack(false)
 {}
 
 CBoss04::~CBoss04()
@@ -19,8 +19,8 @@ void CBoss04::Initialize()
 	m_vDirection = { 0.f, 0.f };
 	m_vSize      = { 120.f, 120.f };
 
-	m_fSpeedX = 10.f;
-	m_fSpeedY = 7.f;
+	m_fSpeedX = 0.f;
+	m_fSpeedY = 0.f;
 
 	// TODO : 보스 타입을 몬스터와 분리할지
 	//m_objID = BOSS ?
@@ -31,34 +31,57 @@ void CBoss04::Initialize()
 	m_fHP    = m_fMaxHP;
 
 	m_fDamage = 10.f;
+
+	m_bGravityOn = true;
 }
 
 int CBoss04::Update()
 {
-	if (m_bDead)
-		return OBJ_DEAD;
+	int iResult = CMonster::Update();
 
 	if (CObjectManager::Get_Instance()->Get_Player() == nullptr)
 		m_eBossState = BOSS04_STATE::IDLE;
 
-	// 보스 공격 구현
-	ULONGLONG qwTimer = GetTickCount64();
+	// 낙하속도 상한 설정
+	if (m_bGravityOn && m_fSpeedY > 1000.f)
+		m_fSpeedY = 1000.f;
 
-	if (qwTimer - m_fBossAtkTimer >= 1000)
+	//todo 점프 조건 만들기
+	Jump();
+
+	//todo 왼쪽으로 가는 조건 만들기
+	//Left_Move();
+
+	//todo 오른쪽으로 가는 조건 만들기
+	//Right_Move();
+
+	Vertical_Move();
+
+	m_fGroundY = WINCY + 100.f;
+
+	CLineManager::Get_Instance()->Collision_Line(m_vPosition, &m_fGroundY);
+
+	Landed_Line();
+
+	// 보스 내장 타이머
+	m_fBossAtkDelay += m_fDeltaTime;
+
+	// ↓ 콘솔로 원하는 값 보는 디버깅용 코드
+	//_tprintf(_T(" m_fBossAtkTimer : %f \n"), m_fBossAtkTimer);
+
+	if (m_fBossAtkDelay > 2.f)
 	{
 		switch (m_eBossState)
 		{
 		case BOSS04_STATE::IDLE:
 		{
-			m_bTalk_Idle = true;
+			//todo 랜덤 대사
 
 			m_eBossState = BOSS04_STATE::ATTACK_01;
 		}
 		break;
 		case BOSS04_STATE::ATTACK_01:
 		{
-			m_bTalk_Idle = false;
-
 			CBoss04::Attack01();
 
 			m_eBossState = BOSS04_STATE::IDLE;
@@ -72,10 +95,10 @@ int CBoss04::Update()
 			break;
 		}
 
-		m_fBossAtkTimer = static_cast<float>(qwTimer);
+		m_fBossAtkDelay = 0.f;
 	}
 
-	return CMonster::Update();
+	return iResult;
 }
 
 void CBoss04::Late_Update()
@@ -89,12 +112,9 @@ void CBoss04::Render(HDC hDC)
 
 	CUIManager::Get_Instance()->Render_BossHP(hDC, this);
 
-	//CUtility::PrintText(hDC, 100, 200,
-	//					L"BossState : ", static_cast<int>(m_eBossState));
-
 	if (m_bTalk_Idle)
 	{
-		CUtility::PrintText(hDC, 100, 250,
+		CUtility::PrintText(hDC, 50, 250,
 							L"안녕? ", static_cast<int>(m_eBossState));
 	}
 }
@@ -113,12 +133,14 @@ void CBoss04::On_Collision(CObject* pObj)
 	break;
 	case PLATFORM:
 	{
-		//todo 착지 판정
+		Landed_Platform(pObj);
 	}
 	break;
 	default:
 		break;
 	}
+
+	__super::Update_Rect();
 }
 
 void CBoss04::Take_Damage(float _fDamage)
@@ -134,7 +156,6 @@ void CBoss04::Take_Damage(float _fDamage)
 	}
 }
 
-//! 플레이어 방향으로 가속하는 총알 3발 흩뿌리기
 void CBoss04::Attack01()
 {
 	Vector2 vPlayer_Dir;
@@ -164,4 +185,4 @@ void CBoss04::Attack01()
 }
 
 void CBoss04::Attack02()
-{ }
+{}

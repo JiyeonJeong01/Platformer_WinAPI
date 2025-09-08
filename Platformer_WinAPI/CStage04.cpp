@@ -2,6 +2,7 @@
 #include "CStage04.h"
 #include "CAbstractFactory.h"
 #include "CBoss04.h"
+#include "CMob01.h"
 #include "CObjectManager.h"
 #include "CPlatform.h"
 #include "CPlayer04.h"
@@ -20,7 +21,11 @@ void CStage04::Initialize()
 		->Add_Object(PLAYER, CAbstractFactory<CPlayer04>::Create(PLAYER));
 
 	CObjectManager::Get_Instance()
-		->Add_Object(MONSTER, CAbstractFactory<CBoss04>::Create(MONSTER, 1000.f, 200.f));
+		->Add_Object(MONSTER, CAbstractFactory<CBoss04>::Create(MONSTER, 1000.f, 400.f));
+
+	//CObjectManager::Get_Instance()
+	//	->Add_Object(MONSTER, CAbstractFactory<CMob01>::Create(MONSTER, 500.f, 200.f));
+	//todo 몬스터 직접 만들기
 
 	// 1.바닥 : 사선
 	//Vector2 tPoint[2] =
@@ -29,7 +34,7 @@ void CStage04::Initialize()
 
 	// 2. 바닥 : 플랫폼
 	CObjectManager::Get_Instance()
-		->Add_Object(PLATFORM, CAbstractFactory<CPlatform>::Create(PLATFORM, WINCX >> 1, WINCY - 95.f, 680.f, 30.f));
+		->Add_Object(PLATFORM, CAbstractFactory<CPlatform>::Create(PLATFORM, WINCX >> 1, WINCY - 95.f, 3000.f, 30.f));
 
 	// 3. 바닥 : 사선
 	//Vector2 tPoint2[2] =
