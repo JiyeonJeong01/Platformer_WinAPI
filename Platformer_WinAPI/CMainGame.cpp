@@ -30,20 +30,11 @@ void CMainGame::Initialize()
 	// Initialize window resources
 	m_hDC = GetDC(g_hWnd);
 
-	// Dubble buffering
-	{
-		GetClientRect(g_hWnd, &m_rect);
-
-		m_hDC_back = CreateCompatibleDC(m_hDC);
-		m_bmpBack = CreateCompatibleBitmap(m_hDC, m_rect.right, m_rect.bottom);
-		HBITMAP prev = (HBITMAP)::SelectObject(m_hDC_back, m_bmpBack);
-		DeleteObject(prev);
-	}
-
 	// Initialize managers
 	CInputManager::Get_Instance()->Initialize();
 	CUIManager::Get_Instance()->Initialize();
 	CStageManager::Get_Instance()->Initialize();
+	CBmpManager::Get_Instance()->Initialize();
 
 	// Start Stage
 	CStageManager::Get_Instance()->ChangeStage(STAGE1);
@@ -67,20 +58,21 @@ void CMainGame::Late_Update()
 
 void CMainGame::Render()
 {
-	// Dubble buffering
-	{
-		BitBlt(m_hDC, 0, 0, m_rect.right, m_rect.bottom, m_hDC_back, 0, 0, SRCCOPY);
-		PatBlt(m_hDC_back, 0, 0, m_rect.right, m_rect.bottom, WHITENESS);
-	}
+	HDC	hBackDC = CBmpManager::Get_Instance()->Find_Img(L"Dummy");
+	HDC	hBackroundDC = CBmpManager::Get_Instance()->Find_Img(L"Background");
+
+	BitBlt(hBackDC, 0, 0, WINCX, WINCY, hBackroundDC, 0, 0, SRCCOPY);
+
 	if (CStageManager::Get_Instance()->Get_GameClear())
 	{
-		CUIManager::Get_Instance()->Render_GameClear(m_hDC_back);
+		CUIManager::Get_Instance()->Render_GameClear(m_hDC);
 		return;
 	}
-	CObjectManager::Get_Instance()->Render(m_hDC_back);
-	CStageManager::Get_Instance()->Render(m_hDC_back);
-	CUIManager::Get_Instance()->Render(m_hDC_back);
+	CObjectManager::Get_Instance()->Render(hBackDC);
+	CStageManager::Get_Instance()->Render(hBackDC);
+	CUIManager::Get_Instance()->Render(hBackDC);
 
+	BitBlt(m_hDC, 0, 0, WINCX, WINCY, hBackDC, 0, 0, SRCCOPY);
 }
 
 void CMainGame::Release()

@@ -37,5 +37,6 @@ using namespace std;
 #include "CObjectManager.h"
 #include "CStageManager.h"
 #include "CUIManager.h"
+#include "CBmpManager.h"
 
 #endif //PCH_H

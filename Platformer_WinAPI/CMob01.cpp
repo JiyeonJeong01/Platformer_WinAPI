@@ -20,7 +20,7 @@ void CMob01::Initialize()
 {
     m_vPosition = { WINCX *0.5f-100, WINCY *0.5f-50 };
     m_vDirection = { 0.f, 0.f };
-    m_vSize = { 40.f, 40.f };
+    m_vSize = { 70.f, 70.f };
 
     m_fSpeedX = 10.f;
     m_fSpeedY = 7.f;
@@ -83,7 +83,19 @@ void CMob01::Late_Update()
 
 void CMob01::Render(HDC hDC)
 {
-	Rectangle(hDC, m_tRect.left, m_tRect.top, m_tRect.right, m_tRect.bottom);
+    HDC	hMemDC = CBmpManager::Get_Instance()->Find_Img(L"Mob02");
+
+    GdiTransparentBlt(hDC,
+        m_tRect.left,
+        m_tRect.top,
+        (int)m_vSize.x,
+        (int)m_vSize.y,
+        hMemDC,
+        0,
+        0,
+        (int)m_vSize.x,
+        (int)m_vSize.y,
+        RGB(255, 255, 255));
     //CUIManager::Get_Instance()->Render_BossHP(hDC, this);
     if (m_fHP < m_fMaxHP)
     {

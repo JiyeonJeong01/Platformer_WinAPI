@@ -21,7 +21,7 @@ void CPlayer::Initialize()
 {
 	m_vPosition  = { WINCX >> 3, WINCY - (WINCY >> 2) };
 	m_vDirection = { 0.f, 0.f };
-	m_vSize      = { 40.f, 40.f };
+	m_vSize      = { 60.f, 60.f };
 
 	m_fSpeedX = 500.f;
 	m_fSpeedY = 0.f;
@@ -91,13 +91,25 @@ void CPlayer::Late_Update()
 
 void CPlayer::Render(HDC hDC)
 {
-	Rectangle(hDC, m_tRect.left, m_tRect.top, m_tRect.right, m_tRect.bottom);
-
 	int iScrollX = static_cast<int>(CScrollManager::Get_Instance()->Get_ScrollX());
 	int iScrollY = static_cast<int>(CScrollManager::Get_Instance()->Get_ScrollY());
 
 	MoveToEx(hDC, static_cast<int>(m_vPosition.x) + iScrollX, static_cast<int>(m_vPosition.y) + iScrollY, nullptr);
 	LineTo(hDC, static_cast<int>(m_vPosinPosition.x) + iScrollX, static_cast<int>(m_vPosinPosition.y) + iScrollY);
+
+	HDC	hMemDC = CBmpManager::Get_Instance()->Find_Img(L"Player");
+
+	GdiTransparentBlt(hDC,
+		m_tRect.left,
+		m_tRect.top ,
+		(int)m_vSize.x,
+		(int)m_vSize.y,
+		hMemDC,
+		0,
+		0,
+		(int)m_vSize.x,
+		(int)m_vSize.y,
+		RGB(255, 255, 255));
 
 	CUIManager::Get_Instance()->Render_PlayerHP(hDC, this);
 }

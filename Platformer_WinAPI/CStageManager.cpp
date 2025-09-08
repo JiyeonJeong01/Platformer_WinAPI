@@ -102,7 +102,12 @@ void CStageManager::On_CurrentBossDead(CObject* pObj)
 {
 	if (m_currentStageID <= STAGE3)
 	{
+		float fDamage = CObjectManager::Get_Instance()->Get_Player()->Get_Damage();
+		_tprintf(_T("damage : %f"), fDamage);
+
 		ChangeStage(STAGEID(m_currentStageID + 1));
+		CObjectManager::Get_Instance()->Get_Player()->Set_Damage(fDamage);
+		_tprintf(_T("damage : %f"), CObjectManager::Get_Instance()->Get_Player()->Get_Damage());
 	}
 	else if (m_currentStageID == STAGE4)
 	{

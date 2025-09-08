@@ -17,7 +17,7 @@ void CBoss04::Initialize()
 {
 	m_vPosition  = { WINCX - 150, WINCY - ((WINCY >> 2) + 100) };
 	m_vDirection = { 0.f, 0.f };
-	m_vSize      = { 120.f, 120.f };
+	m_vSize      = { 90.f, 90.f };
 
 	m_fSpeedX = 10.f;
 	m_fSpeedY = 7.f;
@@ -85,7 +85,19 @@ void CBoss04::Late_Update()
 
 void CBoss04::Render(HDC hDC)
 {
-	Rectangle(hDC, m_tRect.left, m_tRect.top, m_tRect.right, m_tRect.bottom);
+	HDC	hMemDC = CBmpManager::Get_Instance()->Find_Img(L"Boss04");
+
+	GdiTransparentBlt(hDC,
+		m_tRect.left,
+		m_tRect.top,
+		(int)m_vSize.x,
+		(int)m_vSize.y,
+		hMemDC,
+		0,
+		0,
+		(int)m_vSize.x,
+		(int)m_vSize.y,
+		RGB(255, 255, 255));
 
 	CUIManager::Get_Instance()->Render_BossHP(hDC, this);
 
