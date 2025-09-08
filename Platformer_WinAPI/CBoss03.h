@@ -1,6 +1,7 @@
 #pragma once
 
 #include "CMonster.h"
+#include <unordered_map>
 
 enum class BOSS_STATE { Idle = 0, Attack1, Attack2, Attack3, None, };
 
@@ -32,9 +33,11 @@ private:
 
 	Vector2		m_PlayerDir = { };
 
-	float m_Attack_Interval = 0.f;
-	float m_Attack1 = 0.f;
+	float m_Attack1_Time = 0.0f;
+	float m_Attack2_Time = 0.0f;
 
-	int	  m_Attack_Count = 0;
+	int	  m_Attack2_Count = 0;
+
+	unordered_map<BOSS_STATE, float> m_PatternTimers;
 };
 

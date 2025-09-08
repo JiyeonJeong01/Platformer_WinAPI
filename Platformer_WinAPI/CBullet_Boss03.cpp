@@ -14,6 +14,8 @@ void CBullet_Boss03::Initialize()
 {
 	CBullet::Initialize();
 
+	m_vSize = { 20.0f, 20.0f };
+		
 	m_fDamage = 10.f;
 }
 

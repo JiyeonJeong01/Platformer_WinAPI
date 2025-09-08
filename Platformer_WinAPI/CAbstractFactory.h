@@ -47,12 +47,12 @@ public:
 	static CObject* Create(OBJID _eObjID, Vector2 _position)
 	{
 		CObject* pObj = new T;
-		pObj->Initialize();
 
 		pObj->Set_ObjectID(_eObjID);
 
 		pObj->Set_PosX(_position.x);
 		pObj->Set_PosY(_position.y);
+		pObj->Initialize();
 
 		return pObj;
 	}
@@ -60,7 +60,6 @@ public:
 	static CObject* Create(OBJID _eObjID, Vector2 _position, Vector2 _dir)
 	{
 		CObject* pObj = new T;
-		pObj->Initialize();
 
 		pObj->Set_ObjectID(_eObjID);
 
@@ -69,6 +68,8 @@ public:
 
 		pObj->Set_DirX(_dir.x);
 		pObj->Set_DirY(_dir.y);
+
+		pObj->Initialize();
 
 		return pObj;
 	}

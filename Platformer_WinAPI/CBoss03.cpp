@@ -8,7 +8,7 @@
 #include "CObjectManager.h"
 #include "CUIManager.h"
 
-CBoss03::CBoss03() : m_Attack_Interval(GetTickCount64()), m_Attack1(GetTickCount64())
+CBoss03::CBoss03()
 {
 
 }
@@ -21,16 +21,12 @@ CBoss03::~CBoss03()
 void CBoss03::Initialize()
 {
 	CMonster::Initialize();
-
-	//m_vPosition = { WINCX - 150, WINCY - ((WINCY >> 2) + 100) };
-	//m_vDirection = { 0.f, 0.f };
+	
 	m_vSize = { 250.f, 300.f };
 
 	m_fSpeedX = 10.f;
 	m_fSpeedY = 7.f;
 
-	// TODO : 보스 타입을 몬스터와 분리할지
-	//m_objID = BOSS ?
 	m_objID = MONSTER;
 
 	// Boss Status
@@ -38,6 +34,10 @@ void CBoss03::Initialize()
 	m_fHP = m_fMaxHP;
 
 	m_fDamage = 10.f;
+
+	m_PatternTimers[BOSS_STATE::Idle] = 0.f;
+	m_PatternTimers[BOSS_STATE::Attack1] = 0.f;
+	m_PatternTimers[BOSS_STATE::Attack2] = 0.f;
 }
 
 int CBoss03::Update()
@@ -47,14 +47,18 @@ int CBoss03::Update()
 
 	__super::Update_Rect();
 
-	// Idle -> 2초마다 일단 패턴 변경
-	ULONGLONG current = GetTickCount64();
+	float dt = DeltaTime();          
+	m_fDeltaTime = dt;
+
+	m_PatternTimers[m_pattern] += dt;
 
 	switch (m_pattern)
 	{
 	case BOSS_STATE::Idle:
-		if (current - m_Attack_Interval >= 2000)
+		if (m_PatternTimers[BOSS_STATE::Idle] > 2.0f)
+		{
 			Do_Attack();
+		}
 		break;
 	case BOSS_STATE::Attack1:
 		Attack1();
@@ -65,11 +69,11 @@ int CBoss03::Update()
 	case BOSS_STATE::Attack3:
 		Attack3();
 		break;
-
 	}
 
 	return CMonster::Update();
 }
+
 
 void CBoss03::Late_Update()
 {
@@ -88,7 +92,6 @@ void CBoss03::Render(HDC hDC)
 
 	int attackType = static_cast<int>(m_pattern);
 	CUtility::PrintText(hDC, 1080, 120, L"공격 타입 : ", attackType);
-
 
 }
 
@@ -115,12 +118,15 @@ void CBoss03::Do_Attack()
 	if (CObjectManager::Get_Instance()->Get_Player() == nullptr)
 		return;
 
-	//int random = 1 + rand() % static_cast<int>(BOSS_STATE::None);
-	//m_pattern = static_cast<BOSS_STATE>(random);
-	
-	//m_pattern = static_cast<BOSS_STATE>(random);
-	m_pattern = BOSS_STATE::Attack2;
+	int random = 1 + rand() % static_cast<int>(BOSS_STATE::Attack2);
+	m_pattern = static_cast<BOSS_STATE>(random);
 
+	//m_pattern = BOSS_STATE::Attack2;
+
+	for (auto& pair : m_PatternTimers) 
+	{
+		pair.second = 0.f;
+	}
 }
 
 void CBoss03::Take_Damage(float _fDamage)
@@ -141,18 +147,9 @@ void CBoss03::Take_Damage(float _fDamage)
 
 void CBoss03::Attack1()
 {
-	ULONGLONG current = GetTickCount64();
+	m_Attack1_Time += m_fDeltaTime; 
 
-	// 5초뒤에 Idle로 전환
-	if (current - m_Attack_Interval >= 5000)
-	{
-		m_pattern = BOSS_STATE::Idle;
-		m_Attack_Interval = current;
-
-		return;
-	}
-
-	if (current - m_Attack1 >= 100)
+	if (m_Attack1_Time >= 0.1f)
 	{
 		Vector2 dir;
 		dir.x = CObjectManager::Get_Instance()->Get_Player()->Get_Position().x - m_vPosition.x;
@@ -162,29 +159,33 @@ void CBoss03::Attack1()
 		CObjectManager::Get_Instance()->Add_Object(
 			MON_BULLET, CAbstractFactory<CBullet_Boss03>::Create(MON_BULLET, m_vPosition, dir));
 
-		m_Attack1 = current;
+		m_Attack1_Time = 0.0f;
+	}
+
+	if (m_PatternTimers[m_pattern] > 5.0f)
+	{
+		m_pattern = BOSS_STATE::Idle;
+		m_PatternTimers[BOSS_STATE::Idle] = 0.f;
+
+		return;
 	}
 }
 
 void CBoss03::Attack2()
 {
-	ULONGLONG current = GetTickCount64();
+	m_Attack2_Time += m_fDeltaTime;
 
-	CUtility::PrintCmd(L"Attack Count : ", m_Attack_Count);
-
-	if (m_Attack_Count > 5)
+	if (m_Attack2_Count > 5)
 	{
 		m_pattern = BOSS_STATE::Idle;
-		m_Attack_Interval = current;
+		m_Attack2_Count = 0;
 
-		m_Attack_Count = 0;
-	
 		return;
 	}
 
-	if (current - m_Attack1 >= 1000)
+	if (m_Attack2_Time >= 0.5f)
 	{
-		m_Attack_Count++;
+		m_Attack2_Count++;
 
 		Vector2 startPos;
 		startPos.x = m_vPosition.x;
@@ -195,10 +196,10 @@ void CBoss03::Attack2()
 		dir.y = CObjectManager::Get_Instance()->Get_Player()->Get_Position().y - startPos.y;
 		dir = Vector2::Nomalize(dir);
 
-			CObjectManager::Get_Instance()->Add_Object(
-			MON_BULLET, CAbstractFactory<CBullet02_Boss03>::Create(MON_BULLET, startPos, dir));
+		CObjectManager::Get_Instance()->Add_Object(
+		MON_BULLET, CAbstractFactory<CBullet02_Boss03>::Create(MON_BULLET, startPos, dir));
 
-		m_Attack1 = current;
+		m_Attack2_Time = 0.f;
 	}
 }
 

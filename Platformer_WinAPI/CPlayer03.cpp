@@ -61,6 +61,30 @@ void CPlayer03::On_Collision(CObject* pObj)
 {
 	CPlayer::On_Collision(pObj);
 
+	switch (pObj->Get_ObjectID())
+	{
+	case PLATFORM: break;
+	case PLAYER: break;
+	case PL_BULLET: break;
+	case MONSTER: break;
+
+	case MON_BULLET:
+		{
+		// 플레이어 넉백?
+		Vector2 dir = m_vPosition - pObj->Get_Position();
+		dir = Vector2::Nomalize(dir);
+
+		m_vPosition.x += dir.x * 15.f;
+		m_vPosition.y += dir.y * 30.f;
+		}
+		
+		break;
+	case MOUSE: break;
+	case SHIELD: break;
+	case ITEM: break;
+	case OBJ_END: break;
+	}
+	
 }
 
 void CPlayer03::Do_Attack()
