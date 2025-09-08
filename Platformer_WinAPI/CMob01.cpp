@@ -83,13 +83,15 @@ void CMob01::Late_Update()
 
 void CMob01::Render(HDC hDC)
 {
-	Rectangle(hDC, m_tRect.left, m_tRect.top, m_tRect.right, m_tRect.bottom);
+    Rectangle(hDC, m_tRect.left, m_tRect.top, m_tRect.right, m_tRect.bottom);
     //CUIManager::Get_Instance()->Render_BossHP(hDC, this);
     if (m_fHP < m_fMaxHP)
     {
-        CUIManager::Get_Instance()->DrawHP(hDC, (m_vPosition.x - m_vSize.x * .5f), (m_vPosition.y + m_vSize.y * .5f) + 10, m_vSize.x, 5, m_fHP, m_fMaxHP);
-    }
+        int iScrollX = static_cast<int>(CScrollManager::Get_Instance()->Get_ScrollX());
+        int iScrollY = static_cast<int>(CScrollManager::Get_Instance()->Get_ScrollY());
 
+        CUIManager::Get_Instance()->DrawHP(hDC, (m_vPosition.x + iScrollX - m_vSize.x * .5f), (m_vPosition.y + iScrollY + m_vSize.y * .5f) + 10, m_vSize.x, 5, m_fHP, m_fMaxHP);
+    }
 }
 
 void CMob01::Release()

@@ -30,7 +30,7 @@ void CPlayer02::Initialize()
 
 	m_vPosinPosition = { 1,1 };
 
-	m_fHP = 100;
+	m_fHP = 1000;
 	m_fMaxHP = m_fHP;
 
 	__super::Update_Rect();
@@ -101,8 +101,14 @@ void CPlayer02::Take_Damage(float _fDamage)
 
 void CPlayer02::On_Collision(CObject* pObj)
 {
+
+	__super::On_Collision(pObj);
+
+
 	if (pObj->Get_ObjectID() == MON_BULLET)
 		Take_Damage(pObj->Get_Damage());
+
+		
 
 }
 
