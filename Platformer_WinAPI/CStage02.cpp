@@ -23,16 +23,25 @@ void CStage02::Initialize()
 	{ {0.f,(Ystart)}, {150.f,Ystart} };
 	CLineManager::Get_Instance()->Create_Line(tPoint, 2);	
 	Vector2 tPoint2[6] =
-	{ {350.f,Ystart},{500.f,Ystart},{700.f,Ystart - 200.f},{1000.f,Ystart - 200.f} ,{ 1000.f ,Ystart },{1600.f ,Ystart} };
+	{ {350.f,Ystart},{500.f,Ystart},{700.f,Ystart - 200.f},{1000.f,Ystart - 200.f} ,{ 1000.f ,Ystart },{3000.f ,Ystart} };
 	CLineManager::Get_Instance()->Create_Line(tPoint2, 6);
-
-	
 
 
 	Vector2 tPoint3[2] =
 	{ {400.f,Ystart - 200.f}, {600.f,Ystart - 200.f} };
 	CLineManager::Get_Instance()->Create_Line(tPoint3, 2);
 
+	Vector2 tPoint4[2] =
+	{ {2000.f,(Ystart)-100}, {2100.f,Ystart-100} };
+	CLineManager::Get_Instance()->Create_Line(tPoint4, 2);
+
+	Vector2 tPoint5[2] =
+	{ {1700.f,(Ystart)-100}, {1800.f,Ystart - 100} };
+	CLineManager::Get_Instance()->Create_Line(tPoint5, 2);
+
+	Vector2 tPoint6[2] =
+	{ {1800.f,(Ystart)-200}, {2000.f,Ystart - 200} };
+	CLineManager::Get_Instance()->Create_Line(tPoint6, 2);
 
 	CObjectManager::Get_Instance()->Add_Object(PLAYER, CAbstractFactory<CPlayer02>::Create(PLAYER));
 	CObjectManager::Get_Instance()->Add_Object(MONSTER, CAbstractFactory<CMob01>::Create(MONSTER));

@@ -19,11 +19,11 @@ void CBoss02::Initialize()
 {
 	CMonster::Initialize();
 
-	m_vPosition = { WINCX - 100, WINCY - ((WINCY >> 2) + 100) };
+	m_vPosition = { 2500, WINCY - ((WINCY >> 2) + 100) };
 	m_vDirection = { 0.f, 0.f };
 	m_vSize = { 70.f, 70.f };
 
-	m_fSpeedX = 3.f;
+	m_fSpeedX = 200.f;
 	m_fSpeedY = 7.f;
 
 
@@ -52,6 +52,7 @@ int CBoss02::Update()
 		return OBJ_DEAD;
 
 
+			m_fDeltaTime = DeltaTime();
 
 
 		Vector2 pos = pTarget->Get_Position();
@@ -59,41 +60,40 @@ int CBoss02::Update()
 		float distanceX = pos.x - m_vPosition.x;
 		float distanceY = pos.y - m_vPosition.y;
 
-		if (200 >= (abs(distanceX)))
+		if (400 >= (abs(distanceX)))
 		{
 			if (distanceX <= -(m_vSize.y / 2))
 			{
-				m_vPosition.x -= m_fSpeedX;
+				m_vPosition.x -= m_fSpeedX *m_fDeltaTime;
 
 			}
 			else if (distanceX >= +(m_vSize.y / 2))
 			{
-				m_vPosition.x += m_fSpeedX;
+				m_vPosition.x += m_fSpeedX *m_fDeltaTime;
 
 			}
 
-			if (distanceY <= -(m_vSize.y / 2))
+			if (distanceX >= -(m_vSize.y / 2) && (distanceX <= +(m_vSize.y / 2)) && distanceY <= -(m_vSize.y / 2))
 			{
+
+
+				if (bJump != true)
+				{
 				bJump = true;
+				m_fSpeedY = -900.f;
+				// 임의로 준 점프 스피드, 점프할때만 필요하므로 이 때 값을 집어넣는다.
+				}
 			}
 
 		}
 	
 
 		{
-
 			// TODO : 점프?? 
 
 
-			float pY = 0.f;
-			CLineManager::Get_Instance()->Collision_Line(m_vPosition, &pY);
-			m_vPosition.y = pY - (m_vSize.y / 2);
-
-			if (bJump)
-			{
-				m_fSpeedY = -900.f;
-				// 임의로 준 점프 스피드, 점프할때만 필요하므로 이 때 값을 집어넣는다.
-
+			float pY = WINCY + 100.f;
+		bool	bLine = CLineManager::Get_Instance()->Collision_Line(m_vPosition, &pY);
 
 				// 수직방향 이동 (점프, 낙하)
 				m_fSpeedY += 3000.f * m_fDeltaTime;
@@ -101,6 +101,12 @@ int CBoss02::Update()
 
 				m_vPosition.y += m_fSpeedY * m_fDeltaTime;
 				//! Y위치 += Y속도 * dt : 위치의 적분
+
+			if (bJump)
+			{
+
+
+
 
 
 				if (m_fSpeedY >= 0.f
@@ -112,6 +118,11 @@ int CBoss02::Update()
 				}
 
 			}
+			else if(bLine)
+			{
+				m_vPosition.y = pY - (m_vSize.y / 2);
+			}
+
 		}
 
 
