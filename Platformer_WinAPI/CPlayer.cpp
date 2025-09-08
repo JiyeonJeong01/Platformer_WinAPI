@@ -267,7 +267,7 @@ void CPlayer::Vertical_Move()
 
 void CPlayer::Scroll_Offset()
 {
-	int minX = 250;
+	int minX = 50;
 	int maxX = WINCX - 300;
 
 	int minY = 300;

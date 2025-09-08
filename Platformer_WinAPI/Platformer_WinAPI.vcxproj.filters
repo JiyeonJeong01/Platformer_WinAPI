@@ -243,6 +243,9 @@
     <ClInclude Include="CScrollManager.h">
       <Filter>02. Manager\06. ScrollManager</Filter>
     </ClInclude>
+    <ClInclude Include="CBoss02.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Platformer_WinAPI.cpp">
@@ -334,6 +337,9 @@
     </ClCompile>
     <ClCompile Include="CBullet_Player03.cpp">
       <Filter>01. Object\03. Bullet\03. Bullet03</Filter>
+    </ClCompile>
+    <ClCompile Include="CBoss02.cpp">
+      <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -132,6 +132,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="CAbstractFactory.h" />
+    <ClInclude Include="CBoss02.h" />
     <ClInclude Include="CBoss03.h" />
     <ClInclude Include="CBullet.h" />
     <ClInclude Include="CBullet_Player03.h" />
@@ -170,6 +171,7 @@
     <ClInclude Include="Vector2.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="CBoss02.cpp" />
     <ClCompile Include="CBoss03.cpp" />
     <ClCompile Include="CBullet.cpp" />
     <ClCompile Include="CBullet_Player03.cpp" />
