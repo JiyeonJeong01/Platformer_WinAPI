@@ -1,4 +1,4 @@
-#include "pch.h"
+﻿#include "pch.h"
 #include "CMob01.h"
 #include "CBullet.h"
 #include "CPlayer02.h"
@@ -69,7 +69,7 @@ int CMob01::Update()
     CLineManager::Get_Instance()->Collision_Line(m_vPosition, &pY);
 
 
-    m_vPosition.y = pY-(m_vSize.y / 2);
+    //m_vPosition.y = pY-(m_vSize.y / 2);
 
 
 	return 0;

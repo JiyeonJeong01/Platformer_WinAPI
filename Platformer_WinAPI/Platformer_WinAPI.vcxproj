@@ -141,6 +141,7 @@
     <ClInclude Include="CBullet04.h" />
     <ClInclude Include="CBullet_Boss02.h" />
     <ClInclude Include="CBullet_BossAtk01.h" />
+    <ClInclude Include="CBullet_BossAtk03.h" />
     <ClInclude Include="CBullet_Player03.h" />
     <ClInclude Include="CCollisionManager.h" />
     <ClInclude Include="CLine.h" />
@@ -190,6 +191,7 @@
     <ClCompile Include="CBullet04.cpp" />
     <ClCompile Include="CBullet_Boss02.cpp" />
     <ClCompile Include="CBullet_BossAtk01.cpp" />
+    <ClCompile Include="CBullet_BossAtk03.cpp" />
     <ClCompile Include="CBullet_Player03.cpp" />
     <ClCompile Include="CCollisionManager.cpp" />
     <ClCompile Include="CItem.cpp" />

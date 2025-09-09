@@ -49,42 +49,42 @@ bool CCollisionManager::Check_Circle(CObject* _Dst, CObject* _Src)
 	return fRadius >= fDiagonal;
 }
 
-void CCollisionManager::Collision_RectEx(list<CObject*> _Dst, list<CObject*> _Src)
-{
-	float fX(0.f), fY(0.f);
-
-	for (auto& Dst : _Dst)
-	{
-		for (auto& Src : _Src)
-		{
-			if (Check_Rect(Dst, Src, &fX, &fY))
-			{
-				if (fX > fY)	// 상하 충돌
-				{
-					if (Dst->Get_Position().y < Src->Get_Position().y) // 상 충돌
-					{
-						Dst->Set_PosY(-fY);
-					}
-					else  // 하충돌
-					{
-						Dst->Set_PosY(fY);
-					}
-				}
-				else			// 좌우 충돌
-				{
-					if (Dst->Get_Position().x < Src->Get_Position().x) // 좌 충돌
-					{
-						Dst->Set_PosX(-fX);
-					}
-					else  // 우 충돌
-					{
-						Dst->Set_PosX(fX);
-					}
-				}
-			}
-		}
-	}
-}
+//void CCollisionManager::Collision_RectEx(list<CObject*> _Dst, list<CObject*> _Src)
+//{
+//	float fX(0.f), fY(0.f);
+//
+//	for (auto& Dst : _Dst)
+//	{
+//		for (auto& Src : _Src)
+//		{
+//			if (Check_Rect(Dst, Src, &fX, &fY))
+//			{
+//				if (fX > fY)	// 상하 충돌
+//				{
+//					if (Dst->Get_Position().y < Src->Get_Position().y) // 상 충돌
+//					{
+//						Dst->Set_PosY(-fY);
+//					}
+//					else  // 하충돌
+//					{
+//						Dst->Set_PosY(fY);
+//					}
+//				}
+//				else			// 좌우 충돌
+//				{
+//					if (Dst->Get_Position().x < Src->Get_Position().x) // 좌 충돌
+//					{
+//						Dst->Set_PosX(-fX);
+//					}
+//					else  // 우 충돌
+//					{
+//						Dst->Set_PosX(fX);
+//					}
+//				}
+//			}
+//		}
+//	}
+//}
 
 bool CCollisionManager::Check_Rect(CObject* _Dst, CObject* _Src, float* pX, float* pY)
 {

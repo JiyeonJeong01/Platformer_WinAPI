@@ -1,22 +1,20 @@
-ï»¿#pragma once
+#pragma once
 #include "CBullet.h"
 
-//! ë³´ìŠ¤ ê³µê²©1 ì „ìš© ì´ì•Œ : ê°€ì†í•˜ëŠ” ì´ì•Œ
+//! º¸½º °ø°İ3 Àü¿ë ÃÑ¾Ë : ¶³¾îÁö´Â ÃÑ¾Ë
 
-class CBullet_BossAtk01 final : public CBullet
+class CBullet_BossAtk03 final : public CBullet
 {
 public:
-	CBullet_BossAtk01();
-	~CBullet_BossAtk01() override;
+	CBullet_BossAtk03();
+	~CBullet_BossAtk03() override;
 
-public:
 	void Initialize() override;
 	int  Update() override;
 	void Late_Update() override;
 	void Render(HDC hDC) override;
 	void Release() override;
 
-public:
 	void On_Collision(CObject* pObj) override;
 	void Do_Attack() override;
 	void Take_Damage(float _fDamage) override;

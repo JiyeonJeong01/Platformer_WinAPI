@@ -3,9 +3,12 @@
 #include "CAbstractFactory.h"
 #include "CBullet04.h"
 #include "CBullet_BossAtk01.h"
+#include "CBullet_BossAtk03.h"
 
 CBoss04::CBoss04()
-	: m_eBossState(BOSS04_STATE::IDLE), m_fBossAtkTimer(0.f), m_bTalk_Idle(false)
+	: m_eBossState(BOSS04_STATE::IDLE),
+	  m_fBossStateTimer(0.f), m_fBossAtkTimer(0.f),
+	  m_bCanAttack(false)
 {}
 
 CBoss04::~CBoss04()
@@ -19,63 +22,120 @@ void CBoss04::Initialize()
 	m_vDirection = { 0.f, 0.f };
 	m_vSize      = { 90.f, 90.f };
 
-	m_fSpeedX = 10.f;
-	m_fSpeedY = 7.f;
-
-	// TODO : 보스 타입을 몬스터와 분리할지
-	//m_objID = BOSS ?
 	m_objID = MONSTER;
 
-	// Boss Status
-	m_fMaxHP = 100.f;
-	m_fHP    = m_fMaxHP;
+	m_fSpeedX = 400.f;	// 수평이동 속도
 
+	m_fMaxHP  = 100.f;
+	m_fHP     = m_fMaxHP;
 	m_fDamage = 10.f;
+
+	m_bGravityOn = true;	// 부모에 있는 점프 및 중력 코드 사용하겠다
+
+	srand(static_cast<unsigned>(time(nullptr)));
 }
 
 int CBoss04::Update()
 {
-	if (m_bDead)
-		return OBJ_DEAD;
+	int iResult = CMonster::Update();
 
-	if (CObjectManager::Get_Instance()->Get_Player() == nullptr)
-		m_eBossState = BOSS04_STATE::IDLE;
+	if (iResult == OBJ_DEAD)
+		return iResult;
 
-	// 보스 공격 구현
-	ULONGLONG qwTimer = GetTickCount64();
+	// ↓ 콘솔로 원하는 값 보는 디버깅용 코드
+	//_tprintf(_T(" m_vDirection.x : %f \n"), m_vDirection.x);
 
-	if (qwTimer - m_fBossAtkTimer >= 1000)
+	// 낙하속도 상한 설정
+	if (m_bGravityOn && m_fSpeedY > 1000.f)
+		m_fSpeedY = 1000.f;
+
+	// Vertical_Move : 점프 및 중력에 의한 수직 속도 및 이동 제어
+	Vertical_Move();
+
+	// 라인 충돌 및 그 위에 착지 기능을 사용하긴 하므로 상시 실행
+	m_fGroundY = WINCY + 100.f;
+	CLineManager::Get_Instance()->Collision_Line(m_vPosition, &m_fGroundY);
+	Landed_Line();
+
+	// 타이머
+	m_fBossStateTimer += m_fDeltaTime;			// 상태 간 딜레이
+	m_fBossAtkTimer += m_fDeltaTime;			// 상태 내 공격 간 딜레이
+
+	// 상태 간 전환
+	switch (m_eBossState)
 	{
-		switch (m_eBossState)
+	case BOSS04_STATE::IDLE:
+	{
+		if (m_fBossStateTimer > 3.0f)		// IDLE 지속시간 끝났을 때
 		{
-		case BOSS04_STATE::IDLE:
-		{
-			m_bTalk_Idle = true;
+			const int iPattern = rand() % 4;	// 0 ~ 3 범위
+			switch (iPattern)
+			{
+			case 0:
+				m_eBossState = BOSS04_STATE::ATTACK_01;
+				break;
+			case 1:
+				m_eBossState = BOSS04_STATE::ATTACK_02;
+				break;
+			case 2:
+				m_eBossState = BOSS04_STATE::ATTACK_03;
+				break;
+			case 3:
+				m_eBossState = BOSS04_STATE::ATTACK_02;
+				break;
+			}
 
-			m_eBossState = BOSS04_STATE::ATTACK_01;
+			m_bCanAttack      = true;		// 한 상태 동안 한 번만 공격이 나오는 패턴에서는 상태 실행 후 false로 바꾸기
+			m_fBossStateTimer = 0.f;		// 다음 상태용 타이머 리셋
 		}
+	}
+	break;
+	case BOSS04_STATE::ATTACK_01:
+	case BOSS04_STATE::ATTACK_02:
+	case BOSS04_STATE::ATTACK_03:
+	{
+		if (m_fBossStateTimer > 3.0f)
+		{
+			m_eBossState      = BOSS04_STATE::IDLE;
+			m_fBossStateTimer = 0.f;
+		}
+	}
+	break;
+	default:
 		break;
-		case BOSS04_STATE::ATTACK_01:
-		{
-			m_bTalk_Idle = false;
-
-			CBoss04::Attack01();
-
-			m_eBossState = BOSS04_STATE::IDLE;
-		}
-		break;
-		case BOSS04_STATE::ATTACK_02:
-			break;
-		case BOSS04_STATE::NONE:
-			break;
-		default:
-			break;
-		}
-
-		m_fBossAtkTimer = static_cast<float>(qwTimer);
 	}
 
-	return CMonster::Update();
+	// 상태 간 행동
+	switch (m_eBossState)
+	{
+	case BOSS04_STATE::ATTACK_01:
+	{
+		if (m_fBossAtkTimer > 0.7f)	// 발사 간격 조절
+		{
+			CBoss04::Attack01();
+			m_fBossAtkTimer = 0.f;
+		}
+	}
+	break;
+	case BOSS04_STATE::ATTACK_02:
+	{
+		CBoss04::Attack02();		// 이동하는 패턴이기에 항상 실행
+	}
+	break;
+	case BOSS04_STATE::ATTACK_03:
+	{
+		if (m_fBossAtkTimer > 0.1f)
+		{
+			CBoss04::Attack03();
+			m_fBossAtkTimer = 0.f;
+		}
+	}
+	break;
+	default:
+		break;
+	}
+
+	return iResult;
 }
 
 void CBoss04::Late_Update()
@@ -101,13 +161,35 @@ void CBoss04::Render(HDC hDC)
 
 	CUIManager::Get_Instance()->Render_BossHP(hDC, this);
 
-	//CUtility::PrintText(hDC, 100, 200,
-	//					L"BossState : ", static_cast<int>(m_eBossState));
-
-	if (m_bTalk_Idle)
+	// 상태 간 대사
+	switch (m_eBossState)
 	{
-		CUtility::PrintText(hDC, 100, 250,
-							L"안녕? ", static_cast<int>(m_eBossState));
+	case BOSS04_STATE::IDLE:
+	{
+		//const int iDialogue = rand() % 3;
+		//switch (iDialogue)
+		//{
+		//case 0:
+		//	break;
+		//default: 
+		//	break;
+		//}
+
+		CUtility::PrintText(hDC, 1100, 150, L"어리석군... ");
+	}
+
+	break;
+	case BOSS04_STATE::ATTACK_01:
+		CUtility::PrintText(hDC, 1100, 150, L"ATTACK_01");
+		break;
+	case BOSS04_STATE::ATTACK_02:
+		CUtility::PrintText(hDC, 1100, 150, L"ATTACK_02");
+		break;
+	case BOSS04_STATE::ATTACK_03:
+		CUtility::PrintText(hDC, 1100, 150, L"ATTACK_03");
+		break;
+	default:
+		break;
 	}
 }
 
@@ -131,12 +213,14 @@ void CBoss04::On_Collision(CObject* pObj)
 	break;
 	case PLATFORM:
 	{
-		//todo 착지 판정
+		Landed_Platform(pObj);
 	}
 	break;
 	default:
 		break;
 	}
+
+	__super::Update_Rect();
 }
 
 void CBoss04::Take_Damage(float _fDamage)
@@ -152,7 +236,6 @@ void CBoss04::Take_Damage(float _fDamage)
 	}
 }
 
-//! 플레이어 방향으로 가속하는 총알 3발 흩뿌리기
 void CBoss04::Attack01()
 {
 	Vector2 vPlayer_Dir;
@@ -182,4 +265,36 @@ void CBoss04::Attack01()
 }
 
 void CBoss04::Attack02()
-{ }
+{
+	Vector2 vPlayer_Dir;
+
+	vPlayer_Dir.x = CObjectManager::Get_Instance()
+					->Get_Player()->Get_Position().x - m_vPosition.x;
+
+	m_vDirection = vPlayer_Dir;
+
+	if (m_fBossAtkTimer < 0.3f)		// 점프
+		__super::Jump(1500);
+
+	if (m_fBossAtkTimer < 0.6f)		// 수평 이동
+		__super::Horizontal_Move();
+
+	if (m_fBossAtkTimer > 1.5f)		// Attack02 실행 간격
+		m_fBossAtkTimer = 0.f;
+}
+
+void CBoss04::Attack03()
+{
+	Vector2 vPlayer_Dir;
+
+	vPlayer_Dir.x = CObjectManager::Get_Instance()
+					->Get_Player()->Get_Position().x - m_vPosition.x;
+
+	vPlayer_Dir.y = 1.0f;
+
+	vPlayer_Dir = Vector2::Nomalize(vPlayer_Dir);
+
+	CObjectManager::Get_Instance()->Add_Object(
+		MON_BULLET, CAbstractFactory<CBullet_BossAtk03>::Create(
+			MON_BULLET, m_vPosition, vPlayer_Dir));
+}

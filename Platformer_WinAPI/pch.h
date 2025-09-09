@@ -9,6 +9,7 @@
 #include <map>
 #include <algorithm>
 #include <Windows.h>
+#include <ctime>
 
 #ifdef _DEBUG
 

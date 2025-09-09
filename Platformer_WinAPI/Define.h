@@ -18,14 +18,14 @@ extern HWND g_hWnd;
 
 enum OBJID
 {
-	PLAYER = 0,
+	PLATFORM,
+	PLAYER,
 	PL_BULLET,
 	MONSTER,
 	MON_BULLET,
 	MOUSE,
 	SHIELD,
 	ITEM,
-	PLATFORM,
 	OBJ_END
 };
 
