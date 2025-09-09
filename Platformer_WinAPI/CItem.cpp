@@ -19,6 +19,11 @@ int CItem::Update()
 	return OBJ_NOEVENT;
 }
 
+void CItem::Late_Update()
+{
+	__super::Update_Rect();
+}
+
 void CItem::On_Collision(CObject* pObj)
 {
 	if (pObj->Get_ObjectID() == PLAYER)
