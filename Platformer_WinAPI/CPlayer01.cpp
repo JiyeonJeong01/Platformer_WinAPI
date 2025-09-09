@@ -11,7 +11,7 @@ void CPlayer01::Initialize()
 	m_objID = PLAYER;
 
 	// Player's position can change based on map environments
-	m_fMaxHP = 70.f;
+	m_fMaxHP = 500.f;
 	m_fHP = m_fMaxHP;
 	m_vPosition = { 100, 400 };
 

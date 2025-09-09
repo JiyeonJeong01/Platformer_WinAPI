@@ -60,11 +60,24 @@ int CMob03::Update()
 
 void CMob03::Late_Update()
 {
+	CMonster::Late_Update();
 }
 
 void CMob03::Render(HDC hDC)
 {
-		Rectangle(hDC, m_tRect.left, m_tRect.top, m_tRect.right, m_tRect.bottom);
+	HDC	hMemDC = CBmpManager::Get_Instance()->Find_Img(L"Mob01");
+
+	GdiTransparentBlt(hDC,
+		m_tRect.left,
+		m_tRect.top,
+		(int)m_vSize.x,
+		(int)m_vSize.y,
+		hMemDC,
+		0,
+		0,
+		(int)m_vSize.x,
+		(int)m_vSize.y,
+		RGB(255, 255, 255));
 
 		int iScrollX = static_cast<int>(CScrollManager::Get_Instance()->Get_ScrollX());
 		int iScrollY = static_cast<int>(CScrollManager::Get_Instance()->Get_ScrollY());

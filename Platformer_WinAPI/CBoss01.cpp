@@ -57,11 +57,13 @@ int CBoss01::Update()
 
 void CBoss01::Late_Update()
 {
+	CMonster::Late_Update();
 }
 
 void CBoss01::Render(HDC hDC)
 {
 	HDC	hMemDC = CBmpManager::Get_Instance()->Find_Img(L"Boss01");
+
 
 	GdiTransparentBlt(hDC,
 		m_tRect.left,

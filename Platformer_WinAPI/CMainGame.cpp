@@ -37,7 +37,7 @@ void CMainGame::Initialize()
 	CBmpManager::Get_Instance()->Initialize();
 
 	// Start Stage
-	CStageManager::Get_Instance()->ChangeStage(STAGE1);
+	CStageManager::Get_Instance()->ChangeStage(STAGE3);
 
 }
 
@@ -89,5 +89,6 @@ void CMainGame::Release()
 	CStageManager::Destroy_Instance();
 	CUIManager::Destroy_Instance();
 	CLineManager::Destroy_Instance();
+	CBmpManager::Destroy_Instance();
 }
 

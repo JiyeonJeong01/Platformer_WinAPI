@@ -31,7 +31,7 @@ void CPlayer02::Initialize()
 
 	m_vPosinPosition = { 1,1 };
 
-	m_fHP = 1000;
+	m_fHP = 500;
 	m_fMaxHP = m_fHP;
 
 	__super::Update_Rect();
