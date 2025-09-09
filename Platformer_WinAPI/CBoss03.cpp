@@ -136,6 +136,7 @@ void CBoss03::Do_Attack()
 	m_nextIndex = (m_nextIndex + 1) % 4;
 	m_pattern = static_cast<BOSS_STATE>(m_nextIndex);
 
+
 	for (auto& time : m_PatternTimers) 
 	{
 		time.second = 0.f;
@@ -216,7 +217,7 @@ void CBoss03::Attack2()
 
 void CBoss03::Attack3()
 {
-	if (m_PatternTimers[BOSS_STATE::Attack3] >= 2.0f) {
+	if (m_PatternTimers[BOSS_STATE::Attack3] >= 6.0f) {
 		m_pattern = BOSS_STATE::Idle;
 		m_PatternTimers[BOSS_STATE::Idle] = 0.f;
 		return;

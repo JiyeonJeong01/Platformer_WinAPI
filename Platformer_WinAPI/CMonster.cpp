@@ -23,12 +23,14 @@ int CMonster::Update()
 	// 델타타임 사용을 위해 포함할 것
 	m_fDeltaTime = CObject::DeltaTime();
 
+	__super::Update_Rect();
+
 	return OBJ_NOEVENT;
 }
 
 void CMonster::Late_Update()
 {
-	__super::Update_Rect();
+	
 }
 
 void CMonster::Render(HDC hDC)

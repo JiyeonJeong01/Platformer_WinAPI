@@ -285,6 +285,18 @@
     <ClInclude Include="CBullet_BossAtk03.h">
       <Filter>01. Object\03. Bullet\04. Bullet04</Filter>
     </ClInclude>
+    <ClInclude Include="CBullet03_Boss03.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="CBullet02_Boss03.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="CBullet_Boss03.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="CShield.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Platformer_WinAPI.cpp">
@@ -409,12 +421,24 @@
     </ClCompile>
     <ClCompile Include="CBmpManager.cpp">
       <Filter>02. Manager\07. BmpManager</Filter>
-     </ClCompile>
+    </ClCompile>
     <ClCompile Include="CBullet_Boss02.cpp">
       <Filter>01. Object\03. Bullet\02. Bullet02</Filter>
     </ClCompile>
     <ClCompile Include="CBullet_BossAtk03.cpp">
       <Filter>01. Object\03. Bullet\04. Bullet04</Filter>
+    </ClCompile>
+    <ClCompile Include="CBullet03_Boss03.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="CBullet02_Boss03.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="CBullet_Boss03.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="CShield.cpp">
+      <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
