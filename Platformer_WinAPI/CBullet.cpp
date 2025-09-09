@@ -15,8 +15,8 @@ void CBullet::Initialize()
 {
 	m_vSize = Vector2(20, 20);
 
-	m_fSpeedX = 5.f;
-	m_fSpeedY = 5.f;
+	m_fSpeedX = 10.f;
+	m_fSpeedY = 10.f;
 
 	m_fDamage = 10.f;
 }
@@ -64,11 +64,12 @@ void CBullet::On_Collision(CObject* pObj)
 			m_bDead = true;
 	}
 	break;
-	case PL_BULLET:				  break;
-	case MON_BULLET:		      break;
-	case MOUSE:					  break;
-	case SHIELD:				  break;
-	case ITEM:					  break;
-
+	case PLATFORM:
+	{
+		m_bDead = true;
+	}
+	break;
+	default:
+		break;
 	}
 }

@@ -43,7 +43,7 @@ int CBoss04::Update()
 		return iResult;
 
 	// ↓ 콘솔로 원하는 값 보는 디버깅용 코드
-	_tprintf(_T(" m_vDirection.x : %f \n"), m_vDirection.x);
+	//_tprintf(_T(" m_vDirection.x : %f \n"), m_vDirection.x);
 
 	// 낙하속도 상한 설정
 	if (m_bGravityOn && m_fSpeedY > 1000.f)

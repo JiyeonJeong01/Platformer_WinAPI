@@ -114,11 +114,6 @@ void CPlayer::Handle_KeyInput()
 
 void CPlayer::Update_Components()
 {
-	// Collision_Line이 제대로 수행되지 않았을 경우 떨어질 높이를 설정
-	m_fGroundY = WINCY + 100.f;
-
-	CLineManager::Get_Instance()->Collision_Line(m_vPosition, &m_fGroundY);
-
 	Jump();
 
 	Horizontal_Move();
@@ -236,6 +231,11 @@ void CPlayer::Landed_Platform(CObject* pObj)
 
 void CPlayer::Landed_Line()
 {
+	// Collision_Line이 제대로 수행되지 않았을 경우 떨어질 높이를 설정
+	m_fGroundY = WINCY + 100.f;
+
+	CLineManager::Get_Instance()->Collision_Line(m_vPosition, &m_fGroundY);
+
 	if (m_fSpeedY >= 0.f
 		&& m_vPosition.y + (m_vSize.y / 2.f) >= m_fGroundY)
 	{
