@@ -121,11 +121,9 @@ void CBullet03_Boss03::On_Collision(CObject* pObj)
 
 			Vector2 dir = Vector2(cosf(radius), sinf(radius));
 
-			// 음.. 이거 그냥 터지는 이팩트용 bullet을 하나 더 만들어서 그걸로 속도 조절 하는게 낫겠다. Bullet 상속만 받으면 될듯
 			CObjectManager::Get_Instance()->Add_Object(
-				MON_BULLET, CAbstractFactory<CBullet>::Create(MON_BULLET, m_vPosition, dir));
+				EFFECT, CAbstractFactory<CBullet>::Create(EFFECT, m_vPosition, dir));
 
-			// ++ 줄넘기랑 보스 체력 일정이상 깎이면 뒤에서 밀어서 맵으로 강제로 이동? 뭐 이런 느낌 연출
 		}
 	}
 	m_bDead = true;
