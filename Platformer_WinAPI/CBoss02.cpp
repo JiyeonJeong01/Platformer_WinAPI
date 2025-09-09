@@ -49,6 +49,7 @@ void CBoss02::Initialize()
 	m_Stepback = false;
 	m_StepbackTime = .1f;
 	m_StepBackSpeed = 30;
+
 	__super::Update_Rect();
 
 }

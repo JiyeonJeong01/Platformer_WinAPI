@@ -26,7 +26,7 @@ void CPlayer::Initialize()
 	m_fSpeedX = 500.f;
 	m_fSpeedY = 0.f;
 
-	m_fMaxHP         = 100.f;
+	m_fMaxHP         = 500.f;
 	m_fHP            = m_fMaxHP;
 	m_fDamage        = 1.f;
 	m_iPlayerMaxJump = 2;

@@ -26,8 +26,8 @@ void CStage03::Initialize()
 	CreateTile();
 
 	// Object 추가
-	CObjectManager::Get_Instance()->Add_Object(PLAYER, CAbstractFactory<CPlayer03>::Create(PLAYER));
-	CObjectManager::Get_Instance()->Add_Object(MONSTER, CAbstractFactory<CBoss03>::Create(MONSTER, 1200, 620));
+	CObjectManager::Get_Instance()->Add_Object(PLAYER, CAbstractFactory<CPlayer>::Create(PLAYER));
+	CObjectManager::Get_Instance()->Add_Object(MONSTER, CAbstractFactory<CBoss03>::Create(MONSTER, 1200, 520));
 
 }
 

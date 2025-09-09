@@ -40,14 +40,13 @@ void CBoss03::Initialize()
 	m_PatternTimers[BOSS_STATE::Attack1] = 0.f;
 	m_PatternTimers[BOSS_STATE::Attack2] = 0.f;
 	m_PatternTimers[BOSS_STATE::Attack3] = 0.f;
+
 }
 
 int CBoss03::Update()
 {
-	if (m_bDead)
+	if (m_bDead == true)
 		return OBJ_DEAD;
-
-	__super::Update_Rect();
 
 	float delta = DeltaTime();          
 	m_fDeltaTime = delta;
@@ -73,7 +72,9 @@ int CBoss03::Update()
 		break;
 	}
 
-	return CMonster::Update();
+	__super::Update_Rect();
+
+	return OBJ_NOEVENT;
 }
 
 
@@ -228,7 +229,7 @@ void CBoss03::Attack3()
 	if (m_Attack3_Timer >= 1.5f)
 	{	
 		CObjectManager::Get_Instance()->Add_Object(
-			MON_BULLET, CAbstractFactory<CBullet03_Boss03>::Create(MON_BULLET, m_vPosition));
+			MON_BULLET, CAbstractFactory<CBullet03_Boss03>::Create(MON_BULLET, m_vPosition, true));
 
 		m_Attack3_Timer = 0.f;
 	}
