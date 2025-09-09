@@ -10,6 +10,7 @@
 
 CMob01::CMob01()
 {
+
 }
 
 CMob01::~CMob01()
@@ -18,7 +19,7 @@ CMob01::~CMob01()
 
 void CMob01::Initialize()
 {
-    m_vPosition = { WINCX *0.5f-100, WINCY *0.5f-50 };
+    m_vPosition = { WINCX *0.5f-100, WINCY *0.5f-20};
     m_vDirection = { 0.f, 0.f };
     m_vSize = { 70.f, 70.f };
 

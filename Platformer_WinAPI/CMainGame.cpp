@@ -37,7 +37,7 @@ void CMainGame::Initialize()
 	CBmpManager::Get_Instance()->Initialize();
 
 	// Start Stage
-	CStageManager::Get_Instance()->ChangeStage(STAGE3);
+	CStageManager::Get_Instance()->ChangeStage(STAGE1);
 
 }
 
