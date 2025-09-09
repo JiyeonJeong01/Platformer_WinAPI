@@ -5,6 +5,7 @@
 #include "CPlayer03.h"
 #include "CMob01.h"
 #include "CBoss02.h"
+#include "CPlatform.h"
 
 CStage02::CStage02()
 {
@@ -25,6 +26,11 @@ void CStage02::Initialize()
 	Vector2 tPoint2[6] =
 	{ {350.f,Ystart},{500.f,Ystart},{700.f,Ystart - 200.f},{1000.f,Ystart - 200.f} ,{ 1000.f ,Ystart },{3000.f ,Ystart} };
 	CLineManager::Get_Instance()->Create_Line(tPoint2, 6);
+
+	CObjectManager::Get_Instance()
+		->Add_Object(PLATFORM, CAbstractFactory<CPlatform>::Create(PLATFORM, 1000.f+5, Ystart - 100.f, 10, 200));
+	CObjectManager::Get_Instance()
+		->Add_Object(PLATFORM, CAbstractFactory<CPlatform>::Create(PLATFORM, 3000.f + 5, Ystart - 100.f, 10, 200));
 
 
 	Vector2 tPoint3[2] =

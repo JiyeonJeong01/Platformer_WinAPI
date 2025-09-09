@@ -279,6 +279,9 @@
     <ClInclude Include="CBmp.h">
       <Filter>02. Manager\07. BmpManager</Filter>
     </ClInclude>
+    <ClInclude Include="CBullet_Boss02.h">
+      <Filter>01. Object\03. Bullet\02. Bullet02</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Platformer_WinAPI.cpp">
@@ -403,6 +406,9 @@
     </ClCompile>
     <ClCompile Include="CBmpManager.cpp">
       <Filter>02. Manager\07. BmpManager</Filter>
+     </ClCompile>
+    <ClCompile Include="CBullet_Boss02.cpp">
+      <Filter>01. Object\03. Bullet\02. Bullet02</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
