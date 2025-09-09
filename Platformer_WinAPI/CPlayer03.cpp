@@ -89,13 +89,13 @@ void CPlayer03::On_Collision(CObject* pObj)
 	case MONSTER: break;
 
 	case MON_BULLET:
-		{
-		Vector2 dir = m_vPosition - pObj->Get_Position();
-		dir = Vector2::Nomalize(dir);
-
-		m_vPosition.x += dir.x * 15.f;
-		m_vPosition.y += dir.y * 30.f;
-		}
+		//{
+		//Vector2 dir = m_vPosition - pObj->Get_Position();
+		//dir = Vector2::Nomalize(dir);
+		//
+		//m_vPosition.x += dir.x * 15.f;
+		//m_vPosition.y += dir.y * 30.f;
+		//}
 		
 		break;
 	case MOUSE: break;

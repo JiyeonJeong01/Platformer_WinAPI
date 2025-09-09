@@ -26,6 +26,7 @@ enum OBJID
 	MOUSE,
 	SHIELD,
 	ITEM,
+	EFFECT,
 	OBJ_END
 };
 
