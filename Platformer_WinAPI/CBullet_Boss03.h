@@ -1,12 +1,13 @@
 ﻿#pragma once
 
 #include "CBullet.h"
+#include "CBullet02_Boss03.h"
 
-class CBullet_Player03 : public CBullet
+class CBullet_Boss03 : public CBullet
 {
 public:
-	CBullet_Player03();
-	virtual ~CBullet_Player03();
+	CBullet_Boss03();
+	virtual ~CBullet_Boss03();
 
 public:
 	void Initialize() override;
@@ -17,7 +18,15 @@ public:
 
 public:
 	void On_Collision(CObject* pObj) override;
-	void Do_Attack() override;
 	void Take_Damage(float _fDamage) override;
+
+private:
+	Type attackType = Type::Charge;
+
+	float      m_fAngleDeg;
+	float      m_fRadius;
+	float      m_fAngSpeed;
+	float      m_fElapsed;
+	Vector2    m_center;
 };
 

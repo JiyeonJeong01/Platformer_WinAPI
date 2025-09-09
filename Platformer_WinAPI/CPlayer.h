@@ -55,6 +55,7 @@ protected:
 	bool bRightPressed;
 	bool bJumpPressed;
 	bool bLeftMouseClicked;
+	bool bRightMouseClicked;
 
 	// 점프 및 착지 관련 변수
 	int   m_iPlayerJumpCount;		// 플레이어가 점프 입력 카운트. 착지하면 0이 됨
@@ -65,4 +66,5 @@ protected:
 	// 공격 딜레이 관련 변수
 	float m_fAtkTimer;				// m_fDeltaTime 을 += 로 더해주면 타이머로 사용 가능
 	float m_fAtkCooldown;			// 공격간 딜레이 설정, 조절시 공속 바꾸기 가능!
+
 };

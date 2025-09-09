@@ -16,6 +16,6 @@ public:
 	void Release() override;
 
 private:
-
+	void CreateTile();
 };
 

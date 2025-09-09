@@ -64,6 +64,13 @@ void CBullet::On_Collision(CObject* pObj)
 			m_bDead = true;
 	}
 	break;
+	case PL_BULLET:				  break;
+	case MON_BULLET:		      break;
+	case MOUSE:					  break;
+	case SHIELD:				  break;
+	case ITEM:					  break;
+		break;
+
 	case PLATFORM:
 	{
 		m_bDead = true;

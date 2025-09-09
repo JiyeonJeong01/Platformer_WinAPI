@@ -122,6 +122,8 @@ void CPlayer::Handle_KeyInput()
 	bLeftMouseClicked = CInputManager::Get_Instance()->GetKey(VK_LBUTTON);
 	m_fMousePosX      = CInputManager::Get_Instance()->Get_CursorPosition().x;
 	m_fMousePosY      = CInputManager::Get_Instance()->Get_CursorPosition().y;
+
+	bRightMouseClicked = CInputManager::Get_Instance()->GetKey(VK_RBUTTON);
 }
 
 void CPlayer::Update_Components()
@@ -146,7 +148,15 @@ void CPlayer::On_Collision(CObject* pObj)
 	break;
 	case MON_BULLET:
 	{
-		Take_Damage(pObj->Get_Damage());
+		{
+			Take_Damage(pObj->Get_Damage());
+
+			Vector2 dir = m_vPosition - pObj->Get_Position();
+			dir = Vector2::Nomalize(dir);
+
+			m_vPosition.x += dir.x * 15.f;
+			m_vPosition.y += dir.y * 30.f;
+		}
 	}
 	break;
 	case ITEM:
