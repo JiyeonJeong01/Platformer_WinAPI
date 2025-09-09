@@ -18,7 +18,7 @@ CMob01::~CMob01()
 
 void CMob01::Initialize()
 {
-    m_vPosition = { WINCX *0.5f-100, WINCY *0.5f-50 };
+    m_vPosition = { WINCX *0.5f-100, WINCY *0.5f-20 };
     m_vDirection = { 0.f, 0.f };
     m_vSize = { 70.f, 70.f };
 
@@ -36,10 +36,15 @@ void CMob01::Initialize()
 
 int CMob01::Update()
 {
-	if (m_bDead)
+    if (m_bDead)
+        //CStageManager::Get_Instance()->On_MobDead(this);
 		return OBJ_DEAD;
 
     __super::Update_Rect();
+
+    float pY=0.f;
+
+    CLineManager::Get_Instance()->Collision_Line(m_vPosition, &pY);
     Vector2 pos = CObjectManager::Get_Instance()->Get_Player()->Get_Position();
     Vector2 size = CObjectManager::Get_Instance()->Get_Player()->Get_Size();
 
@@ -63,10 +68,7 @@ int CMob01::Update()
 
 
 
-    float pY=0.f;
 
-
-    CLineManager::Get_Instance()->Collision_Line(m_vPosition, &pY);
 
 
     //m_vPosition.y = pY-(m_vSize.y / 2);

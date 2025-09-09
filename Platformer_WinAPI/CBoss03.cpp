@@ -23,7 +23,7 @@ void CBoss03::Initialize()
 {
 	CMonster::Initialize();
 	
-	m_vSize = { 250.f, 300.f };
+	m_vSize = { 90.f, 90.f };
 
 	m_fSpeedX = 10.f;
 	m_fSpeedY = 7.f;
