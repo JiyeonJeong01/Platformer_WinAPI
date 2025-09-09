@@ -91,13 +91,21 @@ void CMonster::Landed_Line()
 	}
 }
 
+void CMonster::Horizontal_Move()
+{
+	m_vDirection = m_vDirection.GetNomalized();
+
+	// 수평방향 이동
+	m_vPosition.x += m_vDirection.x * m_fSpeedX * m_fDeltaTime;
+}
+
 // 몬스터 점프는 m_bGravityOn == true 일 때만 사용 가능
 // 주의 : 점프 조건은 직접 줄 것
-void CMonster::Jump()
+void CMonster::Jump(float _fJumpPower)
 {
 	if (m_bGravityOn && (m_iMonsterJumpCount < m_iMonsterMaxJump))
 	{
-		m_fSpeedY = -900.f;
+		m_fSpeedY = -_fJumpPower;
 		// 임의로 준 점프 스피드, 점프할때만 필요하므로 이 때 값을 집어넣는다.
 
 		m_iMonsterJumpCount += 1;
@@ -105,20 +113,6 @@ void CMonster::Jump()
 
 		m_bMonsterLanded = false;
 	}
-}
-
-void CMonster::Left_Move()
-{
-	m_vDirection.x = -1.f;
-	m_vDirection   = m_vDirection.GetNomalized();
-	m_vPosition.x += m_vDirection.x * m_fSpeedX * m_fDeltaTime;
-}
-
-void CMonster::Right_Move()
-{
-	m_vDirection.x = 1.f;
-	m_vDirection   = m_vDirection.GetNomalized();
-	m_vPosition.x += m_vDirection.x * m_fSpeedX * m_fDeltaTime;
 }
 
 void CMonster::Vertical_Move()

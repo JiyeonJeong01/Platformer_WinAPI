@@ -7,10 +7,9 @@ private:
 	enum class BOSS04_STATE
 	{
 		IDLE = 0,
-		ATTACK_01,			//! 플레이어 방향으로 가속하는 총알 3발 흩뿌리기
-		ATTACK_02,			//! 플레이어 방향으로 한 번 점프
-		ATTACK_03,			//! 중력이 있는 총알을 플레이어 위로 떨어지도록 난사하기
-		ATTACK_04,			//! 잡몹 소환
+		ATTACK_01,			// 플레이어 방향으로 가속하는 총알 3발 흩뿌리기
+		ATTACK_02,			// 플레이어 방향으로 한 번 점프
+		ATTACK_03,			// 중력이 있는 총알을 플레이어 위로 떨어지도록 난사하기
 		NONE
 	};
 
@@ -38,10 +37,13 @@ private:
 
 	void Attack01();
 	void Attack02();
+	void Attack03();
 
 private:
 	BOSS04_STATE m_eBossState;
 
-	float m_fBossAtkDelay;			// 보스 공격 간 딜레이
-	bool  m_bCanAttack;				// 한 딜레이 동안 한 번만 공격이 나오도록
+	float m_fBossStateTimer;		// 보스 상태 전환 타이머
+	float m_fBossAtkTimer;			// 보스 공격 타이머
+
+	bool m_bCanAttack;				// 한 상태 동안 한 번만 공격이 나오는 패턴에서는 false로 바꾸기
 };

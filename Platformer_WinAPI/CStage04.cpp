@@ -18,14 +18,10 @@ CStage04::~CStage04()
 void CStage04::Initialize()
 {
 	CObjectManager::Get_Instance()
-		->Add_Object(PLAYER, CAbstractFactory<CPlayer04>::Create(PLAYER));
+		->Add_Object(PLAYER, CAbstractFactory<CPlayer>::Create(PLAYER));
 
 	CObjectManager::Get_Instance()
 		->Add_Object(MONSTER, CAbstractFactory<CBoss04>::Create(MONSTER, 1000.f, 400.f));
-
-	//CObjectManager::Get_Instance()
-	//	->Add_Object(MONSTER, CAbstractFactory<CMob01>::Create(MONSTER, 500.f, 200.f));
-	//todo 몬스터 직접 만들기
 
 	// 1.바닥 : 사선
 	//Vector2 tPoint[2] =

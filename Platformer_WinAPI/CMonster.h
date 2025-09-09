@@ -36,11 +36,10 @@ protected:	// 자식에서도 자유롭게 사용 가능한 착지 및 좌우 �
 	void Landed_Platform(CObject* pObj);
 	void Landed_Line();
 
-	void Left_Move();
-	void Right_Move();
+	void Horizontal_Move();
 
 protected:	// m_bGravityOn == true 일 때만 사용 가능한 점프 및 중력 관련 함수
-	void Jump();
+	void Jump(float _fJumpPower);
 	void Vertical_Move();
 
 protected :

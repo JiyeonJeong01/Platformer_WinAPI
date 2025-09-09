@@ -5,6 +5,14 @@
 class CUtility
 {
 public:
+    // ex) CUtility::PrintText(hdc, 좌표 x, y, 텍스트)
+    static void PrintText(HDC hdc, int x, int y, const wchar_t* text)
+    {
+        TCHAR buffer[64] = L"";
+        swprintf_s(buffer, L"%s", text);
+        TextOut(hdc, x, y, buffer, lstrlen(buffer));
+    }
+
     // ex) CUtility::PrintText(hdc, 좌표 x, y, 텍스트, 출력 값)
     static void PrintText(HDC hdc, int x, int y, const wchar_t* text, int value)
     {
@@ -21,7 +29,7 @@ public:
         TextOut(hdc, x, y, buffer, lstrlen(buffer));
     }
 
-    // ex) CUtility::PrintText(hdc, 좌표 x, y, 텍스트, 출력 값)
+    // ex) CUtility::PrintText(hdc, 좌표 x, y, 텍스트, 출력 값1 / 출력 값2)
     static void PrintText(HDC hdc, int x, int y, const wchar_t* text, float value1, float value2)
     {
         TCHAR buffer[64] = L"";
