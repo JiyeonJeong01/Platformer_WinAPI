@@ -229,7 +229,7 @@ void CBoss03::Attack3()
 	if (m_Attack3_Timer >= 1.5f)
 	{	
 		CObjectManager::Get_Instance()->Add_Object(
-			MON_BULLET, CAbstractFactory<CBullet03_Boss03>::Create(MON_BULLET, m_vPosition));
+			MON_BULLET, CAbstractFactory<CBullet03_Boss03>::Create(MON_BULLET, m_vPosition, true));
 
 		m_Attack3_Timer = 0.f;
 	}
