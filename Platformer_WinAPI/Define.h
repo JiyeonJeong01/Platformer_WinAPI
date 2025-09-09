@@ -69,3 +69,33 @@ typedef struct tagLine
 	}
 }
 LINE;
+
+struct DeleteMap
+{
+	template<typename T>
+	void	operator()(T& MyPair)
+	{
+		if (MyPair.second)
+		{
+			delete MyPair.second;
+			MyPair.second = nullptr;
+		}
+	}
+};
+
+struct tagFinder
+{
+	tagFinder(const TCHAR* pTag) : m_pTag(pTag)
+	{
+	}
+
+	template<typename T>
+	bool operator()(T& MyPair)
+	{
+		return !lstrcmp(MyPair.first, m_pTag);
+	}
+
+
+	const TCHAR* m_pTag;
+};
+

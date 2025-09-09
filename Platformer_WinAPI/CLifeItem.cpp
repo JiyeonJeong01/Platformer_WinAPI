@@ -3,7 +3,19 @@
 
 void CLifeItem::Render(HDC _hDC)
 {
-	Rectangle(_hDC, m_tRect.left, m_tRect.top, m_tRect.right, m_tRect.bottom);
+	HDC	hMemDC = CBmpManager::Get_Instance()->Find_Img(L"ItemLife");
+
+	GdiTransparentBlt(_hDC,
+		m_tRect.left,
+		m_tRect.top,
+		(int)m_vSize.x,
+		(int)m_vSize.y,
+		hMemDC,
+		0,
+		0,
+		(int)m_vSize.x,
+		(int)m_vSize.y,
+		RGB(255, 255, 255));
 }
 
 void CLifeItem::Initialize()
@@ -21,6 +33,6 @@ void CLifeItem::Initialize()
 void CLifeItem::Apply_Effect(CObject* pObj)
 {
 	// player's current hp +20%
-	pObj->Set_HP(min(pObj->Get_MaxHP(), pObj->Get_HP() * 1.2f));
+	pObj->Set_HP(min(pObj->Get_MaxHP(), pObj->Get_HP() * 1.35f));
 	m_bDead = true;
 }

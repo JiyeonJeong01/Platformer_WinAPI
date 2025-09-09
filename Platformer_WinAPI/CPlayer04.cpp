@@ -63,6 +63,12 @@ void CPlayer04::Release()
 void CPlayer04::On_Collision(CObject* pObj)
 {
 	__super::On_Collision(pObj);
+
+
+	if (m_fHP <= 0.f)
+	{
+		CStageManager::Get_Instance()->On_PlayerDead(STAGE4, this);
+	}
 }
 
 void CPlayer04::Do_Attack()

@@ -25,6 +25,8 @@ public:
 	void DrawHP(HDC hDC, float x, float y, float width, float height,
 		float Hp, float MaxHp, HP_DIR dir = HP_DIR::LeftToRight);
 
+	void Render_GameClear(HDC hDC);
+
 public:
 	static CUIManager* Get_Instance()
 	{

@@ -1,7 +1,7 @@
 #pragma once
 #include "CMonster.h"
 
-enum class BOSS02_PATTERN { IDLE, PATTERN1, PATTERN2, PATTERN3, BP_END };
+enum class BOSS02_PATTERN { IDLE, PATTERN1, PATTERN2, MOVE, BP_END };
 
 const static int m_PosinNum = 4;
 
@@ -30,16 +30,33 @@ public:
 
 private:
 
+
 	BOSS02_PATTERN m_pattern = BOSS02_PATTERN::IDLE;
 
 	float m_Attack_Interval = 0.f;
 	DWORD m_Attack_Interval2;
 
-	Vector2 m_BossPosinDir[m_PosinNum];
+	Vector2 m_BossPosinDir;
 
 	int angle;
 
-	bool bJump;
+	bool m_bJump;
+
+private:
+
+	void Dash(Vector2 tmpdir);
+
+	void Landed_Platform(CObject* pObj);
+
+	bool m_isDash;
+	float m_DashSpeed;
+	float m_DashTime;
+	float m_DashDuration;
+	Vector2 tmpdir = {};
+
+	bool m_Stepback;
+	float m_StepBackSpeed;
+	float m_StepbackTime;
 };
 
 

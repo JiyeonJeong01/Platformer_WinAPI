@@ -32,11 +32,13 @@ void CMob03::Initialize()
 	iTotalState = 3;
 	iLastDirection = -1;
 
-	fShotTime = 0.3f;
+	fShotTime = 1.2f;
 	fShotTimeLog = 0;
 
-	m_fMaxHP = 80.f;
+	m_fMaxHP = 30.f;
 	m_fHP = m_fMaxHP;
+
+	m_fDamage = 5.f;
 
 	currentState = &CMob03::Move_State;
 }
@@ -62,7 +64,17 @@ void CMob03::Late_Update()
 
 void CMob03::Render(HDC hDC)
 {
-	Rectangle(hDC, m_tRect.left, m_tRect.top, m_tRect.right, m_tRect.bottom);
+		Rectangle(hDC, m_tRect.left, m_tRect.top, m_tRect.right, m_tRect.bottom);
+
+		int iScrollX = static_cast<int>(CScrollManager::Get_Instance()->Get_ScrollX());
+		int iScrollY = static_cast<int>(CScrollManager::Get_Instance()->Get_ScrollY());
+
+		CUIManager::Get_Instance()->DrawHP(
+			hDC, 
+			(m_vPosition.x + iScrollX - m_vSize.x * .5f),
+			(m_vPosition.y + iScrollY + m_vSize.y * .5f) + 10, 
+			m_vSize.x, 5, m_fHP, m_fMaxHP);
+
 }
 
 void CMob03::Release()
@@ -102,6 +114,7 @@ void CMob03::Do_Attack()
 	Vector2 bulletDir = Vector2::Nomalize({ -fDistX, -fDistY });
 
 	CObject* pObj = CAbstractFactory<CBullet>::Create(MON_BULLET, m_vPosition, bulletDir);
+	pObj->Set_Damage(5.f);
 	CObjectManager::Get_Instance()->Add_Object(MON_BULLET, pObj);
 }
 

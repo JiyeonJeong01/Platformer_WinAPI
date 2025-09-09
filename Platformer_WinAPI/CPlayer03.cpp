@@ -90,7 +90,7 @@ void CPlayer03::On_Collision(CObject* pObj)
 
 	case MON_BULLET:
 		{
-		// ÇÃ·¹ÀÌ¾î ³Ë¹é?
+		// ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ ï¿½Ë¹ï¿½?
 		Vector2 dir = m_vPosition - pObj->Get_Position();
 		dir = Vector2::Nomalize(dir);
 

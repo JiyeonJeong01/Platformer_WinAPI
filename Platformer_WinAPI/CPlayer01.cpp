@@ -31,6 +31,8 @@ void CPlayer01::Render(HDC hDC)
 
 void CPlayer01::On_Collision(CObject* pObj)
 {
+	__super::On_Collision(pObj);
+
 	if (pObj->Get_ObjectID() == MON_BULLET)
 	{
 		Take_Damage(pObj->Get_Damage());
@@ -39,12 +41,7 @@ void CPlayer01::On_Collision(CObject* pObj)
 
 void CPlayer01::Do_Attack()
 {
-	Vector2 dir = Vector2::Nomalize(m_mouseDir);
-	Vector2 barrel = m_vPosition + dir * 50.f;
-
-	CObject* pBullet = CAbstractFactory<CBullet>::Create(PL_BULLET, barrel, dir);
-	pBullet->Set_Damage(m_fDamage);
-	CObjectManager::Get_Instance()->Add_Object(PL_BULLET, pBullet);
+	CPlayer::Do_Attack();
 }
 
 void CPlayer01::Take_Damage(float _fDamage)

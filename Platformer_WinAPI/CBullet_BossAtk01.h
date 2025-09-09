@@ -1,8 +1,7 @@
 ﻿#pragma once
 #include "CBullet.h"
 
-//! 보스 공격1 전용 총알 테스트
-//! 가속하는 총알
+//! 보스 공격1 전용 총알 : 가속하는 총알
 
 class CBullet_BossAtk01 final : public CBullet
 {

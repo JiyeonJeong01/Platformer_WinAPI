@@ -26,6 +26,7 @@ void CStageManager::Initialize()
 {
 	fItemDropRate = 0.4f;
 	fCurrentDamage = -1.f;
+	bGameClear = false;
 }
 
 void CStageManager::Update()
@@ -101,7 +102,12 @@ void CStageManager::On_CurrentBossDead(CObject* pObj)
 {
 	if (m_currentStageID <= STAGE3)
 	{
+		float fDamage = CObjectManager::Get_Instance()->Get_Player()->Get_Damage();
+		_tprintf(_T("damage : %f"), fDamage);
+
 		ChangeStage(STAGEID(m_currentStageID + 1));
+		CObjectManager::Get_Instance()->Get_Player()->Set_Damage(fDamage);
+		_tprintf(_T("damage : %f"), CObjectManager::Get_Instance()->Get_Player()->Get_Damage());
 	}
 	else if (m_currentStageID == STAGE4)
 	{
@@ -111,7 +117,7 @@ void CStageManager::On_CurrentBossDead(CObject* pObj)
 
 void CStageManager::On_MobDead(CObject* pObj)
 {
-	int iTotalCount = 1;
+	int iTotalCount = 2;
 
 	float fDropRate = (float)(rand() % 11);
 	if (/*fDropRate <= fItemDropRate*/true) // 100% drop for test!!!!!

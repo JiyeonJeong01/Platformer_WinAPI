@@ -87,8 +87,20 @@ void CBoss03::Render(HDC hDC)
 {
 	CMonster::Render(hDC);
 
-	// TODO : 이미지로 변경
-	Rectangle(hDC, m_tRect.left, m_tRect.top, m_tRect.right, m_tRect.bottom);
+	HDC	hMemDC = CBmpManager::Get_Instance()->Find_Img(L"Boss03");
+
+	GdiTransparentBlt(hDC,
+		m_tRect.left,
+		m_tRect.top,
+		(int)m_vSize.x,
+		(int)m_vSize.y,
+		hMemDC,
+		0,
+		0,
+		(int)m_vSize.x,
+		(int)m_vSize.y,
+		RGB(255, 255, 255));
+
 
 	CUIManager::Get_Instance()->Render_BossHP(hDC, this);
 
@@ -142,6 +154,7 @@ void CBoss03::Take_Damage(float _fDamage)
 	{
 		Set_HP(0.f);
 		m_bDead = true;
+		CStageManager::Get_Instance()->On_CurrentBossDead(this);
 	}
 
 }

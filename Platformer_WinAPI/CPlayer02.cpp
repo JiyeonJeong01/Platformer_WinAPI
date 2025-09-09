@@ -6,6 +6,7 @@
 #include "CBullet.h"
 #include "CLineManager.h"
 #include "CUIManager.h"
+#include "CStageManager.h"
 CPlayer02::CPlayer02() : sz_Time(GetTickCount())
 {
 
@@ -30,7 +31,7 @@ void CPlayer02::Initialize()
 
 	m_vPosinPosition = { 1,1 };
 
-	m_fHP = 100;
+	m_fHP = 1000;
 	m_fMaxHP = m_fHP;
 
 	__super::Update_Rect();
@@ -71,12 +72,12 @@ void CPlayer02::Release()
 
 void CPlayer02::Do_Attack()
 {
-	//CPlayer::Do_Attack();
+	CPlayer::Do_Attack();
 
-	Vector2 dir = Vector2::Nomalize(m_mouseDir);
-	Vector2 barrel = m_vPosition + dir * 50.f;
+	//Vector2 dir = Vector2::Nomalize(m_mouseDir);
+	//Vector2 barrel = m_vPosition + dir * 50.f;
 
-	CObjectManager::Get_Instance()->Add_Object(PL_BULLET, CAbstractFactory<CBullet>::Create(PL_BULLET, barrel, dir));
+	//CObjectManager::Get_Instance()->Add_Object(PL_BULLET, CAbstractFactory<CBullet>::Create(PL_BULLET, barrel, dir));
 }
 
 void CPlayer02::Take_Damage(float _fDamage)
@@ -92,6 +93,7 @@ void CPlayer02::Take_Damage(float _fDamage)
 	{
 		m_fHP = 0.f;
 		m_bDead = true;
+		CStageManager::Get_Instance()->On_PlayerDead(STAGE2, this);
 	}
 
 	
@@ -101,8 +103,14 @@ void CPlayer02::Take_Damage(float _fDamage)
 
 void CPlayer02::On_Collision(CObject* pObj)
 {
+
+	__super::On_Collision(pObj);
+
+
 	if (pObj->Get_ObjectID() == MON_BULLET)
 		Take_Damage(pObj->Get_Damage());
+
+		
 
 }
 
