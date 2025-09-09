@@ -2,7 +2,6 @@
 #include "CStage04.h"
 #include "CAbstractFactory.h"
 #include "CBoss04.h"
-#include "CMob01.h"
 #include "CObjectManager.h"
 #include "CPlatform.h"
 #include "CPlayer04.h"
